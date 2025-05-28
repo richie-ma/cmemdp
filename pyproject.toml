@@ -1,0 +1,37 @@
+[build-system]
+requires = ["hatchling >= 1.26"]
+build-backend = "hatchling.build"
+
+[project]
+name = "cmemdp_py"
+version = "0.1.0"
+description = "Clean and Analyze Chicago Mercantile Exchange Market Data in Python"
+authors = [
+    { name="Richie Ma", email="ruchuan2@illinois.edu" }
+]
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+]
+
+license = "MIT"
+license-files = ["LICEN[CS]E*"]
+
+dependencies = [
+    "pandas>=2.0",
+    "numpy>=1.24",
+    "tabulate",
+    "tqdm"
+]
+
+[project.urls]
+Repository = "https://github.com/richie-ma/cmempd_py"
+Issues = "https://github.com/richie-ma/cmempd_py/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["cmemdp_py"]
+
+[tool.hatch.build]
+package-dir = {"" = "src"}
