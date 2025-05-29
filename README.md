@@ -14,14 +14,14 @@ The package can be installed through the TestPyPI by typing the following code i
 
 
 ```python
-#pip install -i https://test.pypi.org/simple/ cmemdp
+pip install -i https://test.pypi.org/simple/ cmemdp
 ```
 
 Alternatively, this package can also be installed through the Github
 
 
 ```python
-# pip install git+https://github.com/richie-ma/cmemdp.git
+pip install git+https://github.com/richie-ma/cmemdp.git
 ```
 
 ## FIX data cleaning
