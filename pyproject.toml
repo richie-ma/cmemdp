@@ -3,8 +3,8 @@ requires = ["hatchling >= 1.26"]
 build-backend = "hatchling.build"
 
 [project]
-name = "cmemdp_py"
-version = "0.1.0"
+name = "cmemdp"
+version = "0.1.4"
 description = "Clean and Analyze Chicago Mercantile Exchange Market Data in Python"
 authors = [
     { name="Richie Ma", email="ruchuan2@illinois.edu" }
@@ -27,11 +27,8 @@ dependencies = [
 ]
 
 [project.urls]
-Repository = "https://github.com/richie-ma/cmempd_py"
-Issues = "https://github.com/richie-ma/cmempd_py/issues"
-
-[tool.hatch.build.targets.wheel]
-packages = ["cmemdp_py"]
+Repository = "https://github.com/richie-ma/cmempd"
+Issues = "https://github.com/richie-ma/cmempd/issues"
 
 [tool.hatch.build]
 package-dir = {"" = "src"}

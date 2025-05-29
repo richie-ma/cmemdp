@@ -36,7 +36,7 @@ description means the date when the format has been modified
 """
 
 
-import main_template
+from . import main_template
 from tabulate import tabulate
 from pandas import isnull, notnull
 import pandas as pd
