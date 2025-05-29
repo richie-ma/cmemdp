@@ -163,7 +163,7 @@ example[17]  ## showing the msgs_MDIncrementalRefreshBook46 as an example
     | 40 | msgs_SnapshotFullRefreshLongQty69                   |             0 |
     +----+-----------------------------------------------------+---------------+
      --> Dataframe: Success!
-    
+<div>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -422,10 +422,7 @@ example[17]  ## showing the msgs_MDIncrementalRefreshBook46 as an example
     </tr>
   </tbody>
 </table>
-<p>518 rows × 18 columns</p>
 </div>
-
-
 
 Users need to deal with the timestamp conversions and are encouraged to use `timestamp_conversion` function. Users still need to deal with the display format of the price in the `MDEntryPX` column. Basically, the numbers shown in the `MDEntryPX` column needs to times $10^{-9}$ and then times the price display format stipulated by the CME, which can be found in the security definition messages.
 
