@@ -10,15 +10,7 @@ Financial markets have become more transparent, and exchanges can provide high-f
 So far, there have been Market by Price (MBP) data which aggregates all individual order information (e.g., size) at every price level, and Market by Order (MBO) data that can show all individual order details (e.g., order priority) at each price level. Both data formats are included in the raw PCAP data. The MBO data also provide more information about trade summaries than the MBP, so that traders are able to know which limit orders are matched in each trade and their corresponding matching quantities. The detailed trade summaries also assign the trade direction more precisely than the MBP and no quote merge is required for almost all trades. In general, CME will disseminate the MBP incremental updates followed by the order-level details (e.g., submission, cancellation) that describes the reason for MBP updates. This package considers the above characters and can process both the MBP and MBO data including quote messages and trade summaries.
 
 ## Installation
-The package can be installed through the TestPyPI by typing the following code in your terminal.
-
-
-```python
-pip install -i https://test.pypi.org/simple/ cmemdp
-```
-
-Alternatively, this package can also be installed through the Github
-
+Users are strongly encouraged to download the package can be through the Github.
 
 ```python
 pip install git+https://github.com/richie-ma/cmemdp.git
