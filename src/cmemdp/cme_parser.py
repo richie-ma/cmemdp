@@ -289,8 +289,8 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
                     elif TemplateID == 35:
                             
                         if (msgs_template is None) or (35 in msgs_template):
-                                msgs_MDIncrementalRefreshSessionStatistics35.append(
-                                    main_template.MDIncrementalRefreshSessionStatistics35(messages, BlockLength, cme_packet))
+                            msgs_MDIncrementalRefreshSessionStatistics35.append(
+                                main_template.MDIncrementalRefreshSessionStatistics35(messages, BlockLength, cme_packet))
 
                     elif TemplateID == 36:
 
@@ -469,7 +469,7 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
                     elif TemplateID == 67:
 
                         if (msgs_template is None) or (67 in msgs_template):
-                            msgs_MDIncrementalRefreshSessionStatisticsLongQty67(
+                            msgs_MDIncrementalRefreshSessionStatisticsLongQty67.append(
                                 main_template.MDIncrementalRefreshSessionStatisticsLongQty67(messages, BlockLength, cme_packet))
 
                     elif TemplateID == 68:
