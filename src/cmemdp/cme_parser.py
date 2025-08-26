@@ -454,8 +454,38 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
                     pbar.update(message_length + 4)
 
                 f.seek(end_pos)
+    
+    #delte msgs that are not in the template
 
-    results = {
+    if msgs_template is not None and notnull(msgs_template).all():
+
+        # check the message templates
+
+        if set(msgs_template).issubset(main_template.template_id):
+
+            for name in list(globals()):
+                if name.startswith("msgs_"):
+                    try:
+                        suffix = int("".join(filter(str.isdigit, name)))
+                    except ValueError:
+                        suffix = None
+
+                    if suffix not in msgs_template:
+                        del globals()[name]
+
+        results = {}
+        for name in globals():
+            if name.startswith("msgs_"):
+                suffix = int("".join(filter(str.isdigit, name)))
+                if suffix in msgs_template:
+                    results[name] = globals()[name]
+
+        else:
+
+            raise Exception('One of message template IDs is not found.')
+        
+    else:
+        results = {
         'msgs_ChannelReset4': msgs_ChannelReset4,
         'msgs_AdminLogout16': msgs_AdminLogout16,
         'msgs_MDInstrumentDefinitionFuture27': msgs_MDInstrumentDefinitionFuture27,
@@ -498,21 +528,6 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
         'msgs_SnapshotFullRefreshTCPLongQty68': msgs_SnapshotFullRefreshTCPLongQty68,
         'msgs_SnapshotFullRefreshLongQty69': msgs_SnapshotFullRefreshLongQty69
     }
-
-    if msgs_template is not None and notnull(msgs_template).all():
-
-        # check the message templates
-
-        if set(msgs_template).issubset(main_template.template_id):
-
-            msgs_need = main_template.templates.loc[main_template.templates['id'].isin(
-                list(msgs_template)), 'msgs'].tolist()
-
-            results = {key: results[key]
-                       for key in msgs_need if key in results}
-        else:
-
-            raise Exception('One of message template IDs is not found.')
 
     results_info = pd.DataFrame({'msg_types': list(results.keys()), 'number_msgs': list(
         map(lambda item: len(item), results.values()))})
