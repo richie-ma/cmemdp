@@ -48,7 +48,7 @@ from itertools import chain
 
 
 def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_header=True,
-                        save_files=False, save_file_path=None, disable_progress_bar=False,
+                        save_file_path=None, disable_progress_bar=False,
                         save_file_type=None):
     """
     `cme_parser_datamine` is a binary pacaket capture (PCAP) data parser for 
@@ -77,8 +77,6 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
     cme_header : bool, optional
         Whether to parser the packet header, which includes the
         message sequence number and sending timestamps. The default is True.
-    save_files : bool, optional
-        Whether to save files. The default is False.
     save_file_path : str, optional
         The path for the saving file. The default is None.
     disable_progress_bar : bool, optional
@@ -511,115 +509,48 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
                     if suffix not in msgs_template:
                         del globals()[name]
 
-        results = {}
-        for name in globals():
-            if name.startswith("msgs_"):
-                suffix = int("".join(filter(str.isdigit, name)))
+        
+        for var_name, var_value in globals().items():
+            if var_name.startswith("msgs_"):
+                suffix = int("".join(filter(str.isdigit, var_name)))
                 if suffix in msgs_template:
-                    results[name] = globals()[name]
+                    flattened = list(chain(*var_value))
+                    df = pd.DataFrame.from_dict(flattened).reset_index(drop=True)
+                    globals()[var_name] = df
+                    print(' --> Dataframe: Success!')
 
         else:
 
             raise Exception('One of message template IDs is not found.')
         
     else:
-        results = {
-        'msgs_ChannelReset4': msgs_ChannelReset4,
-        'msgs_AdminLogout16': msgs_AdminLogout16,
-        'msgs_MDInstrumentDefinitionFuture27': msgs_MDInstrumentDefinitionFuture27,
-        'msgs_MDInstrumentDefinitionSpread29': msgs_MDInstrumentDefinitionSpread29,
-        'msgs_SecurityStatus30': msgs_SecurityStatus30,
-        'msgs_MDIncrementalRefreshBook32': msgs_MDIncrementalRefreshBook32,
-        'msgs_MDIncrementalRefreshDailyStatistics33': msgs_MDIncrementalRefreshDailyStatistics33,
-        'msgs_MDIncrementalRefreshLimitsBanding34': msgs_MDIncrementalRefreshLimitsBanding34,
-        'msgs_MDIncrementalRefreshSessionStatistics35': msgs_MDIncrementalRefreshSessionStatistics35,
-        'msgs_MDIncrementalRefreshTrade36': msgs_MDIncrementalRefreshTrade36,
-        'msgs_MDIncrementalRefreshVolume37': msgs_MDIncrementalRefreshVolume37,
-        'msgs_SnapshotFullRefresh38': msgs_SnapshotFullRefresh38,
-        'msgs_QuoteRequest39': msgs_QuoteRequest39,
-        'msgs_MDInstrumentDefinitionOption41': msgs_MDInstrumentDefinitionOption41,
-        'msgs_MDIncrementalRefreshTradeSummary42': msgs_MDIncrementalRefreshTradeSummary42,
-        'msgs_MDIncrementalRefreshOrderBook43': msgs_MDIncrementalRefreshOrderBook43,
-        'msgs_SnapshotFullRefreshOrderBook44': msgs_SnapshotFullRefreshOrderBook44,
-        'msgs_MDIncrementalRefreshBook46': msgs_MDIncrementalRefreshBook46,
-        'msgs_MDIncrementalRefreshOrderBook47': msgs_MDIncrementalRefreshOrderBook47,
-        'msgs_MDIncrementalRefreshTradeSummary48': msgs_MDIncrementalRefreshTradeSummary48,
-        'msgs_MDIncrementalRefreshDailyStatistics49': msgs_MDIncrementalRefreshDailyStatistics49,
-        'msgs_MDIncrementalRefreshLimitsBanding50': msgs_MDIncrementalRefreshLimitsBanding50,
-        'msgs_MDIncrementalRefreshSessionStatistics51': msgs_MDIncrementalRefreshSessionStatistics51,
-        'msgs_SnapshotFullRefresh52': msgs_SnapshotFullRefresh52,
-        'msgs_SnapshotFullRefreshOrderBook53': msgs_SnapshotFullRefreshOrderBook53,
-        'msgs_MDInstrumentDefinitionFuture54': msgs_MDInstrumentDefinitionFuture54,
-        'msgs_MDInstrumentDefinitionOption55': msgs_MDInstrumentDefinitionOption55,
-        'msgs_MDInstrumentDefinitionSpread56': msgs_MDInstrumentDefinitionSpread56,
-        'msgs_MDInstrumentDefinitionFixedIncome57': msgs_MDInstrumentDefinitionFixedIncome57,
-        'msgs_MDInstrumentDefinitionRepo58': msgs_MDInstrumentDefinitionRepo58,
-        'msgs_SnapshotRefreshTopOrders59': msgs_SnapshotRefreshTopOrders59,
-        'msgs_SecurityStatusWorkup60': msgs_SecurityStatusWorkup60,
-        'msgs_SnapshotFullRefreshTCP61': msgs_SnapshotFullRefreshTCP61,
-        'msgs_CollateralMarketValue62': msgs_CollateralMarketValue62,
-        'msgs_MDInstrumentDefinitionFX63': msgs_MDInstrumentDefinitionFX63,
-        'msgs_MDIncrementalRefreshBookLongQty64': msgs_MDIncrementalRefreshBookLongQty64,
-        'msgs_MDIncrementalRefreshTradeSummaryLongQty65': msgs_MDIncrementalRefreshTradeSummaryLongQty65,
-        'msgs_MDIncrementalRefreshVolumeLongQty66': msgs_MDIncrementalRefreshVolumeLongQty66,
-        'msgs_MDIncrementalRefreshSessionStatisticsLongQty67': msgs_MDIncrementalRefreshSessionStatisticsLongQty67,
-        'msgs_SnapshotFullRefreshTCPLongQty68': msgs_SnapshotFullRefreshTCPLongQty68,
-        'msgs_SnapshotFullRefreshLongQty69': msgs_SnapshotFullRefreshLongQty69
-    }
+        for var_name, var_value in globals().items():
+            if var_name.startswith("msgs_"):
+                flattened = list(chain(*var_value))
+                # Convert to DataFrame
+                df = pd.DataFrame.from_dict(flattened).reset_index(drop=True)
+                globals()[var_name] = df
+                print(' --> Dataframe: Success!')
 
-    results_info = pd.DataFrame({'msg_types': list(results.keys()), 'number_msgs': list(
-        map(lambda item: len(item), results.values()))})
-    print(tabulate(results_info, headers=[
-        'msg_types', 'number_msgs'], tablefmt="grid"))
+    if isnull(save_file_path):
 
-    # timestamp conversions
+        raise Exception('Path for saved files must be provided')
 
-    # some message templates have repeating groups and I need to melt them
+    if isnull(save_file_type):
 
-    # flatten the list for every list element in results dictionary
+        raise Exception('Type for saved files must be provided, either .csv or .pkl')
 
-    results = dict(
-        map(lambda i: (list(results.keys())[i], list(chain(*results[list(results.keys())[i]]))), range(len(results))))
+    if save_file_type not in ['csv', 'pkl']:
 
-    # make the list to dictionary for every element in the results dictionary
+        raise Exception('Type for saved files must be either .csv or .pkl')
 
-    results = dict(map(lambda j: (list(results.keys())[j], dict(
-        map(lambda i: (f'row{i}', results[list(results.keys())[j]][i]),
-            range(len(results[list(results.keys())[j]]))))), range(len(results))))
-
-    results = list(map(lambda j: pd.DataFrame.from_dict(
-        results[list(results.keys())[j]], orient='index').reset_index(drop=True), range(len(results))))
-
-    print(' --> Dataframe: Success!')
-
-    if save_files:
-
-        if isnull(save_file_path):
-
-            raise Exception('Path for saved files must be provided')
-
-        if isnull(save_file_type):
-
-            raise Exception(
-                'Type for saved files must be provided, either .csv or .pkl')
-
-        if save_file_type not in ['csv', 'pkl']:
-
-            raise Exception(
-                'Type for saved files must be either .csv or .pkl')
-
-        for i in range(len(results)):
-
-            results[i].to_pickle(
-                f"{save_file_path}/{results_info['msg_types'][i]}.{save_file_type}")
-
-    else:
-
-        return results
+    for var_name, var_value in globals().items():
+        if var_name.startswith("msgs_"):
+            globals()[var_name].to_pickle(f"{save_file_path}/{var_name}.{save_file_type}")
 
 
 def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=True,
-                    save_files=False, save_file_path=None, disable_progress_bar=True,
+                    save_file_path=None, disable_progress_bar=True,
                     save_file_type=None):
     """
     `cme_parser_pcap` is a binary pacaket capture (PCAP) data parser for 
@@ -647,8 +578,6 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
     cme_header : bool, optional
         Whether to parser the packet header, which includes the
         message sequence number and sending timestamps. The default is True.
-    save_files : bool, optional
-        Whether to save files. The default is False.
     save_file_path : str, optional
         The path for the saving file. The default is None.
     disable_progress_bar : bool, optional
@@ -820,209 +749,246 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
 
                     if TemplateID == 4:
 
-                        msgs_ChannelReset4.append(
-                            main_template.ChannelReset4(messages, BlockLength, cme_packet))
+                        if (msgs_template is None) or (4 in msgs_template):
+                            msgs_ChannelReset4.append(main_template.ChannelReset4(messages, BlockLength, cme_packet))
 
                     elif TemplateID == 16:
 
-                        msgs_AdminLogout16.append(
-                            main_template.AdminLogout16(messages, BlockLength, cme_packet))
-
+                        if (msgs_template is None) or (16 in msgs_template):
+                            msgs_AdminLogout16.append(main_template.AdminLogout16(messages, BlockLength, cme_packet))
+                            
                     elif TemplateID == 27:
 
-                        msgs_MDInstrumentDefinitionFuture27.append(
-                            main_template.MDInstrumentDefinitionFuture27(messages, BlockLength, Version, cme_packet))
+                        if (msgs_template is None) or (27 in msgs_template):
+                            msgs_MDInstrumentDefinitionFuture27.append(
+                                main_template.MDInstrumentDefinitionFuture27(messages, BlockLength, Version, cme_packet))
 
                     elif TemplateID == 29:
-
-                        msgs_MDInstrumentDefinitionSpread29.append(
-                            main_template.MDInstrumentDefinitionSpread29(messages, BlockLength, Version, cme_packet))
-
+                        
+                        if (msgs_template is None) or (29 in msgs_template):
+                            msgs_MDInstrumentDefinitionSpread29.append(
+                                main_template.MDInstrumentDefinitionSpread29(messages, BlockLength, Version, cme_packet))
+                            
                     elif TemplateID == 30:
 
-                        msgs_SecurityStatus30.append(
-                            main_template.SecurityStatus30(messages, BlockLength, cme_packet))
-
+                        if (msgs_template is None) or (30 in msgs_template):
+                            msgs_SecurityStatus30.append(main_template.SecurityStatus30(messages, BlockLength, cme_packet))
+                        
                     elif TemplateID == 32:
 
-                        msgs_MDIncrementalRefreshBook32.append(
-                            main_template.MDIncrementalRefreshBook32(messages, BlockLength, cme_packet))
+                        if (msgs_template is None) or (32 in msgs_template):
+                            msgs_MDIncrementalRefreshBook32.append(
+                                main_template.MDIncrementalRefreshBook32(messages, BlockLength, cme_packet))
 
                     elif TemplateID == 33:
 
-                        msgs_MDIncrementalRefreshDailyStatistics33.append(
-                            main_template.MDIncrementalRefreshDailyStatistics33(messages, BlockLength, cme_packet))
+                        if (msgs_template is None) or (33 in msgs_template):
+                            msgs_MDIncrementalRefreshDailyStatistics33.append(
+                                main_template.MDIncrementalRefreshDailyStatistics33(messages, BlockLength, cme_packet))
 
                     elif TemplateID == 34:
 
-                        msgs_MDIncrementalRefreshLimitsBanding34.append(
-                            main_template.MDIncrementalRefreshLimitsBanding34(messages, BlockLength, cme_packet))
+                        if (msgs_template is None) or (34 in msgs_template):
+                            msgs_MDIncrementalRefreshLimitsBanding34.append(
+                                main_template.MDIncrementalRefreshLimitsBanding34(messages, BlockLength, cme_packet))
 
                     elif TemplateID == 35:
-
-                        msgs_MDIncrementalRefreshSessionStatistics35.append(
-                            main_template.MDIncrementalRefreshSessionStatistics35(messages, BlockLength, cme_packet))
+                            
+                        if (msgs_template is None) or (35 in msgs_template):
+                            msgs_MDIncrementalRefreshSessionStatistics35.append(
+                                main_template.MDIncrementalRefreshSessionStatistics35(messages, BlockLength, cme_packet))
 
                     elif TemplateID == 36:
 
-                        msgs_MDIncrementalRefreshTrade36.append(
-                            main_template.MDIncrementalRefreshTrade36(messages, BlockLength, cme_packet))
+                        if (msgs_template is None) or (36 in msgs_template):
+                            msgs_MDIncrementalRefreshTrade36.append(
+                                main_template.MDIncrementalRefreshTrade36(messages, BlockLength, cme_packet))
 
                     elif TemplateID == 37:
 
-                        msgs_MDIncrementalRefreshVolume37.append(
-                            main_template.MDIncrementalRefreshVolume37(messages, BlockLength, cme_packet))
+                        if (msgs_template is None) or (37 in msgs_template):
+                            msgs_MDIncrementalRefreshVolume37.append(
+                                main_template.MDIncrementalRefreshVolume37(messages, BlockLength, cme_packet))
 
                     elif TemplateID == 38:
 
-                        msgs_SnapshotFullRefresh38.append(
-                            main_template.SnapshotFullRefresh38(messages, BlockLength, cme_packet))
+                        if (msgs_template is None) or (38 in msgs_template):
+                            msgs_SnapshotFullRefresh38.append(
+                                main_template.SnapshotFullRefresh38(messages, BlockLength, cme_packet))
 
                     elif TemplateID == 39:
 
-                        msgs_QuoteRequest39.append(
-                            main_template.QuoteRequest39(messages, BlockLength, cme_packet))
+                        if (msgs_template is None) or (39 in msgs_template):
+                            msgs_QuoteRequest39.append(
+                                main_template.QuoteRequest39(messages, BlockLength, cme_packet))
 
                     elif TemplateID == 41:
 
-                        msgs_MDInstrumentDefinitionOption41.append(
-                            main_template.MDInstrumentDefinitionOption41(messages, BlockLength, cme_packet))
+                        if (msgs_template is None) or (41 in msgs_template):
+                            msgs_MDInstrumentDefinitionOption41.append(
+                                main_template.MDInstrumentDefinitionOption41(messages, BlockLength, cme_packet))
 
                     elif TemplateID == 42:
 
-                        msgs_MDIncrementalRefreshTradeSummary42.append(
-                            main_template.MDIncrementalRefreshTradeSummary42(messages, BlockLength, cme_packet))
+                        if (msgs_template is None) or (42 in msgs_template):
+                            msgs_MDIncrementalRefreshTradeSummary42.append(
+                                main_template.MDIncrementalRefreshTradeSummary42(messages, BlockLength, cme_packet))
 
                     elif TemplateID == 43:
 
-                        msgs_MDIncrementalRefreshOrderBook43.append(
-                            main_template.MDIncrementalRefreshOrderBook43(messages, BlockLength, cme_packet))
+                        if (msgs_template is None) or (43 in msgs_template):
+                            msgs_MDIncrementalRefreshOrderBook43.append(
+                                main_template.MDIncrementalRefreshOrderBook43(messages, BlockLength, cme_packet))
 
                     elif TemplateID == 44:
 
-                        msgs_SnapshotFullRefreshOrderBook44.append(
-                            main_template.SnapshotFullRefreshOrderBook44(messages, BlockLength, cme_packet))
+                        if (msgs_template is None) or (44 in msgs_template):
+                            msgs_SnapshotFullRefreshOrderBook44.append(
+                                main_template.SnapshotFullRefreshOrderBook44(messages, BlockLength, cme_packet))
 
                     elif TemplateID == 46:
 
-                        msgs_MDIncrementalRefreshBook46.append(
-                            main_template.MDIncrementalRefreshBook46(messages, BlockLength, cme_packet))
-                        break
+                        if (msgs_template is None) or (46 in msgs_template):
+                            msgs_MDIncrementalRefreshBook46.append(
+                                main_template.MDIncrementalRefreshBook46(messages, BlockLength, cme_packet))
 
                     elif TemplateID == 47:
 
-                        msgs_MDIncrementalRefreshOrderBook47.append(
-                            main_template.MDIncrementalRefreshOrderBook47(messages, BlockLength, cme_packet))
-
+                        if (msgs_template is None) or (47 in msgs_template):
+                            msgs_MDIncrementalRefreshOrderBook47.append(
+                                main_template.MDIncrementalRefreshOrderBook47(messages, BlockLength, cme_packet))
+                            
                     elif TemplateID == 48:
 
-                        msgs_MDIncrementalRefreshTradeSummary48.append(
-                            main_template.MDIncrementalRefreshTradeSummary48(messages, BlockLength, cme_packet))
+                        if (msgs_template is None) or (48 in msgs_template):
+                            msgs_MDIncrementalRefreshTradeSummary48.append(
+                                main_template.MDIncrementalRefreshTradeSummary48(messages, BlockLength, cme_packet))
 
                     elif TemplateID == 49:
 
-                        msgs_MDIncrementalRefreshDailyStatistics49.append(
-                            main_template.MDIncrementalRefreshDailyStatistics49(messages, BlockLength, cme_packet))
+                        if (msgs_template is None) or (49 in msgs_template):
+                            msgs_MDIncrementalRefreshDailyStatistics49.append(
+                                main_template.MDIncrementalRefreshDailyStatistics49(messages, BlockLength, cme_packet))
 
                     elif TemplateID == 50:
 
-                        msgs_MDIncrementalRefreshLimitsBanding50.append(
-                            main_template.MDIncrementalRefreshLimitsBanding50(messages, BlockLength, cme_packet))
+                        if (msgs_template is None) or (50 in msgs_template):
+                            msgs_MDIncrementalRefreshLimitsBanding50.append(
+                                main_template.MDIncrementalRefreshLimitsBanding50(messages, BlockLength, cme_packet))
 
                     elif TemplateID == 51:
 
-                        msgs_MDIncrementalRefreshSessionStatistics51.append(
-                            main_template.MDIncrementalRefreshSessionStatistics51(messages, BlockLength, cme_packet))
+                        if (msgs_template is None) or (51 in msgs_template):
+                            msgs_MDIncrementalRefreshSessionStatistics51.append(
+                                main_template.MDIncrementalRefreshSessionStatistics51(messages, BlockLength, cme_packet))
 
                     elif TemplateID == 52:
 
-                        msgs_SnapshotFullRefresh52.append(
-                            main_template.SnapshotFullRefresh52(messages, BlockLength, cme_packet))
+                        if (msgs_template is None) or (52 in msgs_template):
+                            msgs_SnapshotFullRefresh52.append(
+                                main_template.SnapshotFullRefresh52(messages, BlockLength, cme_packet))
 
                     elif TemplateID == 53:
 
-                        msgs_SnapshotFullRefreshOrderBook53.append(
-                            main_template.SnapshotFullRefreshOrderBook53(messages, BlockLength, cme_packet))
+                        if (msgs_template is None) or (53 in msgs_template):
+                            msgs_SnapshotFullRefreshOrderBook53.append(
+                                main_template.SnapshotFullRefreshOrderBook53(messages, BlockLength, cme_packet))
 
                     elif TemplateID == 54:
 
-                        msgs_MDInstrumentDefinitionFuture54.append(
-                            main_template.MDInstrumentDefinitionFuture54(messages, BlockLength, Version, cme_packet))
+                        if (msgs_template is None) or (54 in msgs_template):
+                            msgs_MDInstrumentDefinitionFuture54.append(
+                                main_template.MDInstrumentDefinitionFuture54(messages, BlockLength, Version, cme_packet))
 
                     elif TemplateID == 55:
 
-                        msgs_MDInstrumentDefinitionOption55.append(
-                            main_template.MDInstrumentDefinitionOption55(messages, BlockLength, Version, cme_packet))
+                        if (msgs_template is None) or (55 in msgs_template):
+                            msgs_MDInstrumentDefinitionOption55.append(
+                                main_template.MDInstrumentDefinitionOption55(messages, BlockLength, Version, cme_packet))
 
                     elif TemplateID == 56:
 
-                        msgs_MDInstrumentDefinitionSpread56.append(
-                            main_template.MDInstrumentDefinitionSpread56(messages, BlockLength, Version, cme_packet))
+                        if (msgs_template is None) or (56 in msgs_template):
+                            msgs_MDInstrumentDefinitionSpread56.append(
+                                main_template.MDInstrumentDefinitionSpread56(messages, BlockLength, Version, cme_packet))
 
                     elif TemplateID == 57:
 
-                        msgs_MDInstrumentDefinitionFixedIncome57.append(
-                            main_template.MDInstrumentDefinitionFixedIncome57(messages, BlockLength, cme_packet))
+                        if (msgs_template is None) or (57 in msgs_template):
+                            msgs_MDInstrumentDefinitionFixedIncome57.append(
+                                main_template.MDInstrumentDefinitionFixedIncome57(messages, BlockLength, cme_packet))
 
                     elif TemplateID == 58:
 
-                        msgs_MDInstrumentDefinitionRepo58.append(
-                            main_template.MDInstrumentDefinitionRepo58(messages, BlockLength, Version, cme_packet))
+                        if (msgs_template is None) or (58 in msgs_template):
+                            msgs_MDInstrumentDefinitionRepo58.append(
+                                main_template.MDInstrumentDefinitionRepo58(messages, BlockLength, Version, cme_packet))
 
                     elif TemplateID == 59:
 
-                        msgs_SnapshotRefreshTopOrders59.append(
-                            main_template.SnapshotRefreshTopOrders59(messages, BlockLength, cme_packet))
+                        if (msgs_template is None) or (59 in msgs_template):
+                            msgs_SnapshotRefreshTopOrders59.append(
+                                main_template.SnapshotRefreshTopOrders59(messages, BlockLength, cme_packet))
 
                     elif TemplateID == 60:
 
-                        msgs_SecurityStatusWorkup60.append(
-                            main_template.SecurityStatusWorkup60(messages, BlockLength, cme_packet))
+                        if (msgs_template is None) or (60 in msgs_template):
+                            msgs_SecurityStatusWorkup60.append(
+                                main_template.SecurityStatusWorkup60(messages, BlockLength, cme_packet))
 
                     elif TemplateID == 61:
 
-                        msgs_SnapshotFullRefreshTCP61.append(
-                            main_template.SnapshotFullRefreshTCP61(messages, BlockLength, cme_packet))
+                        if (msgs_template is None) or (61 in msgs_template):
+                            msgs_SnapshotFullRefreshTCP61.append(
+                                main_template.SnapshotFullRefreshTCP61(messages, BlockLength, cme_packet))
 
                     elif TemplateID == 62:
 
-                        msgs_CollateralMarketValue62.append(
-                            main_template.CollateralMarketValue62(messages, BlockLength, cme_packet))
+                        if (msgs_template is None) or (62 in msgs_template):
+                            msgs_CollateralMarketValue62.append(
+                                main_template.CollateralMarketValue62(messages, BlockLength, cme_packet))
 
                     elif TemplateID == 63:
 
-                        msgs_MDInstrumentDefinitionFX63.append(
-                            main_template.MDInstrumentDefinitionFX63(messages, BlockLength, cme_packet))
+                        if (msgs_template is None) or (63 in msgs_template):
+                            msgs_MDInstrumentDefinitionFX63.append(
+                                main_template.MDInstrumentDefinitionFX63(messages, BlockLength, cme_packet))
 
                     elif TemplateID == 64:
 
-                        msgs_MDIncrementalRefreshBookLongQty64.append(
-                            main_template.MDIncrementalRefreshBookLongQty64(messages, BlockLength, cme_packet))
+                        if (msgs_template is None) or (64 in msgs_template):
+                            msgs_MDIncrementalRefreshBookLongQty64.append(
+                                main_template.MDIncrementalRefreshBookLongQty64(messages, BlockLength, cme_packet))
 
                     elif TemplateID == 65:
 
-                        msgs_MDIncrementalRefreshTradeSummaryLongQty65.append(
-                            main_template.MDIncrementalRefreshTradeSummaryLongQty65(messages, BlockLength, cme_packet))
+                        if (msgs_template is None) or (65 in msgs_template):
+                            msgs_MDIncrementalRefreshTradeSummaryLongQty65.append(
+                                main_template.MDIncrementalRefreshTradeSummaryLongQty65(messages, BlockLength, cme_packet))
 
                     elif TemplateID == 66:
 
-                        msgs_MDIncrementalRefreshVolumeLongQty66.append(
-                            main_template.MDIncrementalRefreshVolumeLongQty66(messages, BlockLength, cme_packet))
-
+                        if (msgs_template is None) or (66 in msgs_template):
+                            msgs_MDIncrementalRefreshVolumeLongQty66.append(
+                                main_template.MDIncrementalRefreshVolumeLongQty66(messages, BlockLength, cme_packet))
+                            
                     elif TemplateID == 67:
 
-                        msgs_MDIncrementalRefreshSessionStatisticsLongQty67(
-                            main_template.MDIncrementalRefreshSessionStatisticsLongQty67(messages, BlockLength, cme_packet))
+                        if (msgs_template is None) or (67 in msgs_template):
+                            msgs_MDIncrementalRefreshSessionStatisticsLongQty67.append(
+                                main_template.MDIncrementalRefreshSessionStatisticsLongQty67(messages, BlockLength, cme_packet))
 
                     elif TemplateID == 68:
 
-                        msgs_SnapshotFullRefreshTCPLongQty68.append(
-                            main_template.SnapshotFullRefreshTCPLongQty68(messages, BlockLength, cme_packet))
+                        if (msgs_template is None) or (68 in msgs_template):
+                            msgs_SnapshotFullRefreshTCPLongQty68.append(
+                                main_template.SnapshotFullRefreshTCPLongQty68(messages, BlockLength, cme_packet))
 
                     elif TemplateID == 69:
 
-                        msgs_SnapshotFullRefreshLongQty69.append(
-                            main_template.SnapshotFullRefreshLongQty69(messages, BlockLength, cme_packet))
+                        if (msgs_template is None) or (69 in msgs_template):
+                            msgs_SnapshotFullRefreshLongQty69.append(
+                                main_template.SnapshotFullRefreshLongQty69(messages, BlockLength, cme_packet))
 
                 if notnull(max_read_packets):
                     read += 1
@@ -1033,114 +999,60 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
 
                 f.seek(end_pos)
 
-    results = {
-        'msgs_ChannelReset4': msgs_ChannelReset4,
-        'msgs_AdminLogout16': msgs_AdminLogout16,
-        'msgs_MDInstrumentDefinitionFuture27': msgs_MDInstrumentDefinitionFuture27,
-        'msgs_MDInstrumentDefinitionSpread29': msgs_MDInstrumentDefinitionSpread29,
-        'msgs_SecurityStatus30': msgs_SecurityStatus30,
-        'msgs_MDIncrementalRefreshBook32': msgs_MDIncrementalRefreshBook32,
-        'msgs_MDIncrementalRefreshDailyStatistics33': msgs_MDIncrementalRefreshDailyStatistics33,
-        'msgs_MDIncrementalRefreshLimitsBanding34': msgs_MDIncrementalRefreshLimitsBanding34,
-        'msgs_MDIncrementalRefreshSessionStatistics35': msgs_MDIncrementalRefreshSessionStatistics35,
-        'msgs_MDIncrementalRefreshTrade36': msgs_MDIncrementalRefreshTrade36,
-        'msgs_MDIncrementalRefreshVolume37': msgs_MDIncrementalRefreshVolume37,
-        'msgs_SnapshotFullRefresh38': msgs_SnapshotFullRefresh38,
-        'msgs_QuoteRequest39': msgs_QuoteRequest39,
-        'msgs_MDInstrumentDefinitionOption41': msgs_MDInstrumentDefinitionOption41,
-        'msgs_MDIncrementalRefreshTradeSummary42': msgs_MDIncrementalRefreshTradeSummary42,
-        'msgs_MDIncrementalRefreshOrderBook43': msgs_MDIncrementalRefreshOrderBook43,
-        'msgs_SnapshotFullRefreshOrderBook44': msgs_SnapshotFullRefreshOrderBook44,
-        'msgs_MDIncrementalRefreshBook46': msgs_MDIncrementalRefreshBook46,
-        'msgs_MDIncrementalRefreshOrderBook47': msgs_MDIncrementalRefreshOrderBook47,
-        'msgs_MDIncrementalRefreshTradeSummary48': msgs_MDIncrementalRefreshTradeSummary48,
-        'msgs_MDIncrementalRefreshDailyStatistics49': msgs_MDIncrementalRefreshDailyStatistics49,
-        'msgs_MDIncrementalRefreshLimitsBanding50': msgs_MDIncrementalRefreshLimitsBanding50,
-        'msgs_MDIncrementalRefreshSessionStatistics51': msgs_MDIncrementalRefreshSessionStatistics51,
-        'msgs_SnapshotFullRefresh52': msgs_SnapshotFullRefresh52,
-        'msgs_SnapshotFullRefreshOrderBook53': msgs_SnapshotFullRefreshOrderBook53,
-        'msgs_MDInstrumentDefinitionFuture54': msgs_MDInstrumentDefinitionFuture54,
-        'msgs_MDInstrumentDefinitionOption55': msgs_MDInstrumentDefinitionOption55,
-        'msgs_MDInstrumentDefinitionSpread56': msgs_MDInstrumentDefinitionSpread56,
-        'msgs_MDInstrumentDefinitionFixedIncome57': msgs_MDInstrumentDefinitionFixedIncome57,
-        'msgs_MDInstrumentDefinitionRepo58': msgs_MDInstrumentDefinitionRepo58,
-        'msgs_SnapshotRefreshTopOrders59': msgs_SnapshotRefreshTopOrders59,
-        'msgs_SecurityStatusWorkup60': msgs_SecurityStatusWorkup60,
-        'msgs_SnapshotFullRefreshTCP61': msgs_SnapshotFullRefreshTCP61,
-        'msgs_CollateralMarketValue62': msgs_CollateralMarketValue62,
-        'msgs_MDInstrumentDefinitionFX63': msgs_MDInstrumentDefinitionFX63,
-        'msgs_MDIncrementalRefreshBookLongQty64': msgs_MDIncrementalRefreshBookLongQty64,
-        'msgs_MDIncrementalRefreshTradeSummaryLongQty65': msgs_MDIncrementalRefreshTradeSummaryLongQty65,
-        'msgs_MDIncrementalRefreshVolumeLongQty66': msgs_MDIncrementalRefreshVolumeLongQty66,
-        'msgs_MDIncrementalRefreshSessionStatisticsLongQty67': msgs_MDIncrementalRefreshSessionStatisticsLongQty67,
-        'msgs_SnapshotFullRefreshTCPLongQty68': msgs_SnapshotFullRefreshTCPLongQty68,
-        'msgs_SnapshotFullRefreshLongQty69': msgs_SnapshotFullRefreshLongQty69
-    }
-
     if msgs_template is not None and notnull(msgs_template).all():
 
         # check the message templates
 
         if set(msgs_template).issubset(main_template.template_id):
 
-            msgs_need = main_template.templates.loc[main_template.templates['id'].isin(
-                list(msgs_template)), 'msgs'].tolist()
+            for name in list(globals()):
+                if name.startswith("msgs_"):
+                    try:
+                        suffix = int("".join(filter(str.isdigit, name)))
+                    except ValueError:
+                        suffix = None
 
-            results = {key: results[key]
-                       for key in msgs_need if key in results}
+                    if suffix not in msgs_template:
+                        del globals()[name]
+
+        
+        for var_name, var_value in globals().items():
+            if var_name.startswith("msgs_"):
+                suffix = int("".join(filter(str.isdigit, var_name)))
+                if suffix in msgs_template:
+                    flattened = list(chain(*var_value))
+                    df = pd.DataFrame.from_dict(flattened).reset_index(drop=True)
+                    globals()[var_name] = df
+                    print(' --> Dataframe: Success!')
+
         else:
 
             raise Exception('One of message template IDs is not found.')
-
-    results_info = pd.DataFrame({'msg_types': list(results.keys()), 'number_msgs': list(
-        map(lambda item: len(item), results.values()))})
-    print(tabulate(results_info, headers=[
-        'msg_types', 'number_msgs'], tablefmt="grid"))
-
-    # timestamp conversions
-
-    # some message templates have repeating groups and I need to melt them
-
-    # flatten the list for every list element in results dictionary
-
-    results = dict(
-        map(lambda i: (list(results.keys())[i], list(chain(*results[list(results.keys())[i]]))), range(len(results))))
-
-    # make the list to dictionary for every element in the results dictionary
-
-    results = dict(map(lambda j: (list(results.keys())[j], dict(
-        map(lambda i: (f'row{i}', results[list(results.keys())[j]][i]),
-            range(len(results[list(results.keys())[j]]))))), range(len(results))))
-
-    results = list(map(lambda j: pd.DataFrame.from_dict(
-        results[list(results.keys())[j]], orient='index').reset_index(drop=True), range(len(results))))
-
-    print(' --> Dataframe: Success!')
-
-    if save_files:
-
-        if isnull(save_file_path):
-
-            raise Exception('Path for saved files must be provided')
-
-        if isnull(save_file_type):
-
-            raise Exception(
-                'Type for saved files must be provided, either .csv or .pkl')
-
-        if save_file_type not in ['csv', 'pkl']:
-
-            raise Exception(
-                'Type for saved files must be either .csv or .pkl')
-
-        for i in range(len(results)):
-
-            results[i].to_pickle(
-                f"{save_file_path}/{results_info['msg_types'][i]}.{save_file_type}")
-
+        
     else:
+        for var_name, var_value in globals().items():
+            if var_name.startswith("msgs_"):
+                flattened = list(chain(*var_value))
+                # Convert to DataFrame
+                df = pd.DataFrame.from_dict(flattened).reset_index(drop=True)
+                globals()[var_name] = df
+                print(' --> Dataframe: Success!')
 
-        return results
+    if isnull(save_file_path):
+
+        raise Exception('Path for saved files must be provided')
+
+    if isnull(save_file_type):
+
+        raise Exception('Type for saved files must be provided, either .csv or .pkl')
+
+    if save_file_type not in ['csv', 'pkl']:
+
+        raise Exception('Type for saved files must be either .csv or .pkl')
+
+    for var_name, var_value in globals().items():
+        if var_name.startswith("msgs_"):
+            globals()[var_name].to_pickle(f"{save_file_path}/{var_name}.{save_file_type}")
 
 
 def timestamp_conversion(msgs_data, USCentralTime=True, timezone=None):
