@@ -45,11 +45,11 @@ import numpy as np
 from tqdm import tqdm
 import os
 from itertools import chain, islice
+import polars as pl
 
 
 def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_header=True,
-                        save_file_path=None, disable_progress_bar=False,
-                        save_file_type=None):
+                        save_file_path=None, disable_progress_bar=False):
     """
     `cme_parser_datamine` is a binary pacaket capture (PCAP) data parser for 
     market data obtained from the Chicago Mercantile Exchange (CME) Datamine.
@@ -499,20 +499,28 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
 
     # delte msgs that are not in the template
 
-    def flatten_msgs_in_chunks(msg_list, chunk_size):
-        chunks = []
+    if isnull(save_file_path):
+
+        raise Exception('Path for saved files must be provided')
+
+    def dataframe_transform(msg_list, chunk_size, out_file):
         it = iter(msg_list)
+        first = True
 
         while True:
             chunk = list(islice(it, chunk_size))
             if not chunk:
                 break
 
-            df_chunk = pd.DataFrame(chunk)
-            chunks.append(df_chunk)
+            df_chunk = pl.DataFrame(chunk)
 
-        final_df = pd.concat(chunks, ignore_index=True)
-        return final_df
+            if first:
+                final_df = df_chunk
+                first = False
+            else:
+                final_df = pl.concat([final_df, df_chunk], how="vertical")
+
+        final_df.write_parquet(out_file)
 
     if msgs_template is not None and notnull(msgs_template).all():
 
@@ -534,8 +542,9 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
                 if var_name.startswith("msgs_"):
                     suffix = int("".join(filter(str.isdigit, var_name)))
                     if suffix in msgs_template:
-                        df = flatten_msgs_in_chunks(var_value, chunk_size=5000)
-                        globals()[var_name] = df
+                        dataframe_transform(var_value, chunk_size=5000,
+                                            out_file=f"{save_file_path}/{var_name}.parquet")
+                        del globals()[var_name]
                         print(' --> Dataframe: Success!')
 
         else:
@@ -546,32 +555,14 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
         for var_name, var_value in globals().items():
             if var_name.startswith("msgs_"):
                 # Convert to DataFrame
-                df = flatten_msgs_in_chunks(var_value, chunk_size=5000)
-                globals()[var_name] = df
+                dataframe_transform(var_value, chunk_size=5000,
+                                    out_file=f"{save_file_path}/{var_name}.parquet")
+                del globals()[var_name]
                 print(' --> Dataframe: Success!')
-
-    if isnull(save_file_path):
-
-        raise Exception('Path for saved files must be provided')
-
-    if isnull(save_file_type):
-
-        raise Exception(
-            'Type for saved files must be provided, either .csv or .pkl')
-
-    if save_file_type not in ['csv', 'pkl']:
-
-        raise Exception('Type for saved files must be either .csv or .pkl')
-
-    for var_name, var_value in globals().items():
-        if var_name.startswith("msgs_"):
-            globals()[var_name].to_pickle(
-                f"{save_file_path}/{var_name}.{save_file_type}")
 
 
 def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=True,
-                    save_file_path=None, disable_progress_bar=True,
-                    save_file_type=None):
+                    save_file_path=None, disable_progress_bar=True):
     """
     `cme_parser_pcap` is a binary pacaket capture (PCAP) data parser for 
     market data in the Chicago Mercantile Exchange (CME).
@@ -1024,20 +1015,28 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
 
                 f.seek(end_pos)
 
-    def flatten_msgs_in_chunks(msg_list, chunk_size):
-        chunks = []
+    if isnull(save_file_path):
+
+        raise Exception('Path for saved files must be provided')
+
+    def dataframe_transform(msg_list, chunk_size, out_file):
         it = iter(msg_list)
+        first = True
 
         while True:
             chunk = list(islice(it, chunk_size))
             if not chunk:
                 break
 
-            df_chunk = pd.DataFrame(chunk)
-            chunks.append(df_chunk)
+            df_chunk = pl.DataFrame(chunk)
 
-        final_df = pd.concat(chunks, ignore_index=True)
-        return final_df
+            if first:
+                final_df = df_chunk
+                first = False
+            else:
+                final_df = pl.concat([final_df, df_chunk], how="vertical")
+
+        final_df.write_parquet(out_file)
 
     if msgs_template is not None and notnull(msgs_template).all():
 
@@ -1059,8 +1058,9 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
                 if var_name.startswith("msgs_"):
                     suffix = int("".join(filter(str.isdigit, var_name)))
                     if suffix in msgs_template:
-                        df = flatten_msgs_in_chunks(var_value, chunk_size=5000)
-                        globals()[var_name] = df
+                        dataframe_transform(var_value, chunk_size=5000,
+                                            out_file=f"{save_file_path}/{var_name}.parquet")
+                        del globals()[var_name]
                         print(' --> Dataframe: Success!')
 
         else:
@@ -1070,27 +1070,10 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
     else:
         for var_name, var_value in globals().items():
             if var_name.startswith("msgs_"):
-                df = flatten_msgs_in_chunks(var_value, chunk_size=5000)
-                globals()[var_name] = df
+                dataframe_transform(var_value, chunk_size=5000,
+                                    out_file=f"{save_file_path}/{var_name}.parquet")
+                del globals()[var_name]
                 print(' --> Dataframe: Success!')
-
-    if isnull(save_file_path):
-
-        raise Exception('Path for saved files must be provided')
-
-    if isnull(save_file_type):
-
-        raise Exception(
-            'Type for saved files must be provided, either .csv or .pkl')
-
-    if save_file_type not in ['csv', 'pkl']:
-
-        raise Exception('Type for saved files must be either .csv or .pkl')
-
-    for var_name, var_value in globals().items():
-        if var_name.startswith("msgs_"):
-            globals()[var_name].to_pickle(
-                f"{save_file_path}/{var_name}.{save_file_type}")
 
 
 def timestamp_conversion(msgs_data, USCentralTime=True, timezone=None):
