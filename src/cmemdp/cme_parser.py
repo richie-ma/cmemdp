@@ -519,9 +519,8 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
                 if var_name.startswith("msgs_"):
                     suffix = int("".join(filter(str.isdigit, var_name)))
                     if suffix in msgs_template:
-                        flattened = list(chain(*var_value))
-                        df = pd.DataFrame.from_dict(
-                            flattened).reset_index(drop=True)
+                        df = pd.DataFrame(chain.from_iterable(
+                            var_value)).reset_index(drop=True)
                         globals()[var_name] = df
                         print(' --> Dataframe: Success!')
 
@@ -532,9 +531,9 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
     else:
         for var_name, var_value in globals().items():
             if var_name.startswith("msgs_"):
-                flattened = list(chain(*var_value))
                 # Convert to DataFrame
-                df = pd.DataFrame.from_dict(flattened).reset_index(drop=True)
+                df = pd.DataFrame(chain.from_iterable(
+                    var_value)).reset_index(drop=True)
                 globals()[var_name] = df
                 print(' --> Dataframe: Success!')
 
@@ -1032,9 +1031,8 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
                 if var_name.startswith("msgs_"):
                     suffix = int("".join(filter(str.isdigit, var_name)))
                     if suffix in msgs_template:
-                        flattened = list(chain(*var_value))
-                        df = pd.DataFrame.from_dict(
-                            flattened).reset_index(drop=True)
+                        df = pd.DataFrame(chain.from_iterable(
+                            var_value)).reset_index(drop=True)
                         globals()[var_name] = df
                         print(' --> Dataframe: Success!')
 
@@ -1045,9 +1043,8 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
     else:
         for var_name, var_value in globals().items():
             if var_name.startswith("msgs_"):
-                flattened = list(chain(*var_value))
-                # Convert to DataFrame
-                df = pd.DataFrame.from_dict(flattened).reset_index(drop=True)
+                df = pd.DataFrame(chain.from_iterable(
+                    var_value)).reset_index(drop=True)
                 globals()[var_name] = df
                 print(' --> Dataframe: Success!')
 
