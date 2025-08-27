@@ -44,7 +44,7 @@ import struct
 import numpy as np
 from tqdm import tqdm
 import os
-from itertools import chain
+from itertools import chain, islice
 
 
 def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_header=True,
@@ -499,6 +499,21 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
 
     # delte msgs that are not in the template
 
+    def flatten_msgs_in_chunks(msg_list, chunk_size):
+        chunks = []
+        it = iter(msg_list)
+
+        while True:
+            chunk = list(islice(it, chunk_size))
+            if not chunk:
+                break
+
+            df_chunk = pd.DataFrame(chunk)
+            chunks.append(df_chunk)
+
+        final_df = pd.concat(chunks, ignore_index=True)
+        return final_df
+
     if msgs_template is not None and notnull(msgs_template).all():
 
         # check the message templates
@@ -519,8 +534,7 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
                 if var_name.startswith("msgs_"):
                     suffix = int("".join(filter(str.isdigit, var_name)))
                     if suffix in msgs_template:
-                        df = pd.DataFrame(chain.from_iterable(
-                            var_value)).reset_index(drop=True)
+                        df = flatten_msgs_in_chunks(var_value, chunk_size=5000)
                         globals()[var_name] = df
                         print(' --> Dataframe: Success!')
 
@@ -532,8 +546,7 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
         for var_name, var_value in globals().items():
             if var_name.startswith("msgs_"):
                 # Convert to DataFrame
-                df = pd.DataFrame(chain.from_iterable(
-                    var_value)).reset_index(drop=True)
+                df = flatten_msgs_in_chunks(var_value, chunk_size=5000)
                 globals()[var_name] = df
                 print(' --> Dataframe: Success!')
 
@@ -1011,6 +1024,21 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
 
                 f.seek(end_pos)
 
+    def flatten_msgs_in_chunks(msg_list, chunk_size):
+        chunks = []
+        it = iter(msg_list)
+
+        while True:
+            chunk = list(islice(it, chunk_size))
+            if not chunk:
+                break
+
+            df_chunk = pd.DataFrame(chunk)
+            chunks.append(df_chunk)
+
+        final_df = pd.concat(chunks, ignore_index=True)
+        return final_df
+
     if msgs_template is not None and notnull(msgs_template).all():
 
         # check the message templates
@@ -1031,8 +1059,7 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
                 if var_name.startswith("msgs_"):
                     suffix = int("".join(filter(str.isdigit, var_name)))
                     if suffix in msgs_template:
-                        df = pd.DataFrame(chain.from_iterable(
-                            var_value)).reset_index(drop=True)
+                        df = flatten_msgs_in_chunks(var_value, chunk_size=5000)
                         globals()[var_name] = df
                         print(' --> Dataframe: Success!')
 
@@ -1043,8 +1070,7 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
     else:
         for var_name, var_value in globals().items():
             if var_name.startswith("msgs_"):
-                df = pd.DataFrame(chain.from_iterable(
-                    var_value)).reset_index(drop=True)
+                df = flatten_msgs_in_chunks(var_value, chunk_size=5000)
                 globals()[var_name] = df
                 print(' --> Dataframe: Success!')
 
