@@ -96,6 +96,9 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
     # you could only return the messages you want
     # users need to give the template IDs of that messages
 
+    template_id = [4, 16, 27, 29, 30, 32, 33, 34, 35, 36, 37, 38, 39, 41, 42, 43, 44, 46, 47, 48,
+                   49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69]
+
     msgs_ChannelReset4 = []
     msgs_AdminLogout16 = []
     msgs_MDInstrumentDefinitionFuture27 = []
@@ -242,13 +245,15 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
                     if TemplateID == 4:
 
                         if (msgs_template is None) or (4 in msgs_template):
-                            msgs_ChannelReset4.append(main_template.ChannelReset4(messages, BlockLength, cme_packet))
+                            msgs_ChannelReset4.append(main_template.ChannelReset4(
+                                messages, BlockLength, cme_packet))
 
                     elif TemplateID == 16:
 
                         if (msgs_template is None) or (16 in msgs_template):
-                            msgs_AdminLogout16.append(main_template.AdminLogout16(messages, BlockLength, cme_packet))
-                            
+                            msgs_AdminLogout16.append(main_template.AdminLogout16(
+                                messages, BlockLength, cme_packet))
+
                     elif TemplateID == 27:
 
                         if (msgs_template is None) or (27 in msgs_template):
@@ -256,16 +261,17 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
                                 main_template.MDInstrumentDefinitionFuture27(messages, BlockLength, Version, cme_packet))
 
                     elif TemplateID == 29:
-                        
+
                         if (msgs_template is None) or (29 in msgs_template):
                             msgs_MDInstrumentDefinitionSpread29.append(
                                 main_template.MDInstrumentDefinitionSpread29(messages, BlockLength, Version, cme_packet))
-                            
+
                     elif TemplateID == 30:
 
                         if (msgs_template is None) or (30 in msgs_template):
-                            msgs_SecurityStatus30.append(main_template.SecurityStatus30(messages, BlockLength, cme_packet))
-                        
+                            msgs_SecurityStatus30.append(
+                                main_template.SecurityStatus30(messages, BlockLength, cme_packet))
+
                     elif TemplateID == 32:
 
                         if (msgs_template is None) or (32 in msgs_template):
@@ -285,7 +291,7 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
                                 main_template.MDIncrementalRefreshLimitsBanding34(messages, BlockLength, cme_packet))
 
                     elif TemplateID == 35:
-                            
+
                         if (msgs_template is None) or (35 in msgs_template):
                             msgs_MDIncrementalRefreshSessionStatistics35.append(
                                 main_template.MDIncrementalRefreshSessionStatistics35(messages, BlockLength, cme_packet))
@@ -349,7 +355,7 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
                         if (msgs_template is None) or (47 in msgs_template):
                             msgs_MDIncrementalRefreshOrderBook47.append(
                                 main_template.MDIncrementalRefreshOrderBook47(messages, BlockLength, cme_packet))
-                            
+
                     elif TemplateID == 48:
 
                         if (msgs_template is None) or (48 in msgs_template):
@@ -463,7 +469,7 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
                         if (msgs_template is None) or (66 in msgs_template):
                             msgs_MDIncrementalRefreshVolumeLongQty66.append(
                                 main_template.MDIncrementalRefreshVolumeLongQty66(messages, BlockLength, cme_packet))
-                            
+
                     elif TemplateID == 67:
 
                         if (msgs_template is None) or (67 in msgs_template):
@@ -490,14 +496,14 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
                     pbar.update(message_length + 4)
 
                 f.seek(end_pos)
-    
-    #delte msgs that are not in the template
+
+    # delte msgs that are not in the template
 
     if msgs_template is not None and notnull(msgs_template).all():
 
         # check the message templates
 
-        if set(msgs_template).issubset(main_template.template_id):
+        if set(msgs_template).issubset(template_id):
 
             for name in list(globals()):
                 if name.startswith("msgs_"):
@@ -514,14 +520,15 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
                     suffix = int("".join(filter(str.isdigit, var_name)))
                     if suffix in msgs_template:
                         flattened = list(chain(*var_value))
-                        df = pd.DataFrame.from_dict(flattened).reset_index(drop=True)
+                        df = pd.DataFrame.from_dict(
+                            flattened).reset_index(drop=True)
                         globals()[var_name] = df
                         print(' --> Dataframe: Success!')
 
         else:
 
             raise Exception('One of message template IDs is not found.')
-        
+
     else:
         for var_name, var_value in globals().items():
             if var_name.startswith("msgs_"):
@@ -537,7 +544,8 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
 
     if isnull(save_file_type):
 
-        raise Exception('Type for saved files must be provided, either .csv or .pkl')
+        raise Exception(
+            'Type for saved files must be provided, either .csv or .pkl')
 
     if save_file_type not in ['csv', 'pkl']:
 
@@ -545,7 +553,8 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
 
     for var_name, var_value in globals().items():
         if var_name.startswith("msgs_"):
-            globals()[var_name].to_pickle(f"{save_file_path}/{var_name}.{save_file_type}")
+            globals()[var_name].to_pickle(
+                f"{save_file_path}/{var_name}.{save_file_type}")
 
 
 def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=True,
@@ -592,6 +601,8 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
         the dictionary keys.
 
     """
+    template_id = [4, 16, 27, 29, 30, 32, 33, 34, 35, 36, 37, 38, 39, 41, 42, 43, 44, 46, 47, 48,
+                   49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69]
 
     def packet_head(msgs_blocks):
 
@@ -749,13 +760,15 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
                     if TemplateID == 4:
 
                         if (msgs_template is None) or (4 in msgs_template):
-                            msgs_ChannelReset4.append(main_template.ChannelReset4(messages, BlockLength, cme_packet))
+                            msgs_ChannelReset4.append(main_template.ChannelReset4(
+                                messages, BlockLength, cme_packet))
 
                     elif TemplateID == 16:
 
                         if (msgs_template is None) or (16 in msgs_template):
-                            msgs_AdminLogout16.append(main_template.AdminLogout16(messages, BlockLength, cme_packet))
-                            
+                            msgs_AdminLogout16.append(main_template.AdminLogout16(
+                                messages, BlockLength, cme_packet))
+
                     elif TemplateID == 27:
 
                         if (msgs_template is None) or (27 in msgs_template):
@@ -763,16 +776,17 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
                                 main_template.MDInstrumentDefinitionFuture27(messages, BlockLength, Version, cme_packet))
 
                     elif TemplateID == 29:
-                        
+
                         if (msgs_template is None) or (29 in msgs_template):
                             msgs_MDInstrumentDefinitionSpread29.append(
                                 main_template.MDInstrumentDefinitionSpread29(messages, BlockLength, Version, cme_packet))
-                            
+
                     elif TemplateID == 30:
 
                         if (msgs_template is None) or (30 in msgs_template):
-                            msgs_SecurityStatus30.append(main_template.SecurityStatus30(messages, BlockLength, cme_packet))
-                        
+                            msgs_SecurityStatus30.append(
+                                main_template.SecurityStatus30(messages, BlockLength, cme_packet))
+
                     elif TemplateID == 32:
 
                         if (msgs_template is None) or (32 in msgs_template):
@@ -792,7 +806,7 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
                                 main_template.MDIncrementalRefreshLimitsBanding34(messages, BlockLength, cme_packet))
 
                     elif TemplateID == 35:
-                            
+
                         if (msgs_template is None) or (35 in msgs_template):
                             msgs_MDIncrementalRefreshSessionStatistics35.append(
                                 main_template.MDIncrementalRefreshSessionStatistics35(messages, BlockLength, cme_packet))
@@ -856,7 +870,7 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
                         if (msgs_template is None) or (47 in msgs_template):
                             msgs_MDIncrementalRefreshOrderBook47.append(
                                 main_template.MDIncrementalRefreshOrderBook47(messages, BlockLength, cme_packet))
-                            
+
                     elif TemplateID == 48:
 
                         if (msgs_template is None) or (48 in msgs_template):
@@ -970,7 +984,7 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
                         if (msgs_template is None) or (66 in msgs_template):
                             msgs_MDIncrementalRefreshVolumeLongQty66.append(
                                 main_template.MDIncrementalRefreshVolumeLongQty66(messages, BlockLength, cme_packet))
-                            
+
                     elif TemplateID == 67:
 
                         if (msgs_template is None) or (67 in msgs_template):
@@ -1002,7 +1016,7 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
 
         # check the message templates
 
-        if set(msgs_template).issubset(main_template.template_id):
+        if set(msgs_template).issubset(template_id):
 
             for name in list(globals()):
                 if name.startswith("msgs_"):
@@ -1019,14 +1033,15 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
                     suffix = int("".join(filter(str.isdigit, var_name)))
                     if suffix in msgs_template:
                         flattened = list(chain(*var_value))
-                        df = pd.DataFrame.from_dict(flattened).reset_index(drop=True)
+                        df = pd.DataFrame.from_dict(
+                            flattened).reset_index(drop=True)
                         globals()[var_name] = df
                         print(' --> Dataframe: Success!')
 
         else:
 
             raise Exception('One of message template IDs is not found.')
-        
+
     else:
         for var_name, var_value in globals().items():
             if var_name.startswith("msgs_"):
@@ -1042,7 +1057,8 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
 
     if isnull(save_file_type):
 
-        raise Exception('Type for saved files must be provided, either .csv or .pkl')
+        raise Exception(
+            'Type for saved files must be provided, either .csv or .pkl')
 
     if save_file_type not in ['csv', 'pkl']:
 
@@ -1050,7 +1066,8 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
 
     for var_name, var_value in globals().items():
         if var_name.startswith("msgs_"):
-            globals()[var_name].to_pickle(f"{save_file_path}/{var_name}.{save_file_type}")
+            globals()[var_name].to_pickle(
+                f"{save_file_path}/{var_name}.{save_file_type}")
 
 
 def timestamp_conversion(msgs_data, USCentralTime=True, timezone=None):

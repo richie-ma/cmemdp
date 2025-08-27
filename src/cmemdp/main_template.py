@@ -13,32 +13,6 @@ import struct
 import pandas as pd
 import numpy as np
 
-all_messages = ["msgs_ChannelReset4", "msgs_AdminLogout16", "msgs_MDInstrumentDefinitionFuture27",
-                "msgs_MDInstrumentDefinitionSpread29", "msgs_SecurityStatus30",
-                "msgs_MDIncrementalRefreshBook32", "msgs_MDIncrementalRefreshDailyStatistics33",
-                "msgs_MDIncrementalRefreshLimitsBanding34", "msgs_MDIncrementalRefreshSessionStatistics35",
-                "msgs_MDIncrementalRefreshTrade36", "msgs_MDIncrementalRefreshVolume37",
-                "msgs_SnapshotFullRefresh38", "msgs_QuoteRequest39", "msgs_MDInstrumentDefinitionOption41",
-                "msgs_MDIncrementalRefreshTradeSummary42", "msgs_MDIncrementalRefreshOrderBook43",
-                "msgs_SnapshotFullRefreshOrderBook44", "msgs_MDIncrementalRefreshBook46",
-                "msgs_MDIncrementalRefreshOrderBook47", "msgs_MDIncrementalRefreshTradeSummary48",
-                "msgs_MDIncrementalRefreshDailyStatistics49", "msgs_MDIncrementalRefreshLimitsBanding50",
-                "msgs_MDIncrementalRefreshSessionStatistics51", "msgs_SnapshotFullRefresh52",
-                "msgs_SnapshotFullRefreshOrderBook53", "msgs_MDInstrumentDefinitionFuture54",
-                "msgs_MDInstrumentDefinitionOption55", "msgs_MDInstrumentDefinitionSpread56",
-                "msgs_MDInstrumentDefinitionFixedIncome57", "msgs_MDInstrumentDefinitionRepo58",
-                "msgs_SnapshotRefreshTopOrders59", "msgs_SecurityStatusWorkup60",
-                "msgs_SnapshotFullRefreshTCP61", "msgs_CollateralMarketValue62",
-                "msgs_MDInstrumentDefinitionFX63", "msgs_MDIncrementalRefreshBookLongQty64",
-                "msgs_MDIncrementalRefreshTradeSummaryLongQty65", "msgs_MDIncrementalRefreshVolumeLongQty66",
-                "msgs_MDIncrementalRefreshSessionStatisticsLongQty67", "msgs_SnapshotFullRefreshTCPLongQty68",
-                "msgs_SnapshotFullRefreshLongQty69"]
-
-template_id = [4, 16, 27, 29, 30, 32, 33, 34, 35, 36, 37, 38, 39, 41, 42, 43, 44, 46, 47, 48,
-               49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69]
-
-templates = pd.DataFrame({'msgs': all_messages, 'id': template_id})
-
 
 def byte_to_str(block):
 
