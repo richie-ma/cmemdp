@@ -509,15 +509,14 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
                     if suffix not in msgs_template:
                         del globals()[name]
 
-        
-        for var_name, var_value in globals().items():
-            if var_name.startswith("msgs_"):
-                suffix = int("".join(filter(str.isdigit, var_name)))
-                if suffix in msgs_template:
-                    flattened = list(chain(*var_value))
-                    df = pd.DataFrame.from_dict(flattened).reset_index(drop=True)
-                    globals()[var_name] = df
-                    print(' --> Dataframe: Success!')
+            for var_name, var_value in globals().items():
+                if var_name.startswith("msgs_"):
+                    suffix = int("".join(filter(str.isdigit, var_name)))
+                    if suffix in msgs_template:
+                        flattened = list(chain(*var_value))
+                        df = pd.DataFrame.from_dict(flattened).reset_index(drop=True)
+                        globals()[var_name] = df
+                        print(' --> Dataframe: Success!')
 
         else:
 
@@ -1015,15 +1014,14 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
                     if suffix not in msgs_template:
                         del globals()[name]
 
-        
-        for var_name, var_value in globals().items():
-            if var_name.startswith("msgs_"):
-                suffix = int("".join(filter(str.isdigit, var_name)))
-                if suffix in msgs_template:
-                    flattened = list(chain(*var_value))
-                    df = pd.DataFrame.from_dict(flattened).reset_index(drop=True)
-                    globals()[var_name] = df
-                    print(' --> Dataframe: Success!')
+            for var_name, var_value in globals().items():
+                if var_name.startswith("msgs_"):
+                    suffix = int("".join(filter(str.isdigit, var_name)))
+                    if suffix in msgs_template:
+                        flattened = list(chain(*var_value))
+                        df = pd.DataFrame.from_dict(flattened).reset_index(drop=True)
+                        globals()[var_name] = df
+                        print(' --> Dataframe: Success!')
 
         else:
 
