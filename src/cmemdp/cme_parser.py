@@ -45,7 +45,7 @@ import numpy as np
 from tqdm import tqdm
 import os
 from itertools import chain, islice
-import polars as pl
+import pickle
 
 
 def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_header=True,
@@ -503,25 +503,6 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
 
         raise Exception('Path for saved files must be provided')
 
-    def dataframe_transform(msg_list, chunk_size, out_file):
-        it = iter(msg_list)
-        first = True
-
-        while True:
-            chunk = list(islice(it, chunk_size))
-            if not chunk:
-                break
-
-            df_chunk = pl.DataFrame(chunk)
-
-            if first:
-                final_df = df_chunk
-                first = False
-            else:
-                final_df = pl.concat([final_df, df_chunk], how="vertical")
-
-        final_df.write_parquet(out_file)
-
     if msgs_template is not None and notnull(msgs_template).all():
 
         # check the message templates
@@ -542,8 +523,9 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
                 if var_name.startswith("msgs_"):
                     suffix = int("".join(filter(str.isdigit, var_name)))
                     if suffix in msgs_template:
-                        dataframe_transform(var_value, chunk_size=5000,
-                                            out_file=f"{save_file_path}/{var_name}.parquet")
+                        with open(f"{save_file_path}/{var_name}.pkl", "wb") as f:
+                            pickle.dump(
+                                var_value, f, protocol=pickle.HIGHEST_PROTOCOL)
                         del globals()[var_name]
                         print(' --> Dataframe: Success!')
 
@@ -554,9 +536,8 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
     else:
         for var_name, var_value in globals().items():
             if var_name.startswith("msgs_"):
-                # Convert to DataFrame
-                dataframe_transform(var_value, chunk_size=5000,
-                                    out_file=f"{save_file_path}/{var_name}.parquet")
+                with open(f"{save_file_path}/{var_name}.pkl", "wb") as f:
+                    pickle.dump(var_value, f, protocol=pickle.HIGHEST_PROTOCOL)
                 del globals()[var_name]
                 print(' --> Dataframe: Success!')
 
@@ -1019,25 +1000,6 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
 
         raise Exception('Path for saved files must be provided')
 
-    def dataframe_transform(msg_list, chunk_size, out_file):
-        it = iter(msg_list)
-        first = True
-
-        while True:
-            chunk = list(islice(it, chunk_size))
-            if not chunk:
-                break
-
-            df_chunk = pl.DataFrame(chunk)
-
-            if first:
-                final_df = df_chunk
-                first = False
-            else:
-                final_df = pl.concat([final_df, df_chunk], how="vertical")
-
-        final_df.write_parquet(out_file)
-
     if msgs_template is not None and notnull(msgs_template).all():
 
         # check the message templates
@@ -1058,8 +1020,9 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
                 if var_name.startswith("msgs_"):
                     suffix = int("".join(filter(str.isdigit, var_name)))
                     if suffix in msgs_template:
-                        dataframe_transform(var_value, chunk_size=5000,
-                                            out_file=f"{save_file_path}/{var_name}.parquet")
+                        with open(f"{save_file_path}/{var_name}.pkl", "wb") as f:
+                            pickle.dump(
+                                var_value, f, protocol=pickle.HIGHEST_PROTOCOL)
                         del globals()[var_name]
                         print(' --> Dataframe: Success!')
 
@@ -1070,8 +1033,9 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
     else:
         for var_name, var_value in globals().items():
             if var_name.startswith("msgs_"):
-                dataframe_transform(var_value, chunk_size=5000,
-                                    out_file=f"{save_file_path}/{var_name}.parquet")
+                with open(f"{save_file_path}/{var_name}.pkl", "wb") as f:
+                    pickle.dump(
+                        var_value, f, protocol=pickle.HIGHEST_PROTOCOL)
                 del globals()[var_name]
                 print(' --> Dataframe: Success!')
 
