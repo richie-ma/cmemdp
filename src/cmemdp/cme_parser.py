@@ -288,7 +288,7 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
                             msgs_ChannelReset4 = pd.DataFrame(
                                 chain.from_iterable(msgs_ChannelReset4))
                             msgs_ChannelReset4.to_pickle(
-                                f"{save_file_path}/{msgs_ChannelReset4}_{chunk_index4}.pkl")
+                                f"{save_file_path}/msgs_ChannelReset4_{chunk_index4}.pkl")
                             chunk_index4 += 1
                             msgs_ChannelReset4 = []
 
@@ -303,7 +303,7 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
                             msgs_AdminLogout16 = pd.DataFrame(
                                 chain.from_iterable(msgs_AdminLogout16))
                             msgs_AdminLogout16.to_pickle(
-                                f"{save_file_path}/{msgs_AdminLogout16}_{chunk_index16}.pkl")
+                                f"{save_file_path}/msgs_AdminLogout16_{chunk_index16}.pkl")
                             chunk_index16 += 1
                             msgs_AdminLogout16 = []
 
@@ -318,7 +318,7 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
                             msgs_MDInstrumentDefinitionFuture27 = pd.DataFrame(
                                 chain.from_iterable(msgs_MDInstrumentDefinitionFuture27))
                             msgs_MDInstrumentDefinitionFuture27.to_pickle(
-                                f"{save_file_path}/{msgs_MDInstrumentDefinitionFuture27}_{chunk_index27}.pkl")
+                                f"{save_file_path}/msgs_MDInstrumentDefinitionFuture27_{chunk_index27}.pkl")
                             chunk_index27 += 1
                             msgs_MDInstrumentDefinitionFuture27 = []
 
@@ -333,7 +333,7 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
                             msgs_MDInstrumentDefinitionSpread29 = pd.DataFrame(
                                 chain.from_iterable(msgs_MDInstrumentDefinitionSpread29))
                             msgs_MDInstrumentDefinitionSpread29.to_pickle(
-                                f"{save_file_path}/{msgs_MDInstrumentDefinitionSpread29}_{chunk_index29}.pkl")
+                                f"{save_file_path}/msgs_MDInstrumentDefinitionSpread29_{chunk_index29}.pkl")
                             chunk_index29 += 1
                             msgs_MDInstrumentDefinitionSpread29 = []
 
@@ -348,7 +348,7 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
                             msgs_SecurityStatus30 = pd.DataFrame(
                                 chain.from_iterable(msgs_SecurityStatus30))
                             msgs_SecurityStatus30.to_pickle(
-                                f"{save_file_path}/{msgs_SecurityStatus30}_{chunk_index30}.pkl")
+                                f"{save_file_path}/msgs_SecurityStatus30_{chunk_index30}.pkl")
                             chunk_index30 += 1
                             msgs_SecurityStatus30 = []
 
@@ -363,7 +363,7 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
                             msgs_MDIncrementalRefreshBook32 = pd.DataFrame(
                                 chain.from_iterable(msgs_MDIncrementalRefreshBook32))
                             msgs_MDIncrementalRefreshBook32.to_pickle(
-                                f"{save_file_path}/{msgs_MDIncrementalRefreshBook32}_{chunk_index32}.pkl")
+                                f"{save_file_path}/msgs_MDIncrementalRefreshBook32_{chunk_index32}.pkl")
                             chunk_index32 += 1
                             msgs_MDIncrementalRefreshBook32 = []
 
@@ -378,7 +378,7 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
                             msgs_MDIncrementalRefreshDailyStatistics33 = pd.DataFrame(
                                 chain.from_iterable(msgs_MDIncrementalRefreshDailyStatistics33))
                             msgs_MDIncrementalRefreshDailyStatistics33.to_pickle(
-                                f"{save_file_path}/{msgs_MDIncrementalRefreshDailyStatistics33}_{chunk_index33}.pkl")
+                                f"{save_file_path}/msgs_MDIncrementalRefreshDailyStatistics33_{chunk_index33}.pkl")
                             chunk_index33 += 1
                             msgs_MDIncrementalRefreshDailyStatistics33 = []
 
@@ -393,7 +393,7 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
                             msgs_MDIncrementalRefreshLimitsBanding34 = pd.DataFrame(
                                 chain.from_iterable(msgs_MDIncrementalRefreshLimitsBanding34))
                             msgs_MDIncrementalRefreshLimitsBanding34.to_pickle(
-                                f"{save_file_path}/{msgs_MDIncrementalRefreshLimitsBanding34}_{chunk_index34}.pkl")
+                                f"{save_file_path}/msgs_MDIncrementalRefreshLimitsBanding34_{chunk_index34}.pkl")
                             chunk_index34 += 1
                             msgs_MDIncrementalRefreshLimitsBanding34 = []
 
@@ -408,7 +408,7 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
                             msgs_MDIncrementalRefreshSessionStatistics35 = pd.DataFrame(
                                 chain.from_iterable(msgs_MDIncrementalRefreshSessionStatistics35))
                             msgs_MDIncrementalRefreshSessionStatistics35.to_pickle(
-                                f"{save_file_path}/{msgs_MDIncrementalRefreshSessionStatistics35}_{chunk_index35}.pkl")
+                                f"{save_file_path}/msgs_MDIncrementalRefreshSessionStatistics35_{chunk_index35}.pkl")
                             chunk_index35 += 1
                             msgs_MDIncrementalRefreshSessionStatistics35 = []
 
@@ -423,7 +423,7 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
                             msgs_MDIncrementalRefreshTrade36 = pd.DataFrame(
                                 chain.from_iterable(msgs_MDIncrementalRefreshTrade36))
                             msgs_MDIncrementalRefreshTrade36.to_pickle(
-                                f"{save_file_path}/{msgs_MDIncrementalRefreshTrade36}_{chunk_index36}.pkl")
+                                f"{save_file_path}/msgs_MDIncrementalRefreshTrade36_{chunk_index36}.pkl")
                             chunk_index36 += 1
                             msgs_MDIncrementalRefreshTrade36 = []
 
@@ -438,7 +438,7 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
                             msgs_MDIncrementalRefreshVolume37 = pd.DataFrame(
                                 chain.from_iterable(msgs_MDIncrementalRefreshVolume37))
                             msgs_MDIncrementalRefreshVolume37.to_pickle(
-                                f"{save_file_path}/{msgs_MDIncrementalRefreshVolume37}_{chunk_index37}.pkl")
+                                f"{save_file_path}/msgs_MDIncrementalRefreshVolume37_{chunk_index37}.pkl")
                             chunk_index37 += 1
                             msgs_MDIncrementalRefreshVolume37 = []
 
@@ -453,7 +453,7 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
                             msgs_SnapshotFullRefresh38 = pd.DataFrame(
                                 chain.from_iterable(msgs_SnapshotFullRefresh38))
                             msgs_SnapshotFullRefresh38.to_pickle(
-                                f"{save_file_path}/{msgs_SnapshotFullRefresh38}_{chunk_index38}.pkl")
+                                f"{save_file_path}/msgs_SnapshotFullRefresh38_{chunk_index38}.pkl")
                             chunk_index38 += 1
                             msgs_SnapshotFullRefresh38 = []
 
@@ -468,7 +468,7 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
                             msgs_QuoteRequest39 = pd.DataFrame(
                                 chain.from_iterable(msgs_QuoteRequest39))
                             msgs_QuoteRequest39.to_pickle(
-                                f"{save_file_path}/{msgs_QuoteRequest39}_{chunk_index39}.pkl")
+                                f"{save_file_path}/msgs_QuoteRequest39_{chunk_index39}.pkl")
                             chunk_index39 += 1
                             msgs_QuoteRequest39 = []
 
@@ -483,7 +483,7 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
                             msgs_MDInstrumentDefinitionOption41 = pd.DataFrame(
                                 chain.from_iterable(msgs_MDInstrumentDefinitionOption41))
                             msgs_MDInstrumentDefinitionOption41.to_pickle(
-                                f"{save_file_path}/{msgs_MDInstrumentDefinitionOption41}_{chunk_index41}.pkl")
+                                f"{save_file_path}/msgs_MDInstrumentDefinitionOption41_{chunk_index41}.pkl")
                             chunk_index41 += 1
                             msgs_MDInstrumentDefinitionOption41 = []
 
@@ -498,7 +498,7 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
                             msgs_MDIncrementalRefreshTradeSummary42 = pd.DataFrame(
                                 chain.from_iterable(msgs_MDIncrementalRefreshTradeSummary42))
                             msgs_MDIncrementalRefreshTradeSummary42.to_pickle(
-                                f"{save_file_path}/{msgs_MDIncrementalRefreshTradeSummary42}_{chunk_index42}.pkl")
+                                f"{save_file_path}/msgs_MDIncrementalRefreshTradeSummary42_{chunk_index42}.pkl")
                             chunk_index42 += 1
                             msgs_MDIncrementalRefreshTradeSummary42 = []
 
@@ -513,7 +513,7 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
                             msgs_MDIncrementalRefreshOrderBook43 = pd.DataFrame(
                                 chain.from_iterable(msgs_MDIncrementalRefreshOrderBook43))
                             msgs_MDIncrementalRefreshOrderBook43.to_pickle(
-                                f"{save_file_path}/{msgs_MDIncrementalRefreshOrderBook43}_{chunk_index43}.pkl")
+                                f"{save_file_path}/msgs_MDIncrementalRefreshOrderBook43_{chunk_index43}.pkl")
                             chunk_index43 += 1
                             msgs_MDIncrementalRefreshOrderBook43 = []
 
@@ -528,7 +528,7 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
                             msgs_SnapshotFullRefreshOrderBook44 = pd.DataFrame(
                                 chain.from_iterable(msgs_SnapshotFullRefreshOrderBook44))
                             msgs_SnapshotFullRefreshOrderBook44.to_pickle(
-                                f"{save_file_path}/{msgs_SnapshotFullRefreshOrderBook44}_{chunk_index44}.pkl")
+                                f"{save_file_path}/msgs_SnapshotFullRefreshOrderBook44_{chunk_index44}.pkl")
                             chunk_index44 += 1
                             msgs_SnapshotFullRefreshOrderBook44 = []
 
@@ -543,7 +543,7 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
                             msgs_MDIncrementalRefreshBook46 = pd.DataFrame(
                                 chain.from_iterable(msgs_MDIncrementalRefreshBook46))
                             msgs_MDIncrementalRefreshBook46.to_pickle(
-                                f"{save_file_path}/{msgs_MDIncrementalRefreshBook46}_{chunk_index46}.pkl")
+                                f"{save_file_path}/msgs_MDIncrementalRefreshBook46_{chunk_index46}.pkl")
                             chunk_index46 += 1
                             msgs_MDIncrementalRefreshBook46 = []
 
@@ -558,7 +558,7 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
                             msgs_MDIncrementalRefreshOrderBook47 = pd.DataFrame(
                                 chain.from_iterable(msgs_MDIncrementalRefreshOrderBook47))
                             msgs_MDIncrementalRefreshOrderBook47.to_pickle(
-                                f"{save_file_path}/{msgs_MDIncrementalRefreshOrderBook47}_{chunk_index47}.pkl")
+                                f"{save_file_path}/msgs_MDIncrementalRefreshOrderBook47_{chunk_index47}.pkl")
                             chunk_index47 += 1
                             msgs_MDIncrementalRefreshOrderBook47 = []
 
@@ -573,7 +573,7 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
                             msgs_MDIncrementalRefreshTradeSummary48 = pd.DataFrame(
                                 chain.from_iterable(msgs_MDIncrementalRefreshTradeSummary48))
                             msgs_MDIncrementalRefreshTradeSummary48.to_pickle(
-                                f"{save_file_path}/{msgs_MDIncrementalRefreshTradeSummary48}_{chunk_index48}.pkl")
+                                f"{save_file_path}/msgs_MDIncrementalRefreshTradeSummary48_{chunk_index48}.pkl")
                             chunk_index48 += 1
                             msgs_MDIncrementalRefreshTradeSummary48 = []
 
@@ -588,7 +588,7 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
                             msgs_MDIncrementalRefreshDailyStatistics49 = pd.DataFrame(
                                 chain.from_iterable(msgs_MDIncrementalRefreshDailyStatistics49))
                             msgs_MDIncrementalRefreshDailyStatistics49.to_pickle(
-                                f"{save_file_path}/{msgs_MDIncrementalRefreshDailyStatistics49}_{chunk_index49}.pkl")
+                                f"{save_file_path}/msgs_MDIncrementalRefreshDailyStatistics49_{chunk_index49}.pkl")
                             chunk_index49 += 1
                             msgs_MDIncrementalRefreshDailyStatistics49 = []
 
@@ -603,7 +603,7 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
                             msgs_MDIncrementalRefreshLimitsBanding50 = pd.DataFrame(
                                 chain.from_iterable(msgs_MDIncrementalRefreshLimitsBanding50))
                             msgs_MDIncrementalRefreshLimitsBanding50.to_pickle(
-                                f"{save_file_path}/{msgs_MDIncrementalRefreshLimitsBanding50}_{chunk_index50}.pkl")
+                                f"{save_file_path}/msgs_MDIncrementalRefreshLimitsBanding50_{chunk_index50}.pkl")
                             chunk_index50 += 1
                             msgs_MDIncrementalRefreshLimitsBanding50 = []
 
@@ -618,7 +618,7 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
                             msgs_MDIncrementalRefreshSessionStatistics51 = pd.DataFrame(
                                 chain.from_iterable(msgs_MDIncrementalRefreshSessionStatistics51))
                             msgs_MDIncrementalRefreshSessionStatistics51.to_pickle(
-                                f"{save_file_path}/{msgs_MDIncrementalRefreshSessionStatistics51}_{chunk_index51}.pkl")
+                                f"{save_file_path}/msgs_MDIncrementalRefreshSessionStatistics51_{chunk_index51}.pkl")
                             chunk_index51 += 1
                             msgs_MDIncrementalRefreshSessionStatistics51 = []
 
@@ -633,7 +633,7 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
                             msgs_SnapshotFullRefresh52 = pd.DataFrame(
                                 chain.from_iterable(msgs_SnapshotFullRefresh52))
                             msgs_SnapshotFullRefresh52.to_pickle(
-                                f"{save_file_path}/{msgs_SnapshotFullRefresh52}_{chunk_index52}.pkl")
+                                f"{save_file_path}/msgs_SnapshotFullRefresh52_{chunk_index52}.pkl")
                             chunk_index52 += 1
                             msgs_SnapshotFullRefresh52 = []
 
@@ -648,7 +648,7 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
                             msgs_SnapshotFullRefreshOrderBook53 = pd.DataFrame(
                                 chain.from_iterable(msgs_SnapshotFullRefreshOrderBook53))
                             msgs_SnapshotFullRefreshOrderBook53.to_pickle(
-                                f"{save_file_path}/{msgs_SnapshotFullRefreshOrderBook53}_{chunk_index53}.pkl")
+                                f"{save_file_path}/msgs_SnapshotFullRefreshOrderBook53_{chunk_index53}.pkl")
                             chunk_index53 += 1
                             msgs_SnapshotFullRefreshOrderBook53 = []
 
@@ -663,7 +663,7 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
                             msgs_MDInstrumentDefinitionFuture54 = pd.DataFrame(
                                 chain.from_iterable(msgs_MDInstrumentDefinitionFuture54))
                             msgs_MDInstrumentDefinitionFuture54.to_pickle(
-                                f"{save_file_path}/{msgs_MDInstrumentDefinitionFuture54}_{chunk_index54}.pkl")
+                                f"{save_file_path}/msgs_MDInstrumentDefinitionFuture54_{chunk_index54}.pkl")
                             chunk_index54 += 1
                             msgs_MDInstrumentDefinitionFuture54 = []
 
@@ -678,7 +678,7 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
                             msgs_MDInstrumentDefinitionOption55 = pd.DataFrame(
                                 chain.from_iterable(msgs_MDInstrumentDefinitionOption55))
                             msgs_MDInstrumentDefinitionOption55.to_pickle(
-                                f"{save_file_path}/{msgs_MDInstrumentDefinitionOption55}_{chunk_index55}.pkl")
+                                f"{save_file_path}/msgs_MDInstrumentDefinitionOption55_{chunk_index55}.pkl")
                             chunk_index55 += 1
                             msgs_MDInstrumentDefinitionOption55 = []
 
@@ -693,7 +693,7 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
                             msgs_MDInstrumentDefinitionSpread56 = pd.DataFrame(
                                 chain.from_iterable(msgs_MDInstrumentDefinitionSpread56))
                             msgs_MDInstrumentDefinitionSpread56.to_pickle(
-                                f"{save_file_path}/{msgs_MDInstrumentDefinitionSpread56}_{chunk_index56}.pkl")
+                                f"{save_file_path}/msgs_MDInstrumentDefinitionSpread56_{chunk_index56}.pkl")
                             chunk_index56 += 1
                             msgs_MDInstrumentDefinitionSpread56 = []
 
@@ -708,7 +708,7 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
                             msgs_MDInstrumentDefinitionFixedIncome57 = pd.DataFrame(
                                 chain.from_iterable(msgs_MDInstrumentDefinitionFixedIncome57))
                             msgs_MDInstrumentDefinitionFixedIncome57.to_pickle(
-                                f"{save_file_path}/{msgs_MDInstrumentDefinitionFixedIncome57}_{chunk_index57}.pkl")
+                                f"{save_file_path}/msgs_MDInstrumentDefinitionFixedIncome57_{chunk_index57}.pkl")
                             chunk_index57 += 1
                             msgs_MDInstrumentDefinitionFixedIncome57 = []
 
@@ -723,7 +723,7 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
                             msgs_MDInstrumentDefinitionRepo58 = pd.DataFrame(
                                 chain.from_iterable(msgs_MDInstrumentDefinitionRepo58))
                             msgs_MDInstrumentDefinitionRepo58.to_pickle(
-                                f"{save_file_path}/{msgs_MDInstrumentDefinitionRepo58}_{chunk_index58}.pkl")
+                                f"{save_file_path}/msgs_MDInstrumentDefinitionRepo58_{chunk_index58}.pkl")
                             chunk_index58 += 1
                             msgs_MDInstrumentDefinitionRepo58 = []
 
@@ -738,7 +738,7 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
                             msgs_SnapshotRefreshTopOrders59 = pd.DataFrame(
                                 chain.from_iterable(msgs_SnapshotRefreshTopOrders59))
                             msgs_SnapshotRefreshTopOrders59.to_pickle(
-                                f"{save_file_path}/{msgs_SnapshotRefreshTopOrders59}_{chunk_index59}.pkl")
+                                f"{save_file_path}/msgs_SnapshotRefreshTopOrders59_{chunk_index59}.pkl")
                             chunk_index59 += 1
                             msgs_SnapshotRefreshTopOrders59 = []
 
@@ -753,7 +753,7 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
                             msgs_SecurityStatusWorkup60 = pd.DataFrame(
                                 chain.from_iterable(msgs_SecurityStatusWorkup60))
                             msgs_SecurityStatusWorkup60.to_pickle(
-                                f"{save_file_path}/{msgs_SecurityStatusWorkup60}_{chunk_index60}.pkl")
+                                f"{save_file_path}/msgs_SecurityStatusWorkup60_{chunk_index60}.pkl")
                             chunk_index60 += 1
                             msgs_SecurityStatusWorkup60 = []
 
@@ -768,7 +768,7 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
                             msgs_SnapshotFullRefreshTCP61 = pd.DataFrame(
                                 chain.from_iterable(msgs_SnapshotFullRefreshTCP61))
                             msgs_SnapshotFullRefreshTCP61.to_pickle(
-                                f"{save_file_path}/{msgs_SnapshotFullRefreshTCP61}_{chunk_index61}.pkl")
+                                f"{save_file_path}/msgs_SnapshotFullRefreshTCP61_{chunk_index61}.pkl")
                             chunk_index61 += 1
                             msgs_SnapshotFullRefreshTCP61 = []
 
@@ -783,7 +783,7 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
                             msgs_CollateralMarketValue62 = pd.DataFrame(
                                 chain.from_iterable(msgs_CollateralMarketValue62))
                             msgs_CollateralMarketValue62.to_pickle(
-                                f"{save_file_path}/{msgs_CollateralMarketValue62}_{chunk_index62}.pkl")
+                                f"{save_file_path}/msgs_CollateralMarketValue62_{chunk_index62}.pkl")
                             chunk_index62 += 1
                             msgs_CollateralMarketValue62 = []
 
@@ -798,7 +798,7 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
                             msgs_MDInstrumentDefinitionFX63 = pd.DataFrame(
                                 chain.from_iterable(msgs_MDInstrumentDefinitionFX63))
                             msgs_MDInstrumentDefinitionFX63.to_pickle(
-                                f"{save_file_path}/{msgs_MDInstrumentDefinitionFX63}_{chunk_index63}.pkl")
+                                f"{save_file_path}/msgs_MDInstrumentDefinitionFX63_{chunk_index63}.pkl")
                             chunk_index63 += 1
                             msgs_MDInstrumentDefinitionFX63 = []
 
@@ -813,7 +813,7 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
                             msgs_MDIncrementalRefreshBookLongQty64 = pd.DataFrame(
                                 chain.from_iterable(msgs_MDIncrementalRefreshBookLongQty64))
                             msgs_MDIncrementalRefreshBookLongQty64.to_pickle(
-                                f"{save_file_path}/{msgs_MDIncrementalRefreshBookLongQty64}_{chunk_index64}.pkl")
+                                f"{save_file_path}/msgs_MDIncrementalRefreshBookLongQty64_{chunk_index64}.pkl")
                             chunk_index64 += 1
                             msgs_MDIncrementalRefreshBookLongQty64 = []
 
@@ -828,7 +828,7 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
                             msgs_MDIncrementalRefreshTradeSummaryLongQty65 = pd.DataFrame(
                                 chain.from_iterable(msgs_MDIncrementalRefreshTradeSummaryLongQty65))
                             msgs_MDIncrementalRefreshTradeSummaryLongQty65.to_pickle(
-                                f"{save_file_path}/{msgs_MDIncrementalRefreshTradeSummaryLongQty65}_{chunk_index65}.pkl")
+                                f"{save_file_path}/msgs_MDIncrementalRefreshTradeSummaryLongQty65_{chunk_index65}.pkl")
                             chunk_index65 += 1
                             msgs_MDIncrementalRefreshTradeSummaryLongQty65 = []
 
@@ -843,7 +843,7 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
                             msgs_MDIncrementalRefreshVolumeLongQty66 = pd.DataFrame(
                                 chain.from_iterable(msgs_MDIncrementalRefreshVolumeLongQty66))
                             msgs_MDIncrementalRefreshVolumeLongQty66.to_pickle(
-                                f"{save_file_path}/{msgs_MDIncrementalRefreshVolumeLongQty66}_{chunk_index66}.pkl")
+                                f"{save_file_path}/msgs_MDIncrementalRefreshVolumeLongQty66_{chunk_index66}.pkl")
                             chunk_index66 += 1
                             msgs_MDIncrementalRefreshVolumeLongQty66 = []
 
@@ -858,7 +858,7 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
                             msgs_MDIncrementalRefreshSessionStatisticsLongQty67 = pd.DataFrame(
                                 chain.from_iterable(msgs_MDIncrementalRefreshSessionStatisticsLongQty67))
                             msgs_MDIncrementalRefreshSessionStatisticsLongQty67.to_pickle(
-                                f"{save_file_path}/{msgs_MDIncrementalRefreshSessionStatisticsLongQty67}_{chunk_index67}.pkl")
+                                f"{save_file_path}/msgs_MDIncrementalRefreshSessionStatisticsLongQty67_{chunk_index67}.pkl")
                             chunk_index67 += 1
                             msgs_MDIncrementalRefreshSessionStatisticsLongQty67 = []
 
@@ -873,7 +873,7 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
                             msgs_SnapshotFullRefreshTCPLongQty68 = pd.DataFrame(
                                 chain.from_iterable(msgs_SnapshotFullRefreshTCPLongQty68))
                             msgs_SnapshotFullRefreshTCPLongQty68.to_pickle(
-                                f"{save_file_path}/{msgs_SnapshotFullRefreshTCPLongQty68}_{chunk_index68}.pkl")
+                                f"{save_file_path}/msgs_SnapshotFullRefreshTCPLongQty68_{chunk_index68}.pkl")
                             chunk_index68 += 1
                             msgs_SnapshotFullRefreshTCPLongQty68 = []
 
@@ -888,7 +888,7 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
                             msgs_SnapshotFullRefreshLongQty69 = pd.DataFrame(
                                 chain.from_iterable(msgs_SnapshotFullRefreshLongQty69))
                             msgs_SnapshotFullRefreshLongQty69.to_pickle(
-                                f"{save_file_path}/{msgs_SnapshotFullRefreshLongQty69}_{chunk_index69}.pkl")
+                                f"{save_file_path}/msgs_SnapshotFullRefreshLongQty69_{chunk_index69}.pkl")
                             chunk_index69 += 1
                             msgs_SnapshotFullRefreshLongQty69 = []
 
@@ -1160,7 +1160,7 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
                             msgs_ChannelReset4 = pd.DataFrame(
                                 chain.from_iterable(msgs_ChannelReset4))
                             msgs_ChannelReset4.to_pickle(
-                                f"{save_file_path}/{msgs_ChannelReset4}_{chunk_index4}.pkl")
+                                f"{save_file_path}/msgs_ChannelReset4_{chunk_index4}.pkl")
                             chunk_index4 += 1
                             msgs_ChannelReset4 = []
 
@@ -1175,7 +1175,7 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
                             msgs_AdminLogout16 = pd.DataFrame(
                                 chain.from_iterable(msgs_AdminLogout16))
                             msgs_AdminLogout16.to_pickle(
-                                f"{save_file_path}/{msgs_AdminLogout16}_{chunk_index16}.pkl")
+                                f"{save_file_path}/msgs_AdminLogout16_{chunk_index16}.pkl")
                             chunk_index16 += 1
                             msgs_AdminLogout16 = []
 
@@ -1190,7 +1190,7 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
                             msgs_MDInstrumentDefinitionFuture27 = pd.DataFrame(
                                 chain.from_iterable(msgs_MDInstrumentDefinitionFuture27))
                             msgs_MDInstrumentDefinitionFuture27.to_pickle(
-                                f"{save_file_path}/{msgs_MDInstrumentDefinitionFuture27}_{chunk_index27}.pkl")
+                                f"{save_file_path}/msgs_MDInstrumentDefinitionFuture27_{chunk_index27}.pkl")
                             chunk_index27 += 1
                             msgs_MDInstrumentDefinitionFuture27 = []
 
@@ -1205,7 +1205,7 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
                             msgs_MDInstrumentDefinitionSpread29 = pd.DataFrame(
                                 chain.from_iterable(msgs_MDInstrumentDefinitionSpread29))
                             msgs_MDInstrumentDefinitionSpread29.to_pickle(
-                                f"{save_file_path}/{msgs_MDInstrumentDefinitionSpread29}_{chunk_index29}.pkl")
+                                f"{save_file_path}/msgs_MDInstrumentDefinitionSpread29_{chunk_index29}.pkl")
                             chunk_index29 += 1
                             msgs_MDInstrumentDefinitionSpread29 = []
 
@@ -1220,7 +1220,7 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
                             msgs_SecurityStatus30 = pd.DataFrame(
                                 chain.from_iterable(msgs_SecurityStatus30))
                             msgs_SecurityStatus30.to_pickle(
-                                f"{save_file_path}/{msgs_SecurityStatus30}_{chunk_index30}.pkl")
+                                f"{save_file_path}/msgs_SecurityStatus30_{chunk_index30}.pkl")
                             chunk_index30 += 1
                             msgs_SecurityStatus30 = []
 
@@ -1235,7 +1235,7 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
                             msgs_MDIncrementalRefreshBook32 = pd.DataFrame(
                                 chain.from_iterable(msgs_MDIncrementalRefreshBook32))
                             msgs_MDIncrementalRefreshBook32.to_pickle(
-                                f"{save_file_path}/{msgs_MDIncrementalRefreshBook32}_{chunk_index32}.pkl")
+                                f"{save_file_path}/msgs_MDIncrementalRefreshBook32_{chunk_index32}.pkl")
                             chunk_index32 += 1
                             msgs_MDIncrementalRefreshBook32 = []
 
@@ -1250,7 +1250,7 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
                             msgs_MDIncrementalRefreshDailyStatistics33 = pd.DataFrame(
                                 chain.from_iterable(msgs_MDIncrementalRefreshDailyStatistics33))
                             msgs_MDIncrementalRefreshDailyStatistics33.to_pickle(
-                                f"{save_file_path}/{msgs_MDIncrementalRefreshDailyStatistics33}_{chunk_index33}.pkl")
+                                f"{save_file_path}/msgs_MDIncrementalRefreshDailyStatistics33_{chunk_index33}.pkl")
                             chunk_index33 += 1
                             msgs_MDIncrementalRefreshDailyStatistics33 = []
 
@@ -1265,7 +1265,7 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
                             msgs_MDIncrementalRefreshLimitsBanding34 = pd.DataFrame(
                                 chain.from_iterable(msgs_MDIncrementalRefreshLimitsBanding34))
                             msgs_MDIncrementalRefreshLimitsBanding34.to_pickle(
-                                f"{save_file_path}/{msgs_MDIncrementalRefreshLimitsBanding34}_{chunk_index34}.pkl")
+                                f"{save_file_path}/msgs_MDIncrementalRefreshLimitsBanding34_{chunk_index34}.pkl")
                             chunk_index34 += 1
                             msgs_MDIncrementalRefreshLimitsBanding34 = []
 
@@ -1280,7 +1280,7 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
                             msgs_MDIncrementalRefreshSessionStatistics35 = pd.DataFrame(
                                 chain.from_iterable(msgs_MDIncrementalRefreshSessionStatistics35))
                             msgs_MDIncrementalRefreshSessionStatistics35.to_pickle(
-                                f"{save_file_path}/{msgs_MDIncrementalRefreshSessionStatistics35}_{chunk_index35}.pkl")
+                                f"{save_file_path}/msgs_MDIncrementalRefreshSessionStatistics35_{chunk_index35}.pkl")
                             chunk_index35 += 1
                             msgs_MDIncrementalRefreshSessionStatistics35 = []
 
@@ -1295,7 +1295,7 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
                             msgs_MDIncrementalRefreshTrade36 = pd.DataFrame(
                                 chain.from_iterable(msgs_MDIncrementalRefreshTrade36))
                             msgs_MDIncrementalRefreshTrade36.to_pickle(
-                                f"{save_file_path}/{msgs_MDIncrementalRefreshTrade36}_{chunk_index36}.pkl")
+                                f"{save_file_path}/msgs_MDIncrementalRefreshTrade36_{chunk_index36}.pkl")
                             chunk_index36 += 1
                             msgs_MDIncrementalRefreshTrade36 = []
 
@@ -1310,7 +1310,7 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
                             msgs_MDIncrementalRefreshVolume37 = pd.DataFrame(
                                 chain.from_iterable(msgs_MDIncrementalRefreshVolume37))
                             msgs_MDIncrementalRefreshVolume37.to_pickle(
-                                f"{save_file_path}/{msgs_MDIncrementalRefreshVolume37}_{chunk_index37}.pkl")
+                                f"{save_file_path}/msgs_MDIncrementalRefreshVolume37_{chunk_index37}.pkl")
                             chunk_index37 += 1
                             msgs_MDIncrementalRefreshVolume37 = []
 
@@ -1325,7 +1325,7 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
                             msgs_SnapshotFullRefresh38 = pd.DataFrame(
                                 chain.from_iterable(msgs_SnapshotFullRefresh38))
                             msgs_SnapshotFullRefresh38.to_pickle(
-                                f"{save_file_path}/{msgs_SnapshotFullRefresh38}_{chunk_index38}.pkl")
+                                f"{save_file_path}/msgs_SnapshotFullRefresh38_{chunk_index38}.pkl")
                             chunk_index38 += 1
                             msgs_SnapshotFullRefresh38 = []
 
@@ -1340,7 +1340,7 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
                             msgs_QuoteRequest39 = pd.DataFrame(
                                 chain.from_iterable(msgs_QuoteRequest39))
                             msgs_QuoteRequest39.to_pickle(
-                                f"{save_file_path}/{msgs_QuoteRequest39}_{chunk_index39}.pkl")
+                                f"{save_file_path}/msgs_QuoteRequest39_{chunk_index39}.pkl")
                             chunk_index39 += 1
                             msgs_QuoteRequest39 = []
 
@@ -1355,7 +1355,7 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
                             msgs_MDInstrumentDefinitionOption41 = pd.DataFrame(
                                 chain.from_iterable(msgs_MDInstrumentDefinitionOption41))
                             msgs_MDInstrumentDefinitionOption41.to_pickle(
-                                f"{save_file_path}/{msgs_MDInstrumentDefinitionOption41}_{chunk_index41}.pkl")
+                                f"{save_file_path}/msgs_MDInstrumentDefinitionOption41_{chunk_index41}.pkl")
                             chunk_index41 += 1
                             msgs_MDInstrumentDefinitionOption41 = []
 
@@ -1370,7 +1370,7 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
                             msgs_MDIncrementalRefreshTradeSummary42 = pd.DataFrame(
                                 chain.from_iterable(msgs_MDIncrementalRefreshTradeSummary42))
                             msgs_MDIncrementalRefreshTradeSummary42.to_pickle(
-                                f"{save_file_path}/{msgs_MDIncrementalRefreshTradeSummary42}_{chunk_index42}.pkl")
+                                f"{save_file_path}/msgs_MDIncrementalRefreshTradeSummary42_{chunk_index42}.pkl")
                             chunk_index42 += 1
                             msgs_MDIncrementalRefreshTradeSummary42 = []
 
@@ -1385,7 +1385,7 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
                             msgs_MDIncrementalRefreshOrderBook43 = pd.DataFrame(
                                 chain.from_iterable(msgs_MDIncrementalRefreshOrderBook43))
                             msgs_MDIncrementalRefreshOrderBook43.to_pickle(
-                                f"{save_file_path}/{msgs_MDIncrementalRefreshOrderBook43}_{chunk_index43}.pkl")
+                                f"{save_file_path}/msgs_MDIncrementalRefreshOrderBook43_{chunk_index43}.pkl")
                             chunk_index43 += 1
                             msgs_MDIncrementalRefreshOrderBook43 = []
 
@@ -1400,7 +1400,7 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
                             msgs_SnapshotFullRefreshOrderBook44 = pd.DataFrame(
                                 chain.from_iterable(msgs_SnapshotFullRefreshOrderBook44))
                             msgs_SnapshotFullRefreshOrderBook44.to_pickle(
-                                f"{save_file_path}/{msgs_SnapshotFullRefreshOrderBook44}_{chunk_index44}.pkl")
+                                f"{save_file_path}/msgs_SnapshotFullRefreshOrderBook44_{chunk_index44}.pkl")
                             chunk_index44 += 1
                             msgs_SnapshotFullRefreshOrderBook44 = []
 
@@ -1415,7 +1415,7 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
                             msgs_MDIncrementalRefreshBook46 = pd.DataFrame(
                                 chain.from_iterable(msgs_MDIncrementalRefreshBook46))
                             msgs_MDIncrementalRefreshBook46.to_pickle(
-                                f"{save_file_path}/{msgs_MDIncrementalRefreshBook46}_{chunk_index46}.pkl")
+                                f"{save_file_path}/msgs_MDIncrementalRefreshBook46_{chunk_index46}.pkl")
                             chunk_index46 += 1
                             msgs_MDIncrementalRefreshBook46 = []
 
@@ -1430,7 +1430,7 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
                             msgs_MDIncrementalRefreshOrderBook47 = pd.DataFrame(
                                 chain.from_iterable(msgs_MDIncrementalRefreshOrderBook47))
                             msgs_MDIncrementalRefreshOrderBook47.to_pickle(
-                                f"{save_file_path}/{msgs_MDIncrementalRefreshOrderBook47}_{chunk_index47}.pkl")
+                                f"{save_file_path}/msgs_MDIncrementalRefreshOrderBook47_{chunk_index47}.pkl")
                             chunk_index47 += 1
                             msgs_MDIncrementalRefreshOrderBook47 = []
 
@@ -1445,7 +1445,7 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
                             msgs_MDIncrementalRefreshTradeSummary48 = pd.DataFrame(
                                 chain.from_iterable(msgs_MDIncrementalRefreshTradeSummary48))
                             msgs_MDIncrementalRefreshTradeSummary48.to_pickle(
-                                f"{save_file_path}/{msgs_MDIncrementalRefreshTradeSummary48}_{chunk_index48}.pkl")
+                                f"{save_file_path}/msgs_MDIncrementalRefreshTradeSummary48_{chunk_index48}.pkl")
                             chunk_index48 += 1
                             msgs_MDIncrementalRefreshTradeSummary48 = []
 
@@ -1460,7 +1460,7 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
                             msgs_MDIncrementalRefreshDailyStatistics49 = pd.DataFrame(
                                 chain.from_iterable(msgs_MDIncrementalRefreshDailyStatistics49))
                             msgs_MDIncrementalRefreshDailyStatistics49.to_pickle(
-                                f"{save_file_path}/{msgs_MDIncrementalRefreshDailyStatistics49}_{chunk_index49}.pkl")
+                                f"{save_file_path}/msgs_MDIncrementalRefreshDailyStatistics49_{chunk_index49}.pkl")
                             chunk_index49 += 1
                             msgs_MDIncrementalRefreshDailyStatistics49 = []
 
@@ -1475,7 +1475,7 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
                             msgs_MDIncrementalRefreshLimitsBanding50 = pd.DataFrame(
                                 chain.from_iterable(msgs_MDIncrementalRefreshLimitsBanding50))
                             msgs_MDIncrementalRefreshLimitsBanding50.to_pickle(
-                                f"{save_file_path}/{msgs_MDIncrementalRefreshLimitsBanding50}_{chunk_index50}.pkl")
+                                f"{save_file_path}/msgs_MDIncrementalRefreshLimitsBanding50_{chunk_index50}.pkl")
                             chunk_index50 += 1
                             msgs_MDIncrementalRefreshLimitsBanding50 = []
 
@@ -1490,7 +1490,7 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
                             msgs_MDIncrementalRefreshSessionStatistics51 = pd.DataFrame(
                                 chain.from_iterable(msgs_MDIncrementalRefreshSessionStatistics51))
                             msgs_MDIncrementalRefreshSessionStatistics51.to_pickle(
-                                f"{save_file_path}/{msgs_MDIncrementalRefreshSessionStatistics51}_{chunk_index51}.pkl")
+                                f"{save_file_path}/msgs_MDIncrementalRefreshSessionStatistics51_{chunk_index51}.pkl")
                             chunk_index51 += 1
                             msgs_MDIncrementalRefreshSessionStatistics51 = []
 
@@ -1505,7 +1505,7 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
                             msgs_SnapshotFullRefresh52 = pd.DataFrame(
                                 chain.from_iterable(msgs_SnapshotFullRefresh52))
                             msgs_SnapshotFullRefresh52.to_pickle(
-                                f"{save_file_path}/{msgs_SnapshotFullRefresh52}_{chunk_index52}.pkl")
+                                f"{save_file_path}/msgs_SnapshotFullRefresh52_{chunk_index52}.pkl")
                             chunk_index52 += 1
                             msgs_SnapshotFullRefresh52 = []
 
@@ -1520,7 +1520,7 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
                             msgs_SnapshotFullRefreshOrderBook53 = pd.DataFrame(
                                 chain.from_iterable(msgs_SnapshotFullRefreshOrderBook53))
                             msgs_SnapshotFullRefreshOrderBook53.to_pickle(
-                                f"{save_file_path}/{msgs_SnapshotFullRefreshOrderBook53}_{chunk_index53}.pkl")
+                                f"{save_file_path}/msgs_SnapshotFullRefreshOrderBook53_{chunk_index53}.pkl")
                             chunk_index53 += 1
                             msgs_SnapshotFullRefreshOrderBook53 = []
 
@@ -1535,7 +1535,7 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
                             msgs_MDInstrumentDefinitionFuture54 = pd.DataFrame(
                                 chain.from_iterable(msgs_MDInstrumentDefinitionFuture54))
                             msgs_MDInstrumentDefinitionFuture54.to_pickle(
-                                f"{save_file_path}/{msgs_MDInstrumentDefinitionFuture54}_{chunk_index54}.pkl")
+                                f"{save_file_path}/msgs_MDInstrumentDefinitionFuture54_{chunk_index54}.pkl")
                             chunk_index54 += 1
                             msgs_MDInstrumentDefinitionFuture54 = []
 
@@ -1550,7 +1550,7 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
                             msgs_MDInstrumentDefinitionOption55 = pd.DataFrame(
                                 chain.from_iterable(msgs_MDInstrumentDefinitionOption55))
                             msgs_MDInstrumentDefinitionOption55.to_pickle(
-                                f"{save_file_path}/{msgs_MDInstrumentDefinitionOption55}_{chunk_index55}.pkl")
+                                f"{save_file_path}/msgs_MDInstrumentDefinitionOption55_{chunk_index55}.pkl")
                             chunk_index55 += 1
                             msgs_MDInstrumentDefinitionOption55 = []
 
@@ -1565,7 +1565,7 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
                             msgs_MDInstrumentDefinitionSpread56 = pd.DataFrame(
                                 chain.from_iterable(msgs_MDInstrumentDefinitionSpread56))
                             msgs_MDInstrumentDefinitionSpread56.to_pickle(
-                                f"{save_file_path}/{msgs_MDInstrumentDefinitionSpread56}_{chunk_index56}.pkl")
+                                f"{save_file_path}/msgs_MDInstrumentDefinitionSpread56_{chunk_index56}.pkl")
                             chunk_index56 += 1
                             msgs_MDInstrumentDefinitionSpread56 = []
 
@@ -1580,7 +1580,7 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
                             msgs_MDInstrumentDefinitionFixedIncome57 = pd.DataFrame(
                                 chain.from_iterable(msgs_MDInstrumentDefinitionFixedIncome57))
                             msgs_MDInstrumentDefinitionFixedIncome57.to_pickle(
-                                f"{save_file_path}/{msgs_MDInstrumentDefinitionFixedIncome57}_{chunk_index57}.pkl")
+                                f"{save_file_path}/msgs_MDInstrumentDefinitionFixedIncome57_{chunk_index57}.pkl")
                             chunk_index57 += 1
                             msgs_MDInstrumentDefinitionFixedIncome57 = []
 
@@ -1595,7 +1595,7 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
                             msgs_MDInstrumentDefinitionRepo58 = pd.DataFrame(
                                 chain.from_iterable(msgs_MDInstrumentDefinitionRepo58))
                             msgs_MDInstrumentDefinitionRepo58.to_pickle(
-                                f"{save_file_path}/{msgs_MDInstrumentDefinitionRepo58}_{chunk_index58}.pkl")
+                                f"{save_file_path}/msgs_MDInstrumentDefinitionRepo58_{chunk_index58}.pkl")
                             chunk_index58 += 1
                             msgs_MDInstrumentDefinitionRepo58 = []
 
@@ -1610,7 +1610,7 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
                             msgs_SnapshotRefreshTopOrders59 = pd.DataFrame(
                                 chain.from_iterable(msgs_SnapshotRefreshTopOrders59))
                             msgs_SnapshotRefreshTopOrders59.to_pickle(
-                                f"{save_file_path}/{msgs_SnapshotRefreshTopOrders59}_{chunk_index59}.pkl")
+                                f"{save_file_path}/msgs_SnapshotRefreshTopOrders59_{chunk_index59}.pkl")
                             chunk_index59 += 1
                             msgs_SnapshotRefreshTopOrders59 = []
 
@@ -1625,7 +1625,7 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
                             msgs_SecurityStatusWorkup60 = pd.DataFrame(
                                 chain.from_iterable(msgs_SecurityStatusWorkup60))
                             msgs_SecurityStatusWorkup60.to_pickle(
-                                f"{save_file_path}/{msgs_SecurityStatusWorkup60}_{chunk_index60}.pkl")
+                                f"{save_file_path}/msgs_SecurityStatusWorkup60_{chunk_index60}.pkl")
                             chunk_index60 += 1
                             msgs_SecurityStatusWorkup60 = []
 
@@ -1640,7 +1640,7 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
                             msgs_SnapshotFullRefreshTCP61 = pd.DataFrame(
                                 chain.from_iterable(msgs_SnapshotFullRefreshTCP61))
                             msgs_SnapshotFullRefreshTCP61.to_pickle(
-                                f"{save_file_path}/{msgs_SnapshotFullRefreshTCP61}_{chunk_index61}.pkl")
+                                f"{save_file_path}/msgs_SnapshotFullRefreshTCP61_{chunk_index61}.pkl")
                             chunk_index61 += 1
                             msgs_SnapshotFullRefreshTCP61 = []
 
@@ -1655,7 +1655,7 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
                             msgs_CollateralMarketValue62 = pd.DataFrame(
                                 chain.from_iterable(msgs_CollateralMarketValue62))
                             msgs_CollateralMarketValue62.to_pickle(
-                                f"{save_file_path}/{msgs_CollateralMarketValue62}_{chunk_index62}.pkl")
+                                f"{save_file_path}/msgs_CollateralMarketValue62_{chunk_index62}.pkl")
                             chunk_index62 += 1
                             msgs_CollateralMarketValue62 = []
 
@@ -1670,7 +1670,7 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
                             msgs_MDInstrumentDefinitionFX63 = pd.DataFrame(
                                 chain.from_iterable(msgs_MDInstrumentDefinitionFX63))
                             msgs_MDInstrumentDefinitionFX63.to_pickle(
-                                f"{save_file_path}/{msgs_MDInstrumentDefinitionFX63}_{chunk_index63}.pkl")
+                                f"{save_file_path}/msgs_MDInstrumentDefinitionFX63_{chunk_index63}.pkl")
                             chunk_index63 += 1
                             msgs_MDInstrumentDefinitionFX63 = []
 
@@ -1685,7 +1685,7 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
                             msgs_MDIncrementalRefreshBookLongQty64 = pd.DataFrame(
                                 chain.from_iterable(msgs_MDIncrementalRefreshBookLongQty64))
                             msgs_MDIncrementalRefreshBookLongQty64.to_pickle(
-                                f"{save_file_path}/{msgs_MDIncrementalRefreshBookLongQty64}_{chunk_index64}.pkl")
+                                f"{save_file_path}/msgs_MDIncrementalRefreshBookLongQty64_{chunk_index64}.pkl")
                             chunk_index64 += 1
                             msgs_MDIncrementalRefreshBookLongQty64 = []
 
@@ -1700,7 +1700,7 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
                             msgs_MDIncrementalRefreshTradeSummaryLongQty65 = pd.DataFrame(
                                 chain.from_iterable(msgs_MDIncrementalRefreshTradeSummaryLongQty65))
                             msgs_MDIncrementalRefreshTradeSummaryLongQty65.to_pickle(
-                                f"{save_file_path}/{msgs_MDIncrementalRefreshTradeSummaryLongQty65}_{chunk_index65}.pkl")
+                                f"{save_file_path}/msgs_MDIncrementalRefreshTradeSummaryLongQty65_{chunk_index65}.pkl")
                             chunk_index65 += 1
                             msgs_MDIncrementalRefreshTradeSummaryLongQty65 = []
 
@@ -1715,7 +1715,7 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
                             msgs_MDIncrementalRefreshVolumeLongQty66 = pd.DataFrame(
                                 chain.from_iterable(msgs_MDIncrementalRefreshVolumeLongQty66))
                             msgs_MDIncrementalRefreshVolumeLongQty66.to_pickle(
-                                f"{save_file_path}/{msgs_MDIncrementalRefreshVolumeLongQty66}_{chunk_index66}.pkl")
+                                f"{save_file_path}/msgs_MDIncrementalRefreshVolumeLongQty66_{chunk_index66}.pkl")
                             chunk_index66 += 1
                             msgs_MDIncrementalRefreshVolumeLongQty66 = []
 
@@ -1730,7 +1730,7 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
                             msgs_MDIncrementalRefreshSessionStatisticsLongQty67 = pd.DataFrame(
                                 chain.from_iterable(msgs_MDIncrementalRefreshSessionStatisticsLongQty67))
                             msgs_MDIncrementalRefreshSessionStatisticsLongQty67.to_pickle(
-                                f"{save_file_path}/{msgs_MDIncrementalRefreshSessionStatisticsLongQty67}_{chunk_index67}.pkl")
+                                f"{save_file_path}/msgs_MDIncrementalRefreshSessionStatisticsLongQty67_{chunk_index67}.pkl")
                             chunk_index67 += 1
                             msgs_MDIncrementalRefreshSessionStatisticsLongQty67 = []
 
@@ -1745,7 +1745,7 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
                             msgs_SnapshotFullRefreshTCPLongQty68 = pd.DataFrame(
                                 chain.from_iterable(msgs_SnapshotFullRefreshTCPLongQty68))
                             msgs_SnapshotFullRefreshTCPLongQty68.to_pickle(
-                                f"{save_file_path}/{msgs_SnapshotFullRefreshTCPLongQty68}_{chunk_index68}.pkl")
+                                f"{save_file_path}/msgs_SnapshotFullRefreshTCPLongQty68_{chunk_index68}.pkl")
                             chunk_index68 += 1
                             msgs_SnapshotFullRefreshTCPLongQty68 = []
 
@@ -1760,7 +1760,7 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
                             msgs_SnapshotFullRefreshLongQty69 = pd.DataFrame(
                                 chain.from_iterable(msgs_SnapshotFullRefreshLongQty69))
                             msgs_SnapshotFullRefreshLongQty69.to_pickle(
-                                f"{save_file_path}/{msgs_SnapshotFullRefreshLongQty69}_{chunk_index69}.pkl")
+                                f"{save_file_path}/msgs_SnapshotFullRefreshLongQty69_{chunk_index69}.pkl")
                             chunk_index69 += 1
                             msgs_SnapshotFullRefreshLongQty69 = []
 
