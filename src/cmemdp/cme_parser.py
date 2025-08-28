@@ -48,7 +48,7 @@ from itertools import chain, islice
 import pickle
 
 
-def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_header=True,
+def cme_parser_datamine(path, max_read_packets=None, cme_header=True,
                         save_file_path=None, disable_progress_bar=False, chunk_size=5000):
     """
     `cme_parser_datamine` is a binary pacaket capture (PCAP) data parser for 
@@ -88,9 +88,6 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
 
     # you could only return the messages you want
     # users need to give the template IDs of that messages
-
-    template_id = [4, 16, 27, 29, 30, 32, 33, 34, 35, 36, 37, 38, 39, 41, 42, 43, 44, 46, 47, 48,
-                   49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69]
 
     msgs_ChannelReset4 = []
     msgs_AdminLogout16 = []
@@ -279,12 +276,10 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
 
                     if TemplateID == 4:
 
-                        if (msgs_template is None) or (4 in msgs_template):
-                            msgs_ChannelReset4.append(main_template.ChannelReset4(
-                                messages, BlockLength, cme_packet))
+                        msgs_ChannelReset4.append(main_template.ChannelReset4(
+                            messages, BlockLength, cme_packet))
 
                         if len(msgs_ChannelReset4) >= chunk_size:
-
                             msgs_ChannelReset4 = pd.DataFrame(
                                 chain.from_iterable(msgs_ChannelReset4))
                             msgs_ChannelReset4.to_pickle(
@@ -294,9 +289,8 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
 
                     elif TemplateID == 16:
 
-                        if (msgs_template is None) or (16 in msgs_template):
-                            msgs_AdminLogout16.append(main_template.AdminLogout16(
-                                messages, BlockLength, cme_packet))
+                        msgs_AdminLogout16.append(main_template.AdminLogout16(
+                            messages, BlockLength, cme_packet))
 
                         if len(msgs_AdminLogout16) >= chunk_size:
 
@@ -309,9 +303,8 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
 
                     elif TemplateID == 27:
 
-                        if (msgs_template is None) or (27 in msgs_template):
-                            msgs_MDInstrumentDefinitionFuture27.append(
-                                main_template.MDInstrumentDefinitionFuture27(messages, BlockLength, Version, cme_packet))
+                        msgs_MDInstrumentDefinitionFuture27.append(
+                            main_template.MDInstrumentDefinitionFuture27(messages, BlockLength, Version, cme_packet))
 
                         if len(msgs_MDInstrumentDefinitionFuture27) >= chunk_size:
 
@@ -324,9 +317,8 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
 
                     elif TemplateID == 29:
 
-                        if (msgs_template is None) or (29 in msgs_template):
-                            msgs_MDInstrumentDefinitionSpread29.append(
-                                main_template.MDInstrumentDefinitionSpread29(messages, BlockLength, Version, cme_packet))
+                        msgs_MDInstrumentDefinitionSpread29.append(
+                            main_template.MDInstrumentDefinitionSpread29(messages, BlockLength, Version, cme_packet))
 
                         if len(msgs_MDInstrumentDefinitionSpread29) >= chunk_size:
 
@@ -339,9 +331,8 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
 
                     elif TemplateID == 30:
 
-                        if (msgs_template is None) or (30 in msgs_template):
-                            msgs_SecurityStatus30.append(
-                                main_template.SecurityStatus30(messages, BlockLength, cme_packet))
+                        msgs_SecurityStatus30.append(
+                            main_template.SecurityStatus30(messages, BlockLength, cme_packet))
 
                         if len(msgs_SecurityStatus30) >= chunk_size:
 
@@ -354,9 +345,8 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
 
                     elif TemplateID == 32:
 
-                        if (msgs_template is None) or (32 in msgs_template):
-                            msgs_MDIncrementalRefreshBook32.append(
-                                main_template.MDIncrementalRefreshBook32(messages, BlockLength, cme_packet))
+                        msgs_MDIncrementalRefreshBook32.append(
+                            main_template.MDIncrementalRefreshBook32(messages, BlockLength, cme_packet))
 
                         if len(msgs_MDIncrementalRefreshBook32) >= chunk_size:
 
@@ -369,9 +359,8 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
 
                     elif TemplateID == 33:
 
-                        if (msgs_template is None) or (33 in msgs_template):
-                            msgs_MDIncrementalRefreshDailyStatistics33.append(
-                                main_template.MDIncrementalRefreshDailyStatistics33(messages, BlockLength, cme_packet))
+                        msgs_MDIncrementalRefreshDailyStatistics33.append(
+                            main_template.MDIncrementalRefreshDailyStatistics33(messages, BlockLength, cme_packet))
 
                         if len(msgs_MDIncrementalRefreshDailyStatistics33) >= chunk_size:
 
@@ -384,9 +373,8 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
 
                     elif TemplateID == 34:
 
-                        if (msgs_template is None) or (34 in msgs_template):
-                            msgs_MDIncrementalRefreshLimitsBanding34.append(
-                                main_template.MDIncrementalRefreshLimitsBanding34(messages, BlockLength, cme_packet))
+                        msgs_MDIncrementalRefreshLimitsBanding34.append(
+                            main_template.MDIncrementalRefreshLimitsBanding34(messages, BlockLength, cme_packet))
 
                         if len(msgs_MDIncrementalRefreshLimitsBanding34) >= chunk_size:
 
@@ -399,9 +387,8 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
 
                     elif TemplateID == 35:
 
-                        if (msgs_template is None) or (35 in msgs_template):
-                            msgs_MDIncrementalRefreshSessionStatistics35.append(
-                                main_template.MDIncrementalRefreshSessionStatistics35(messages, BlockLength, cme_packet))
+                        msgs_MDIncrementalRefreshSessionStatistics35.append(
+                            main_template.MDIncrementalRefreshSessionStatistics35(messages, BlockLength, cme_packet))
 
                         if len(msgs_MDIncrementalRefreshSessionStatistics35) >= chunk_size:
 
@@ -414,9 +401,8 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
 
                     elif TemplateID == 36:
 
-                        if (msgs_template is None) or (36 in msgs_template):
-                            msgs_MDIncrementalRefreshTrade36.append(
-                                main_template.MDIncrementalRefreshTrade36(messages, BlockLength, cme_packet))
+                        msgs_MDIncrementalRefreshTrade36.append(
+                            main_template.MDIncrementalRefreshTrade36(messages, BlockLength, cme_packet))
 
                         if len(msgs_MDIncrementalRefreshTrade36) >= chunk_size:
 
@@ -429,9 +415,8 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
 
                     elif TemplateID == 37:
 
-                        if (msgs_template is None) or (37 in msgs_template):
-                            msgs_MDIncrementalRefreshVolume37.append(
-                                main_template.MDIncrementalRefreshVolume37(messages, BlockLength, cme_packet))
+                        msgs_MDIncrementalRefreshVolume37.append(
+                            main_template.MDIncrementalRefreshVolume37(messages, BlockLength, cme_packet))
 
                         if len(msgs_MDIncrementalRefreshVolume37) >= chunk_size:
 
@@ -444,9 +429,8 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
 
                     elif TemplateID == 38:
 
-                        if (msgs_template is None) or (38 in msgs_template):
-                            msgs_SnapshotFullRefresh38.append(
-                                main_template.SnapshotFullRefresh38(messages, BlockLength, cme_packet))
+                        msgs_SnapshotFullRefresh38.append(
+                            main_template.SnapshotFullRefresh38(messages, BlockLength, cme_packet))
 
                         if len(msgs_SnapshotFullRefresh38) >= chunk_size:
 
@@ -459,9 +443,8 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
 
                     elif TemplateID == 39:
 
-                        if (msgs_template is None) or (39 in msgs_template):
-                            msgs_QuoteRequest39.append(
-                                main_template.QuoteRequest39(messages, BlockLength, cme_packet))
+                        msgs_QuoteRequest39.append(
+                            main_template.QuoteRequest39(messages, BlockLength, cme_packet))
 
                         if len(msgs_QuoteRequest39) >= chunk_size:
 
@@ -474,9 +457,8 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
 
                     elif TemplateID == 41:
 
-                        if (msgs_template is None) or (41 in msgs_template):
-                            msgs_MDInstrumentDefinitionOption41.append(
-                                main_template.MDInstrumentDefinitionOption41(messages, BlockLength, cme_packet))
+                        msgs_MDInstrumentDefinitionOption41.append(
+                            main_template.MDInstrumentDefinitionOption41(messages, BlockLength, cme_packet))
 
                         if len(msgs_MDInstrumentDefinitionOption41) >= chunk_size:
 
@@ -489,9 +471,8 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
 
                     elif TemplateID == 42:
 
-                        if (msgs_template is None) or (42 in msgs_template):
-                            msgs_MDIncrementalRefreshTradeSummary42.append(
-                                main_template.MDIncrementalRefreshTradeSummary42(messages, BlockLength, cme_packet))
+                        msgs_MDIncrementalRefreshTradeSummary42.append(
+                            main_template.MDIncrementalRefreshTradeSummary42(messages, BlockLength, cme_packet))
 
                         if len(msgs_MDIncrementalRefreshTradeSummary42) >= chunk_size:
 
@@ -504,9 +485,8 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
 
                     elif TemplateID == 43:
 
-                        if (msgs_template is None) or (43 in msgs_template):
-                            msgs_MDIncrementalRefreshOrderBook43.append(
-                                main_template.MDIncrementalRefreshOrderBook43(messages, BlockLength, cme_packet))
+                        msgs_MDIncrementalRefreshOrderBook43.append(
+                            main_template.MDIncrementalRefreshOrderBook43(messages, BlockLength, cme_packet))
 
                         if len(msgs_MDIncrementalRefreshOrderBook43) >= chunk_size:
 
@@ -519,9 +499,8 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
 
                     elif TemplateID == 44:
 
-                        if (msgs_template is None) or (44 in msgs_template):
-                            msgs_SnapshotFullRefreshOrderBook44.append(
-                                main_template.SnapshotFullRefreshOrderBook44(messages, BlockLength, cme_packet))
+                        msgs_SnapshotFullRefreshOrderBook44.append(
+                            main_template.SnapshotFullRefreshOrderBook44(messages, BlockLength, cme_packet))
 
                         if len(msgs_SnapshotFullRefreshOrderBook44) >= chunk_size:
 
@@ -534,9 +513,8 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
 
                     elif TemplateID == 46:
 
-                        if (msgs_template is None) or (46 in msgs_template):
-                            msgs_MDIncrementalRefreshBook46.append(
-                                main_template.MDIncrementalRefreshBook46(messages, BlockLength, cme_packet))
+                        msgs_MDIncrementalRefreshBook46.append(
+                            main_template.MDIncrementalRefreshBook46(messages, BlockLength, cme_packet))
 
                         if len(msgs_MDIncrementalRefreshBook46) >= chunk_size:
 
@@ -549,9 +527,8 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
 
                     elif TemplateID == 47:
 
-                        if (msgs_template is None) or (47 in msgs_template):
-                            msgs_MDIncrementalRefreshOrderBook47.append(
-                                main_template.MDIncrementalRefreshOrderBook47(messages, BlockLength, cme_packet))
+                        msgs_MDIncrementalRefreshOrderBook47.append(
+                            main_template.MDIncrementalRefreshOrderBook47(messages, BlockLength, cme_packet))
 
                         if len(msgs_MDIncrementalRefreshOrderBook47) >= chunk_size:
 
@@ -564,9 +541,8 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
 
                     elif TemplateID == 48:
 
-                        if (msgs_template is None) or (48 in msgs_template):
-                            msgs_MDIncrementalRefreshTradeSummary48.append(
-                                main_template.MDIncrementalRefreshTradeSummary48(messages, BlockLength, cme_packet))
+                        msgs_MDIncrementalRefreshTradeSummary48.append(
+                            main_template.MDIncrementalRefreshTradeSummary48(messages, BlockLength, cme_packet))
 
                         if len(msgs_MDIncrementalRefreshTradeSummary48) >= chunk_size:
 
@@ -579,9 +555,8 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
 
                     elif TemplateID == 49:
 
-                        if (msgs_template is None) or (49 in msgs_template):
-                            msgs_MDIncrementalRefreshDailyStatistics49.append(
-                                main_template.MDIncrementalRefreshDailyStatistics49(messages, BlockLength, cme_packet))
+                        msgs_MDIncrementalRefreshDailyStatistics49.append(
+                            main_template.MDIncrementalRefreshDailyStatistics49(messages, BlockLength, cme_packet))
 
                         if len(msgs_MDIncrementalRefreshDailyStatistics49) >= chunk_size:
 
@@ -594,9 +569,8 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
 
                     elif TemplateID == 50:
 
-                        if (msgs_template is None) or (50 in msgs_template):
-                            msgs_MDIncrementalRefreshLimitsBanding50.append(
-                                main_template.MDIncrementalRefreshLimitsBanding50(messages, BlockLength, cme_packet))
+                        msgs_MDIncrementalRefreshLimitsBanding50.append(
+                            main_template.MDIncrementalRefreshLimitsBanding50(messages, BlockLength, cme_packet))
 
                         if len(msgs_MDIncrementalRefreshLimitsBanding50) >= chunk_size:
 
@@ -609,9 +583,8 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
 
                     elif TemplateID == 51:
 
-                        if (msgs_template is None) or (51 in msgs_template):
-                            msgs_MDIncrementalRefreshSessionStatistics51.append(
-                                main_template.MDIncrementalRefreshSessionStatistics51(messages, BlockLength, cme_packet))
+                        msgs_MDIncrementalRefreshSessionStatistics51.append(
+                            main_template.MDIncrementalRefreshSessionStatistics51(messages, BlockLength, cme_packet))
 
                         if len(msgs_MDIncrementalRefreshSessionStatistics51) >= chunk_size:
 
@@ -624,9 +597,8 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
 
                     elif TemplateID == 52:
 
-                        if (msgs_template is None) or (52 in msgs_template):
-                            msgs_SnapshotFullRefresh52.append(
-                                main_template.SnapshotFullRefresh52(messages, BlockLength, cme_packet))
+                        msgs_SnapshotFullRefresh52.append(
+                            main_template.SnapshotFullRefresh52(messages, BlockLength, cme_packet))
 
                         if len(msgs_SnapshotFullRefresh52) >= chunk_size:
 
@@ -639,9 +611,8 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
 
                     elif TemplateID == 53:
 
-                        if (msgs_template is None) or (53 in msgs_template):
-                            msgs_SnapshotFullRefreshOrderBook53.append(
-                                main_template.SnapshotFullRefreshOrderBook53(messages, BlockLength, cme_packet))
+                        msgs_SnapshotFullRefreshOrderBook53.append(
+                            main_template.SnapshotFullRefreshOrderBook53(messages, BlockLength, cme_packet))
 
                         if len(msgs_SnapshotFullRefreshOrderBook53) >= chunk_size:
 
@@ -654,9 +625,8 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
 
                     elif TemplateID == 54:
 
-                        if (msgs_template is None) or (54 in msgs_template):
-                            msgs_MDInstrumentDefinitionFuture54.append(
-                                main_template.MDInstrumentDefinitionFuture54(messages, BlockLength, Version, cme_packet))
+                        msgs_MDInstrumentDefinitionFuture54.append(
+                            main_template.MDInstrumentDefinitionFuture54(messages, BlockLength, Version, cme_packet))
 
                         if len(msgs_MDInstrumentDefinitionFuture54) >= chunk_size:
 
@@ -669,9 +639,8 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
 
                     elif TemplateID == 55:
 
-                        if (msgs_template is None) or (55 in msgs_template):
-                            msgs_MDInstrumentDefinitionOption55.append(
-                                main_template.MDInstrumentDefinitionOption55(messages, BlockLength, Version, cme_packet))
+                        msgs_MDInstrumentDefinitionOption55.append(
+                            main_template.MDInstrumentDefinitionOption55(messages, BlockLength, Version, cme_packet))
 
                         if len(msgs_MDInstrumentDefinitionOption55) >= chunk_size:
 
@@ -684,9 +653,8 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
 
                     elif TemplateID == 56:
 
-                        if (msgs_template is None) or (56 in msgs_template):
-                            msgs_MDInstrumentDefinitionSpread56.append(
-                                main_template.MDInstrumentDefinitionSpread56(messages, BlockLength, Version, cme_packet))
+                        msgs_MDInstrumentDefinitionSpread56.append(
+                            main_template.MDInstrumentDefinitionSpread56(messages, BlockLength, Version, cme_packet))
 
                         if len(msgs_MDInstrumentDefinitionSpread56) >= chunk_size:
 
@@ -699,9 +667,8 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
 
                     elif TemplateID == 57:
 
-                        if (msgs_template is None) or (57 in msgs_template):
-                            msgs_MDInstrumentDefinitionFixedIncome57.append(
-                                main_template.MDInstrumentDefinitionFixedIncome57(messages, BlockLength, cme_packet))
+                        msgs_MDInstrumentDefinitionFixedIncome57.append(
+                            main_template.MDInstrumentDefinitionFixedIncome57(messages, BlockLength, cme_packet))
 
                         if len(msgs_MDInstrumentDefinitionFixedIncome57) >= chunk_size:
 
@@ -714,9 +681,8 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
 
                     elif TemplateID == 58:
 
-                        if (msgs_template is None) or (58 in msgs_template):
-                            msgs_MDInstrumentDefinitionRepo58.append(
-                                main_template.MDInstrumentDefinitionRepo58(messages, BlockLength, Version, cme_packet))
+                        msgs_MDInstrumentDefinitionRepo58.append(
+                            main_template.MDInstrumentDefinitionRepo58(messages, BlockLength, Version, cme_packet))
 
                         if len(msgs_MDInstrumentDefinitionRepo58) >= chunk_size:
 
@@ -729,9 +695,8 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
 
                     elif TemplateID == 59:
 
-                        if (msgs_template is None) or (59 in msgs_template):
-                            msgs_SnapshotRefreshTopOrders59.append(
-                                main_template.SnapshotRefreshTopOrders59(messages, BlockLength, cme_packet))
+                        msgs_SnapshotRefreshTopOrders59.append(
+                            main_template.SnapshotRefreshTopOrders59(messages, BlockLength, cme_packet))
 
                         if len(msgs_SnapshotRefreshTopOrders59) >= chunk_size:
 
@@ -744,9 +709,8 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
 
                     elif TemplateID == 60:
 
-                        if (msgs_template is None) or (60 in msgs_template):
-                            msgs_SecurityStatusWorkup60.append(
-                                main_template.SecurityStatusWorkup60(messages, BlockLength, cme_packet))
+                        msgs_SecurityStatusWorkup60.append(
+                            main_template.SecurityStatusWorkup60(messages, BlockLength, cme_packet))
 
                         if len(msgs_SecurityStatusWorkup60) >= chunk_size:
 
@@ -759,9 +723,8 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
 
                     elif TemplateID == 61:
 
-                        if (msgs_template is None) or (61 in msgs_template):
-                            msgs_SnapshotFullRefreshTCP61.append(
-                                main_template.SnapshotFullRefreshTCP61(messages, BlockLength, cme_packet))
+                        msgs_SnapshotFullRefreshTCP61.append(
+                            main_template.SnapshotFullRefreshTCP61(messages, BlockLength, cme_packet))
 
                         if len(msgs_SnapshotFullRefreshTCP61) >= chunk_size:
 
@@ -774,9 +737,8 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
 
                     elif TemplateID == 62:
 
-                        if (msgs_template is None) or (62 in msgs_template):
-                            msgs_CollateralMarketValue62.append(
-                                main_template.CollateralMarketValue62(messages, BlockLength, cme_packet))
+                        msgs_CollateralMarketValue62.append(
+                            main_template.CollateralMarketValue62(messages, BlockLength, cme_packet))
 
                         if len(msgs_CollateralMarketValue62) >= chunk_size:
 
@@ -789,9 +751,8 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
 
                     elif TemplateID == 63:
 
-                        if (msgs_template is None) or (63 in msgs_template):
-                            msgs_MDInstrumentDefinitionFX63.append(
-                                main_template.MDInstrumentDefinitionFX63(messages, BlockLength, cme_packet))
+                        msgs_MDInstrumentDefinitionFX63.append(
+                            main_template.MDInstrumentDefinitionFX63(messages, BlockLength, cme_packet))
 
                         if len(msgs_MDInstrumentDefinitionFX63) >= chunk_size:
 
@@ -804,9 +765,8 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
 
                     elif TemplateID == 64:
 
-                        if (msgs_template is None) or (64 in msgs_template):
-                            msgs_MDIncrementalRefreshBookLongQty64.append(
-                                main_template.MDIncrementalRefreshBookLongQty64(messages, BlockLength, cme_packet))
+                        msgs_MDIncrementalRefreshBookLongQty64.append(
+                            main_template.MDIncrementalRefreshBookLongQty64(messages, BlockLength, cme_packet))
 
                         if len(msgs_MDIncrementalRefreshBookLongQty64) >= chunk_size:
 
@@ -819,9 +779,8 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
 
                     elif TemplateID == 65:
 
-                        if (msgs_template is None) or (65 in msgs_template):
-                            msgs_MDIncrementalRefreshTradeSummaryLongQty65.append(
-                                main_template.MDIncrementalRefreshTradeSummaryLongQty65(messages, BlockLength, cme_packet))
+                        msgs_MDIncrementalRefreshTradeSummaryLongQty65.append(
+                            main_template.MDIncrementalRefreshTradeSummaryLongQty65(messages, BlockLength, cme_packet))
 
                         if len(msgs_MDIncrementalRefreshTradeSummaryLongQty65) >= chunk_size:
 
@@ -834,9 +793,8 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
 
                     elif TemplateID == 66:
 
-                        if (msgs_template is None) or (66 in msgs_template):
-                            msgs_MDIncrementalRefreshVolumeLongQty66.append(
-                                main_template.MDIncrementalRefreshVolumeLongQty66(messages, BlockLength, cme_packet))
+                        msgs_MDIncrementalRefreshVolumeLongQty66.append(
+                            main_template.MDIncrementalRefreshVolumeLongQty66(messages, BlockLength, cme_packet))
 
                         if len(msgs_MDIncrementalRefreshVolumeLongQty66) >= chunk_size:
 
@@ -849,9 +807,8 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
 
                     elif TemplateID == 67:
 
-                        if (msgs_template is None) or (67 in msgs_template):
-                            msgs_MDIncrementalRefreshSessionStatisticsLongQty67.append(
-                                main_template.MDIncrementalRefreshSessionStatisticsLongQty67(messages, BlockLength, cme_packet))
+                        msgs_MDIncrementalRefreshSessionStatisticsLongQty67.append(
+                            main_template.MDIncrementalRefreshSessionStatisticsLongQty67(messages, BlockLength, cme_packet))
 
                         if len(msgs_MDIncrementalRefreshSessionStatisticsLongQty67) >= chunk_size:
 
@@ -864,9 +821,8 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
 
                     elif TemplateID == 68:
 
-                        if (msgs_template is None) or (68 in msgs_template):
-                            msgs_SnapshotFullRefreshTCPLongQty68.append(
-                                main_template.SnapshotFullRefreshTCPLongQty68(messages, BlockLength, cme_packet))
+                        msgs_SnapshotFullRefreshTCPLongQty68.append(
+                            main_template.SnapshotFullRefreshTCPLongQty68(messages, BlockLength, cme_packet))
 
                         if len(msgs_SnapshotFullRefreshTCPLongQty68) >= chunk_size:
 
@@ -879,9 +835,8 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
 
                     elif TemplateID == 69:
 
-                        if (msgs_template is None) or (69 in msgs_template):
-                            msgs_SnapshotFullRefreshLongQty69.append(
-                                main_template.SnapshotFullRefreshLongQty69(messages, BlockLength, cme_packet))
+                        msgs_SnapshotFullRefreshLongQty69.append(
+                            main_template.SnapshotFullRefreshLongQty69(messages, BlockLength, cme_packet))
 
                         if len(msgs_SnapshotFullRefreshLongQty69) >= chunk_size:
 
@@ -907,8 +862,9 @@ def cme_parser_datamine(path, max_read_packets=None, msgs_template=None, cme_hea
 
         raise Exception('Path for saved files must be provided')
 
-    for var_name, var_value in globals().items():
-        if var_name.startswith("msgs_"):
+    for var_name in list(globals().keys()):
+        if var_name.startswith("msgs_") and var_name != "msgs_template":
+            var_value = globals()[var_name]
             df = pd.DataFrame(chain.from_iterable(var_value))
             df.to_pickle(f"{save_file_path}/{var_name}.pkl")
             del globals()[var_name]
@@ -951,8 +907,6 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
         The chunk size that needs to be saved.
 
     """
-    template_id = [4, 16, 27, 29, 30, 32, 33, 34, 35, 36, 37, 38, 39, 41, 42, 43, 44, 46, 47, 48,
-                   49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69]
 
     def packet_head(msgs_blocks):
 
@@ -1151,12 +1105,10 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
 
                     if TemplateID == 4:
 
-                        if (msgs_template is None) or (4 in msgs_template):
-                            msgs_ChannelReset4.append(main_template.ChannelReset4(
-                                messages, BlockLength, cme_packet))
+                        msgs_ChannelReset4.append(main_template.ChannelReset4(
+                            messages, BlockLength, cme_packet))
 
                         if len(msgs_ChannelReset4) >= chunk_size:
-
                             msgs_ChannelReset4 = pd.DataFrame(
                                 chain.from_iterable(msgs_ChannelReset4))
                             msgs_ChannelReset4.to_pickle(
@@ -1166,9 +1118,8 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
 
                     elif TemplateID == 16:
 
-                        if (msgs_template is None) or (16 in msgs_template):
-                            msgs_AdminLogout16.append(main_template.AdminLogout16(
-                                messages, BlockLength, cme_packet))
+                        msgs_AdminLogout16.append(main_template.AdminLogout16(
+                            messages, BlockLength, cme_packet))
 
                         if len(msgs_AdminLogout16) >= chunk_size:
 
@@ -1181,9 +1132,8 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
 
                     elif TemplateID == 27:
 
-                        if (msgs_template is None) or (27 in msgs_template):
-                            msgs_MDInstrumentDefinitionFuture27.append(
-                                main_template.MDInstrumentDefinitionFuture27(messages, BlockLength, Version, cme_packet))
+                        msgs_MDInstrumentDefinitionFuture27.append(
+                            main_template.MDInstrumentDefinitionFuture27(messages, BlockLength, Version, cme_packet))
 
                         if len(msgs_MDInstrumentDefinitionFuture27) >= chunk_size:
 
@@ -1196,9 +1146,8 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
 
                     elif TemplateID == 29:
 
-                        if (msgs_template is None) or (29 in msgs_template):
-                            msgs_MDInstrumentDefinitionSpread29.append(
-                                main_template.MDInstrumentDefinitionSpread29(messages, BlockLength, Version, cme_packet))
+                        msgs_MDInstrumentDefinitionSpread29.append(
+                            main_template.MDInstrumentDefinitionSpread29(messages, BlockLength, Version, cme_packet))
 
                         if len(msgs_MDInstrumentDefinitionSpread29) >= chunk_size:
 
@@ -1211,9 +1160,8 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
 
                     elif TemplateID == 30:
 
-                        if (msgs_template is None) or (30 in msgs_template):
-                            msgs_SecurityStatus30.append(
-                                main_template.SecurityStatus30(messages, BlockLength, cme_packet))
+                        msgs_SecurityStatus30.append(
+                            main_template.SecurityStatus30(messages, BlockLength, cme_packet))
 
                         if len(msgs_SecurityStatus30) >= chunk_size:
 
@@ -1226,9 +1174,8 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
 
                     elif TemplateID == 32:
 
-                        if (msgs_template is None) or (32 in msgs_template):
-                            msgs_MDIncrementalRefreshBook32.append(
-                                main_template.MDIncrementalRefreshBook32(messages, BlockLength, cme_packet))
+                        msgs_MDIncrementalRefreshBook32.append(
+                            main_template.MDIncrementalRefreshBook32(messages, BlockLength, cme_packet))
 
                         if len(msgs_MDIncrementalRefreshBook32) >= chunk_size:
 
@@ -1241,9 +1188,8 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
 
                     elif TemplateID == 33:
 
-                        if (msgs_template is None) or (33 in msgs_template):
-                            msgs_MDIncrementalRefreshDailyStatistics33.append(
-                                main_template.MDIncrementalRefreshDailyStatistics33(messages, BlockLength, cme_packet))
+                        msgs_MDIncrementalRefreshDailyStatistics33.append(
+                            main_template.MDIncrementalRefreshDailyStatistics33(messages, BlockLength, cme_packet))
 
                         if len(msgs_MDIncrementalRefreshDailyStatistics33) >= chunk_size:
 
@@ -1256,9 +1202,8 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
 
                     elif TemplateID == 34:
 
-                        if (msgs_template is None) or (34 in msgs_template):
-                            msgs_MDIncrementalRefreshLimitsBanding34.append(
-                                main_template.MDIncrementalRefreshLimitsBanding34(messages, BlockLength, cme_packet))
+                        msgs_MDIncrementalRefreshLimitsBanding34.append(
+                            main_template.MDIncrementalRefreshLimitsBanding34(messages, BlockLength, cme_packet))
 
                         if len(msgs_MDIncrementalRefreshLimitsBanding34) >= chunk_size:
 
@@ -1271,9 +1216,8 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
 
                     elif TemplateID == 35:
 
-                        if (msgs_template is None) or (35 in msgs_template):
-                            msgs_MDIncrementalRefreshSessionStatistics35.append(
-                                main_template.MDIncrementalRefreshSessionStatistics35(messages, BlockLength, cme_packet))
+                        msgs_MDIncrementalRefreshSessionStatistics35.append(
+                            main_template.MDIncrementalRefreshSessionStatistics35(messages, BlockLength, cme_packet))
 
                         if len(msgs_MDIncrementalRefreshSessionStatistics35) >= chunk_size:
 
@@ -1286,9 +1230,8 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
 
                     elif TemplateID == 36:
 
-                        if (msgs_template is None) or (36 in msgs_template):
-                            msgs_MDIncrementalRefreshTrade36.append(
-                                main_template.MDIncrementalRefreshTrade36(messages, BlockLength, cme_packet))
+                        msgs_MDIncrementalRefreshTrade36.append(
+                            main_template.MDIncrementalRefreshTrade36(messages, BlockLength, cme_packet))
 
                         if len(msgs_MDIncrementalRefreshTrade36) >= chunk_size:
 
@@ -1301,9 +1244,8 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
 
                     elif TemplateID == 37:
 
-                        if (msgs_template is None) or (37 in msgs_template):
-                            msgs_MDIncrementalRefreshVolume37.append(
-                                main_template.MDIncrementalRefreshVolume37(messages, BlockLength, cme_packet))
+                        msgs_MDIncrementalRefreshVolume37.append(
+                            main_template.MDIncrementalRefreshVolume37(messages, BlockLength, cme_packet))
 
                         if len(msgs_MDIncrementalRefreshVolume37) >= chunk_size:
 
@@ -1316,9 +1258,8 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
 
                     elif TemplateID == 38:
 
-                        if (msgs_template is None) or (38 in msgs_template):
-                            msgs_SnapshotFullRefresh38.append(
-                                main_template.SnapshotFullRefresh38(messages, BlockLength, cme_packet))
+                        msgs_SnapshotFullRefresh38.append(
+                            main_template.SnapshotFullRefresh38(messages, BlockLength, cme_packet))
 
                         if len(msgs_SnapshotFullRefresh38) >= chunk_size:
 
@@ -1331,9 +1272,8 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
 
                     elif TemplateID == 39:
 
-                        if (msgs_template is None) or (39 in msgs_template):
-                            msgs_QuoteRequest39.append(
-                                main_template.QuoteRequest39(messages, BlockLength, cme_packet))
+                        msgs_QuoteRequest39.append(
+                            main_template.QuoteRequest39(messages, BlockLength, cme_packet))
 
                         if len(msgs_QuoteRequest39) >= chunk_size:
 
@@ -1346,9 +1286,8 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
 
                     elif TemplateID == 41:
 
-                        if (msgs_template is None) or (41 in msgs_template):
-                            msgs_MDInstrumentDefinitionOption41.append(
-                                main_template.MDInstrumentDefinitionOption41(messages, BlockLength, cme_packet))
+                        msgs_MDInstrumentDefinitionOption41.append(
+                            main_template.MDInstrumentDefinitionOption41(messages, BlockLength, cme_packet))
 
                         if len(msgs_MDInstrumentDefinitionOption41) >= chunk_size:
 
@@ -1361,9 +1300,8 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
 
                     elif TemplateID == 42:
 
-                        if (msgs_template is None) or (42 in msgs_template):
-                            msgs_MDIncrementalRefreshTradeSummary42.append(
-                                main_template.MDIncrementalRefreshTradeSummary42(messages, BlockLength, cme_packet))
+                        msgs_MDIncrementalRefreshTradeSummary42.append(
+                            main_template.MDIncrementalRefreshTradeSummary42(messages, BlockLength, cme_packet))
 
                         if len(msgs_MDIncrementalRefreshTradeSummary42) >= chunk_size:
 
@@ -1376,9 +1314,8 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
 
                     elif TemplateID == 43:
 
-                        if (msgs_template is None) or (43 in msgs_template):
-                            msgs_MDIncrementalRefreshOrderBook43.append(
-                                main_template.MDIncrementalRefreshOrderBook43(messages, BlockLength, cme_packet))
+                        msgs_MDIncrementalRefreshOrderBook43.append(
+                            main_template.MDIncrementalRefreshOrderBook43(messages, BlockLength, cme_packet))
 
                         if len(msgs_MDIncrementalRefreshOrderBook43) >= chunk_size:
 
@@ -1391,9 +1328,8 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
 
                     elif TemplateID == 44:
 
-                        if (msgs_template is None) or (44 in msgs_template):
-                            msgs_SnapshotFullRefreshOrderBook44.append(
-                                main_template.SnapshotFullRefreshOrderBook44(messages, BlockLength, cme_packet))
+                        msgs_SnapshotFullRefreshOrderBook44.append(
+                            main_template.SnapshotFullRefreshOrderBook44(messages, BlockLength, cme_packet))
 
                         if len(msgs_SnapshotFullRefreshOrderBook44) >= chunk_size:
 
@@ -1406,9 +1342,8 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
 
                     elif TemplateID == 46:
 
-                        if (msgs_template is None) or (46 in msgs_template):
-                            msgs_MDIncrementalRefreshBook46.append(
-                                main_template.MDIncrementalRefreshBook46(messages, BlockLength, cme_packet))
+                        msgs_MDIncrementalRefreshBook46.append(
+                            main_template.MDIncrementalRefreshBook46(messages, BlockLength, cme_packet))
 
                         if len(msgs_MDIncrementalRefreshBook46) >= chunk_size:
 
@@ -1421,9 +1356,8 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
 
                     elif TemplateID == 47:
 
-                        if (msgs_template is None) or (47 in msgs_template):
-                            msgs_MDIncrementalRefreshOrderBook47.append(
-                                main_template.MDIncrementalRefreshOrderBook47(messages, BlockLength, cme_packet))
+                        msgs_MDIncrementalRefreshOrderBook47.append(
+                            main_template.MDIncrementalRefreshOrderBook47(messages, BlockLength, cme_packet))
 
                         if len(msgs_MDIncrementalRefreshOrderBook47) >= chunk_size:
 
@@ -1436,9 +1370,8 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
 
                     elif TemplateID == 48:
 
-                        if (msgs_template is None) or (48 in msgs_template):
-                            msgs_MDIncrementalRefreshTradeSummary48.append(
-                                main_template.MDIncrementalRefreshTradeSummary48(messages, BlockLength, cme_packet))
+                        msgs_MDIncrementalRefreshTradeSummary48.append(
+                            main_template.MDIncrementalRefreshTradeSummary48(messages, BlockLength, cme_packet))
 
                         if len(msgs_MDIncrementalRefreshTradeSummary48) >= chunk_size:
 
@@ -1451,9 +1384,8 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
 
                     elif TemplateID == 49:
 
-                        if (msgs_template is None) or (49 in msgs_template):
-                            msgs_MDIncrementalRefreshDailyStatistics49.append(
-                                main_template.MDIncrementalRefreshDailyStatistics49(messages, BlockLength, cme_packet))
+                        msgs_MDIncrementalRefreshDailyStatistics49.append(
+                            main_template.MDIncrementalRefreshDailyStatistics49(messages, BlockLength, cme_packet))
 
                         if len(msgs_MDIncrementalRefreshDailyStatistics49) >= chunk_size:
 
@@ -1466,9 +1398,8 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
 
                     elif TemplateID == 50:
 
-                        if (msgs_template is None) or (50 in msgs_template):
-                            msgs_MDIncrementalRefreshLimitsBanding50.append(
-                                main_template.MDIncrementalRefreshLimitsBanding50(messages, BlockLength, cme_packet))
+                        msgs_MDIncrementalRefreshLimitsBanding50.append(
+                            main_template.MDIncrementalRefreshLimitsBanding50(messages, BlockLength, cme_packet))
 
                         if len(msgs_MDIncrementalRefreshLimitsBanding50) >= chunk_size:
 
@@ -1481,9 +1412,8 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
 
                     elif TemplateID == 51:
 
-                        if (msgs_template is None) or (51 in msgs_template):
-                            msgs_MDIncrementalRefreshSessionStatistics51.append(
-                                main_template.MDIncrementalRefreshSessionStatistics51(messages, BlockLength, cme_packet))
+                        msgs_MDIncrementalRefreshSessionStatistics51.append(
+                            main_template.MDIncrementalRefreshSessionStatistics51(messages, BlockLength, cme_packet))
 
                         if len(msgs_MDIncrementalRefreshSessionStatistics51) >= chunk_size:
 
@@ -1496,9 +1426,8 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
 
                     elif TemplateID == 52:
 
-                        if (msgs_template is None) or (52 in msgs_template):
-                            msgs_SnapshotFullRefresh52.append(
-                                main_template.SnapshotFullRefresh52(messages, BlockLength, cme_packet))
+                        msgs_SnapshotFullRefresh52.append(
+                            main_template.SnapshotFullRefresh52(messages, BlockLength, cme_packet))
 
                         if len(msgs_SnapshotFullRefresh52) >= chunk_size:
 
@@ -1511,9 +1440,8 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
 
                     elif TemplateID == 53:
 
-                        if (msgs_template is None) or (53 in msgs_template):
-                            msgs_SnapshotFullRefreshOrderBook53.append(
-                                main_template.SnapshotFullRefreshOrderBook53(messages, BlockLength, cme_packet))
+                        msgs_SnapshotFullRefreshOrderBook53.append(
+                            main_template.SnapshotFullRefreshOrderBook53(messages, BlockLength, cme_packet))
 
                         if len(msgs_SnapshotFullRefreshOrderBook53) >= chunk_size:
 
@@ -1526,9 +1454,8 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
 
                     elif TemplateID == 54:
 
-                        if (msgs_template is None) or (54 in msgs_template):
-                            msgs_MDInstrumentDefinitionFuture54.append(
-                                main_template.MDInstrumentDefinitionFuture54(messages, BlockLength, Version, cme_packet))
+                        msgs_MDInstrumentDefinitionFuture54.append(
+                            main_template.MDInstrumentDefinitionFuture54(messages, BlockLength, Version, cme_packet))
 
                         if len(msgs_MDInstrumentDefinitionFuture54) >= chunk_size:
 
@@ -1541,9 +1468,8 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
 
                     elif TemplateID == 55:
 
-                        if (msgs_template is None) or (55 in msgs_template):
-                            msgs_MDInstrumentDefinitionOption55.append(
-                                main_template.MDInstrumentDefinitionOption55(messages, BlockLength, Version, cme_packet))
+                        msgs_MDInstrumentDefinitionOption55.append(
+                            main_template.MDInstrumentDefinitionOption55(messages, BlockLength, Version, cme_packet))
 
                         if len(msgs_MDInstrumentDefinitionOption55) >= chunk_size:
 
@@ -1556,9 +1482,8 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
 
                     elif TemplateID == 56:
 
-                        if (msgs_template is None) or (56 in msgs_template):
-                            msgs_MDInstrumentDefinitionSpread56.append(
-                                main_template.MDInstrumentDefinitionSpread56(messages, BlockLength, Version, cme_packet))
+                        msgs_MDInstrumentDefinitionSpread56.append(
+                            main_template.MDInstrumentDefinitionSpread56(messages, BlockLength, Version, cme_packet))
 
                         if len(msgs_MDInstrumentDefinitionSpread56) >= chunk_size:
 
@@ -1571,9 +1496,8 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
 
                     elif TemplateID == 57:
 
-                        if (msgs_template is None) or (57 in msgs_template):
-                            msgs_MDInstrumentDefinitionFixedIncome57.append(
-                                main_template.MDInstrumentDefinitionFixedIncome57(messages, BlockLength, cme_packet))
+                        msgs_MDInstrumentDefinitionFixedIncome57.append(
+                            main_template.MDInstrumentDefinitionFixedIncome57(messages, BlockLength, cme_packet))
 
                         if len(msgs_MDInstrumentDefinitionFixedIncome57) >= chunk_size:
 
@@ -1586,9 +1510,8 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
 
                     elif TemplateID == 58:
 
-                        if (msgs_template is None) or (58 in msgs_template):
-                            msgs_MDInstrumentDefinitionRepo58.append(
-                                main_template.MDInstrumentDefinitionRepo58(messages, BlockLength, Version, cme_packet))
+                        msgs_MDInstrumentDefinitionRepo58.append(
+                            main_template.MDInstrumentDefinitionRepo58(messages, BlockLength, Version, cme_packet))
 
                         if len(msgs_MDInstrumentDefinitionRepo58) >= chunk_size:
 
@@ -1601,9 +1524,8 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
 
                     elif TemplateID == 59:
 
-                        if (msgs_template is None) or (59 in msgs_template):
-                            msgs_SnapshotRefreshTopOrders59.append(
-                                main_template.SnapshotRefreshTopOrders59(messages, BlockLength, cme_packet))
+                        msgs_SnapshotRefreshTopOrders59.append(
+                            main_template.SnapshotRefreshTopOrders59(messages, BlockLength, cme_packet))
 
                         if len(msgs_SnapshotRefreshTopOrders59) >= chunk_size:
 
@@ -1616,9 +1538,8 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
 
                     elif TemplateID == 60:
 
-                        if (msgs_template is None) or (60 in msgs_template):
-                            msgs_SecurityStatusWorkup60.append(
-                                main_template.SecurityStatusWorkup60(messages, BlockLength, cme_packet))
+                        msgs_SecurityStatusWorkup60.append(
+                            main_template.SecurityStatusWorkup60(messages, BlockLength, cme_packet))
 
                         if len(msgs_SecurityStatusWorkup60) >= chunk_size:
 
@@ -1631,9 +1552,8 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
 
                     elif TemplateID == 61:
 
-                        if (msgs_template is None) or (61 in msgs_template):
-                            msgs_SnapshotFullRefreshTCP61.append(
-                                main_template.SnapshotFullRefreshTCP61(messages, BlockLength, cme_packet))
+                        msgs_SnapshotFullRefreshTCP61.append(
+                            main_template.SnapshotFullRefreshTCP61(messages, BlockLength, cme_packet))
 
                         if len(msgs_SnapshotFullRefreshTCP61) >= chunk_size:
 
@@ -1646,9 +1566,8 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
 
                     elif TemplateID == 62:
 
-                        if (msgs_template is None) or (62 in msgs_template):
-                            msgs_CollateralMarketValue62.append(
-                                main_template.CollateralMarketValue62(messages, BlockLength, cme_packet))
+                        msgs_CollateralMarketValue62.append(
+                            main_template.CollateralMarketValue62(messages, BlockLength, cme_packet))
 
                         if len(msgs_CollateralMarketValue62) >= chunk_size:
 
@@ -1661,9 +1580,8 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
 
                     elif TemplateID == 63:
 
-                        if (msgs_template is None) or (63 in msgs_template):
-                            msgs_MDInstrumentDefinitionFX63.append(
-                                main_template.MDInstrumentDefinitionFX63(messages, BlockLength, cme_packet))
+                        msgs_MDInstrumentDefinitionFX63.append(
+                            main_template.MDInstrumentDefinitionFX63(messages, BlockLength, cme_packet))
 
                         if len(msgs_MDInstrumentDefinitionFX63) >= chunk_size:
 
@@ -1676,9 +1594,8 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
 
                     elif TemplateID == 64:
 
-                        if (msgs_template is None) or (64 in msgs_template):
-                            msgs_MDIncrementalRefreshBookLongQty64.append(
-                                main_template.MDIncrementalRefreshBookLongQty64(messages, BlockLength, cme_packet))
+                        msgs_MDIncrementalRefreshBookLongQty64.append(
+                            main_template.MDIncrementalRefreshBookLongQty64(messages, BlockLength, cme_packet))
 
                         if len(msgs_MDIncrementalRefreshBookLongQty64) >= chunk_size:
 
@@ -1691,9 +1608,8 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
 
                     elif TemplateID == 65:
 
-                        if (msgs_template is None) or (65 in msgs_template):
-                            msgs_MDIncrementalRefreshTradeSummaryLongQty65.append(
-                                main_template.MDIncrementalRefreshTradeSummaryLongQty65(messages, BlockLength, cme_packet))
+                        msgs_MDIncrementalRefreshTradeSummaryLongQty65.append(
+                            main_template.MDIncrementalRefreshTradeSummaryLongQty65(messages, BlockLength, cme_packet))
 
                         if len(msgs_MDIncrementalRefreshTradeSummaryLongQty65) >= chunk_size:
 
@@ -1706,9 +1622,8 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
 
                     elif TemplateID == 66:
 
-                        if (msgs_template is None) or (66 in msgs_template):
-                            msgs_MDIncrementalRefreshVolumeLongQty66.append(
-                                main_template.MDIncrementalRefreshVolumeLongQty66(messages, BlockLength, cme_packet))
+                        msgs_MDIncrementalRefreshVolumeLongQty66.append(
+                            main_template.MDIncrementalRefreshVolumeLongQty66(messages, BlockLength, cme_packet))
 
                         if len(msgs_MDIncrementalRefreshVolumeLongQty66) >= chunk_size:
 
@@ -1721,9 +1636,8 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
 
                     elif TemplateID == 67:
 
-                        if (msgs_template is None) or (67 in msgs_template):
-                            msgs_MDIncrementalRefreshSessionStatisticsLongQty67.append(
-                                main_template.MDIncrementalRefreshSessionStatisticsLongQty67(messages, BlockLength, cme_packet))
+                        msgs_MDIncrementalRefreshSessionStatisticsLongQty67.append(
+                            main_template.MDIncrementalRefreshSessionStatisticsLongQty67(messages, BlockLength, cme_packet))
 
                         if len(msgs_MDIncrementalRefreshSessionStatisticsLongQty67) >= chunk_size:
 
@@ -1736,9 +1650,8 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
 
                     elif TemplateID == 68:
 
-                        if (msgs_template is None) or (68 in msgs_template):
-                            msgs_SnapshotFullRefreshTCPLongQty68.append(
-                                main_template.SnapshotFullRefreshTCPLongQty68(messages, BlockLength, cme_packet))
+                        msgs_SnapshotFullRefreshTCPLongQty68.append(
+                            main_template.SnapshotFullRefreshTCPLongQty68(messages, BlockLength, cme_packet))
 
                         if len(msgs_SnapshotFullRefreshTCPLongQty68) >= chunk_size:
 
@@ -1751,9 +1664,8 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
 
                     elif TemplateID == 69:
 
-                        if (msgs_template is None) or (69 in msgs_template):
-                            msgs_SnapshotFullRefreshLongQty69.append(
-                                main_template.SnapshotFullRefreshLongQty69(messages, BlockLength, cme_packet))
+                        msgs_SnapshotFullRefreshLongQty69.append(
+                            main_template.SnapshotFullRefreshLongQty69(messages, BlockLength, cme_packet))
 
                         if len(msgs_SnapshotFullRefreshLongQty69) >= chunk_size:
 
@@ -1777,8 +1689,9 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
 
         raise Exception('Path for saved files must be provided')
 
-    for var_name, var_value in globals().items():
-        if var_name.startswith("msgs_"):
+    for var_name in list(globals().keys()):
+        if var_name.startswith("msgs_") and var_name != "msgs_template":
+            var_value = globals()[var_name]
             df = pd.DataFrame(chain.from_iterable(var_value))
             df.to_pickle(f"{save_file_path}/{var_name}.pkl")
             del globals()[var_name]
