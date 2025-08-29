@@ -85,6 +85,9 @@ def cme_parser_datamine(path, max_read_packets=None, cme_header=True,
         The chunk size that needs to be saved.
 
     """
+    if isnull(save_file_path):
+
+        raise Exception('Path for saved files must be provided')
 
     # you could only return the messages you want
     # users need to give the template IDs of that messages
@@ -856,19 +859,212 @@ def cme_parser_datamine(path, max_read_packets=None, cme_header=True,
 
                 f.seek(end_pos)
 
-    # delte msgs that are not in the template
+    if (len(msgs_ChannelReset4) != 0):
+        msgs_ChannelReset4.to_pickle(
+            f"{save_file_path}/msgs_ChannelReset4.pkl")
+        del msgs_ChannelReset4
 
-    if isnull(save_file_path):
+    if (len(msgs_AdminLogout16) != 0):
+        msgs_AdminLogout16.to_pickle(
+            f"{save_file_path}/msgs_AdminLogout16.pkl")
+        del msgs_AdminLogout16
 
-        raise Exception('Path for saved files must be provided')
+    if (len(msgs_MDInstrumentDefinitionFuture27) != 0):
+        msgs_MDInstrumentDefinitionFuture27.to_pickle(
+            f"{save_file_path}/msgs_MDInstrumentDefinitionFuture27.pkl")
+        del msgs_MDInstrumentDefinitionFuture27
 
-    for var_name in list(globals().keys()):
-        if var_name.startswith("msgs_") and var_name != "msgs_template":
-            var_value = globals()[var_name]
-            df = pd.DataFrame(chain.from_iterable(var_value))
-            df.to_pickle(f"{save_file_path}/{var_name}.pkl")
-            del globals()[var_name]
-            print(' --> Dataframe: Success!')
+    if (len(msgs_MDInstrumentDefinitionSpread29) != 0):
+        msgs_MDInstrumentDefinitionSpread29.to_pickle(
+            f"{save_file_path}/msgs_MDInstrumentDefinitionSpread29.pkl")
+        del msgs_MDInstrumentDefinitionSpread29
+
+    if (len(msgs_SecurityStatus30) != 0):
+        msgs_SecurityStatus30.to_pickle(
+            f"{save_file_path}/msgs_SecurityStatus30.pkl")
+        del msgs_SecurityStatus30
+
+    if (len(msgs_MDIncrementalRefreshBook32) != 0):
+        msgs_MDIncrementalRefreshBook32.to_pickle(
+            f"{save_file_path}/msgs_MDIncrementalRefreshBook32.pkl")
+        del msgs_MDIncrementalRefreshBook32
+
+    if (len(msgs_MDIncrementalRefreshDailyStatistics33) != 0):
+        msgs_MDIncrementalRefreshDailyStatistics33.to_pickle(
+            f"{save_file_path}/msgs_MDIncrementalRefreshDailyStatistics33.pkl")
+        del msgs_MDIncrementalRefreshDailyStatistics33
+
+    if (len(msgs_MDIncrementalRefreshLimitsBanding34) != 0):
+        msgs_MDIncrementalRefreshLimitsBanding34.to_pickle(
+            f"{save_file_path}/msgs_MDIncrementalRefreshLimitsBanding34.pkl")
+        del msgs_MDIncrementalRefreshLimitsBanding34
+
+    if (len(msgs_MDIncrementalRefreshSessionStatistics35) != 0):
+        msgs_MDIncrementalRefreshSessionStatistics35.to_pickle(
+            f"{save_file_path}/msgs_MDIncrementalRefreshSessionStatistics35.pkl")
+        del msgs_MDIncrementalRefreshSessionStatistics35
+
+    if (len(msgs_MDIncrementalRefreshTrade36) != 0):
+        msgs_MDIncrementalRefreshTrade36.to_pickle(
+            f"{save_file_path}/msgs_MDIncrementalRefreshTrade36.pkl")
+        del msgs_MDIncrementalRefreshTrade36
+
+    if (len(msgs_MDIncrementalRefreshVolume37) != 0):
+        msgs_MDIncrementalRefreshVolume37.to_pickle(
+            f"{save_file_path}/msgs_MDIncrementalRefreshVolume37.pkl")
+        del msgs_MDIncrementalRefreshVolume37
+
+    if (len(msgs_SnapshotFullRefresh38) != 0):
+        msgs_SnapshotFullRefresh38.to_pickle(
+            f"{save_file_path}/msgs_SnapshotFullRefresh38.pkl")
+        del msgs_SnapshotFullRefresh38
+
+    if (len(msgs_QuoteRequest39) != 0):
+        msgs_QuoteRequest39.to_pickle(
+            f"{save_file_path}/msgs_QuoteRequest39.pkl")
+        del msgs_QuoteRequest39
+
+    if (len(msgs_MDInstrumentDefinitionOption41) != 0):
+        msgs_MDInstrumentDefinitionOption41.to_pickle(
+            f"{save_file_path}/msgs_MDInstrumentDefinitionOption41.pkl")
+        del msgs_MDInstrumentDefinitionOption41
+
+    if (len(msgs_MDIncrementalRefreshTradeSummary42) != 0):
+        msgs_MDIncrementalRefreshTradeSummary42.to_pickle(
+            f"{save_file_path}/msgs_MDIncrementalRefreshTradeSummary42.pkl")
+        del msgs_MDIncrementalRefreshTradeSummary42
+
+    if (len(msgs_MDIncrementalRefreshOrderBook43) != 0):
+        msgs_MDIncrementalRefreshOrderBook43.to_pickle(
+            f"{save_file_path}/msgs_MDIncrementalRefreshOrderBook43.pkl")
+        del msgs_MDIncrementalRefreshOrderBook43
+
+    if (len(msgs_SnapshotFullRefreshOrderBook44) != 0):
+        msgs_SnapshotFullRefreshOrderBook44.to_pickle(
+            f"{save_file_path}/msgs_SnapshotFullRefreshOrderBook44.pkl")
+        del msgs_SnapshotFullRefreshOrderBook44
+
+    if (len(msgs_MDIncrementalRefreshBook46) != 0):
+        msgs_MDIncrementalRefreshBook46.to_pickle(
+            f"{save_file_path}/msgs_MDIncrementalRefreshBook46.pkl")
+        del msgs_MDIncrementalRefreshBook46
+
+    if (len(msgs_MDIncrementalRefreshOrderBook47) != 0):
+        msgs_MDIncrementalRefreshOrderBook47.to_pickle(
+            f"{save_file_path}/msgs_MDIncrementalRefreshOrderBook47.pkl")
+        del msgs_MDIncrementalRefreshOrderBook47
+
+    if (len(msgs_MDIncrementalRefreshTradeSummary48) != 0):
+        msgs_MDIncrementalRefreshTradeSummary48.to_pickle(
+            f"{save_file_path}/msgs_MDIncrementalRefreshTradeSummary48.pkl")
+        del msgs_MDIncrementalRefreshTradeSummary48
+
+    if (len(msgs_MDIncrementalRefreshDailyStatistics49) != 0):
+        msgs_MDIncrementalRefreshDailyStatistics49.to_pickle(
+            f"{save_file_path}/msgs_MDIncrementalRefreshDailyStatistics49.pkl")
+        del msgs_MDIncrementalRefreshDailyStatistics49
+
+    if (len(msgs_MDIncrementalRefreshLimitsBanding50) != 0):
+        msgs_MDIncrementalRefreshLimitsBanding50.to_pickle(
+            f"{save_file_path}/msgs_MDIncrementalRefreshLimitsBanding50.pkl")
+        del msgs_MDIncrementalRefreshLimitsBanding50
+
+    if (len(msgs_MDIncrementalRefreshSessionStatistics51) != 0):
+        msgs_MDIncrementalRefreshSessionStatistics51.to_pickle(
+            f"{save_file_path}/msgs_MDIncrementalRefreshSessionStatistics51.pkl")
+        del msgs_MDIncrementalRefreshSessionStatistics51
+
+    if (len(msgs_SnapshotFullRefresh52) != 0):
+        msgs_SnapshotFullRefresh52.to_pickle(
+            f"{save_file_path}/msgs_SnapshotFullRefresh52.pkl")
+        del msgs_SnapshotFullRefresh52
+
+    if (len(msgs_SnapshotFullRefreshOrderBook53) != 0):
+        msgs_SnapshotFullRefreshOrderBook53.to_pickle(
+            f"{save_file_path}/msgs_SnapshotFullRefreshOrderBook53.pkl")
+        del msgs_SnapshotFullRefreshOrderBook53
+
+    if (len(msgs_MDInstrumentDefinitionFuture54) != 0):
+        msgs_MDInstrumentDefinitionFuture54.to_pickle(
+            f"{save_file_path}/msgs_MDInstrumentDefinitionFuture54.pkl")
+        del msgs_MDInstrumentDefinitionFuture54
+
+    if (len(msgs_MDInstrumentDefinitionOption55) != 0):
+        msgs_MDInstrumentDefinitionOption55.to_pickle(
+            f"{save_file_path}/msgs_MDInstrumentDefinitionOption55.pkl")
+        del msgs_MDInstrumentDefinitionOption55
+
+    if (len(msgs_MDInstrumentDefinitionSpread56) != 0):
+        msgs_MDInstrumentDefinitionSpread56.to_pickle(
+            f"{save_file_path}/msgs_MDInstrumentDefinitionSpread56.pkl")
+        del msgs_MDInstrumentDefinitionSpread56
+
+    if (len(msgs_MDInstrumentDefinitionFixedIncome57) != 0):
+        msgs_MDInstrumentDefinitionFixedIncome57.to_pickle(
+            f"{save_file_path}/msgs_MDInstrumentDefinitionFixedIncome57.pkl")
+        del msgs_MDInstrumentDefinitionFixedIncome57
+
+    if (len(msgs_MDInstrumentDefinitionRepo58) != 0):
+        msgs_MDInstrumentDefinitionRepo58.to_pickle(
+            f"{save_file_path}/msgs_MDInstrumentDefinitionRepo58.pkl")
+        del msgs_MDInstrumentDefinitionRepo58
+
+    if (len(msgs_SnapshotRefreshTopOrders59) != 0):
+        msgs_SnapshotRefreshTopOrders59.to_pickle(
+            f"{save_file_path}/msgs_SnapshotRefreshTopOrders59.pkl")
+        del msgs_SnapshotRefreshTopOrders59
+
+    if (len(msgs_SecurityStatusWorkup60) != 0):
+        msgs_SecurityStatusWorkup60.to_pickle(
+            f"{save_file_path}/msgs_SecurityStatusWorkup60.pkl")
+        del msgs_SecurityStatusWorkup60
+
+    if (len(msgs_SnapshotFullRefreshTCP61) != 0):
+        msgs_SnapshotFullRefreshTCP61.to_pickle(
+            f"{save_file_path}/msgs_SnapshotFullRefreshTCP61.pkl")
+        del msgs_SnapshotFullRefreshTCP61
+
+    if (len(msgs_CollateralMarketValue62) != 0):
+        msgs_CollateralMarketValue62.to_pickle(
+            f"{save_file_path}/msgs_CollateralMarketValue62.pkl")
+        del msgs_CollateralMarketValue62
+
+    if (len(msgs_MDInstrumentDefinitionFX63) != 0):
+        msgs_MDInstrumentDefinitionFX63.to_pickle(
+            f"{save_file_path}/msgs_MDInstrumentDefinitionFX63.pkl")
+        del msgs_MDInstrumentDefinitionFX63
+
+    if (len(msgs_MDIncrementalRefreshBookLongQty64) != 0):
+        msgs_MDIncrementalRefreshBookLongQty64.to_pickle(
+            f"{save_file_path}/msgs_MDIncrementalRefreshBookLongQty64.pkl")
+        del msgs_MDIncrementalRefreshBookLongQty64
+
+    if (len(msgs_MDIncrementalRefreshTradeSummaryLongQty65) != 0):
+        msgs_MDIncrementalRefreshTradeSummaryLongQty65.to_pickle(
+            f"{save_file_path}/msgs_MDIncrementalRefreshTradeSummaryLongQty65.pkl")
+        del msgs_MDIncrementalRefreshTradeSummaryLongQty65
+
+    if (len(msgs_MDIncrementalRefreshVolumeLongQty66) != 0):
+        msgs_MDIncrementalRefreshVolumeLongQty66.to_pickle(
+            f"{save_file_path}/msgs_MDIncrementalRefreshVolumeLongQty66.pkl")
+        del msgs_MDIncrementalRefreshVolumeLongQty66
+
+    if (len(msgs_MDIncrementalRefreshSessionStatisticsLongQty67) != 0):
+        msgs_MDIncrementalRefreshSessionStatisticsLongQty67.to_pickle(
+            f"{save_file_path}/msgs_MDIncrementalRefreshSessionStatisticsLongQty67.pkl")
+        del msgs_MDIncrementalRefreshSessionStatisticsLongQty67
+
+    if (len(msgs_SnapshotFullRefreshTCPLongQty68) != 0):
+        msgs_SnapshotFullRefreshTCPLongQty68.to_pickle(
+            f"{save_file_path}/msgs_SnapshotFullRefreshTCPLongQty68.pkl")
+        del msgs_SnapshotFullRefreshTCPLongQty68
+
+    if (len(msgs_SnapshotFullRefreshLongQty69) != 0):
+        msgs_SnapshotFullRefreshLongQty69.to_pickle(
+            f"{save_file_path}/msgs_SnapshotFullRefreshLongQty69.pkl")
+        del msgs_SnapshotFullRefreshLongQty69
+
+    return f"PCAP file {path} cleaning finished"
 
 
 def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=True,
@@ -907,6 +1103,9 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
         The chunk size that needs to be saved.
 
     """
+    if isnull(save_file_path):
+
+        raise Exception('Path for saved files must be provided')
 
     def packet_head(msgs_blocks):
 
@@ -1685,17 +1884,212 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
 
                 f.seek(end_pos)
 
-    if isnull(save_file_path):
+    if (len(msgs_ChannelReset4) != 0):
+        msgs_ChannelReset4.to_pickle(
+            f"{save_file_path}/msgs_ChannelReset4.pkl")
+        del msgs_ChannelReset4
 
-        raise Exception('Path for saved files must be provided')
+    if (len(msgs_AdminLogout16) != 0):
+        msgs_AdminLogout16.to_pickle(
+            f"{save_file_path}/msgs_AdminLogout16.pkl")
+        del msgs_AdminLogout16
 
-    for var_name in list(globals().keys()):
-        if var_name.startswith("msgs_") and var_name != "msgs_template":
-            var_value = globals()[var_name]
-            df = pd.DataFrame(chain.from_iterable(var_value))
-            df.to_pickle(f"{save_file_path}/{var_name}.pkl")
-            del globals()[var_name]
-            print(' --> Dataframe: Success!')
+    if (len(msgs_MDInstrumentDefinitionFuture27) != 0):
+        msgs_MDInstrumentDefinitionFuture27.to_pickle(
+            f"{save_file_path}/msgs_MDInstrumentDefinitionFuture27.pkl")
+        del msgs_MDInstrumentDefinitionFuture27
+
+    if (len(msgs_MDInstrumentDefinitionSpread29) != 0):
+        msgs_MDInstrumentDefinitionSpread29.to_pickle(
+            f"{save_file_path}/msgs_MDInstrumentDefinitionSpread29.pkl")
+        del msgs_MDInstrumentDefinitionSpread29
+
+    if (len(msgs_SecurityStatus30) != 0):
+        msgs_SecurityStatus30.to_pickle(
+            f"{save_file_path}/msgs_SecurityStatus30.pkl")
+        del msgs_SecurityStatus30
+
+    if (len(msgs_MDIncrementalRefreshBook32) != 0):
+        msgs_MDIncrementalRefreshBook32.to_pickle(
+            f"{save_file_path}/msgs_MDIncrementalRefreshBook32.pkl")
+        del msgs_MDIncrementalRefreshBook32
+
+    if (len(msgs_MDIncrementalRefreshDailyStatistics33) != 0):
+        msgs_MDIncrementalRefreshDailyStatistics33.to_pickle(
+            f"{save_file_path}/msgs_MDIncrementalRefreshDailyStatistics33.pkl")
+        del msgs_MDIncrementalRefreshDailyStatistics33
+
+    if (len(msgs_MDIncrementalRefreshLimitsBanding34) != 0):
+        msgs_MDIncrementalRefreshLimitsBanding34.to_pickle(
+            f"{save_file_path}/msgs_MDIncrementalRefreshLimitsBanding34.pkl")
+        del msgs_MDIncrementalRefreshLimitsBanding34
+
+    if (len(msgs_MDIncrementalRefreshSessionStatistics35) != 0):
+        msgs_MDIncrementalRefreshSessionStatistics35.to_pickle(
+            f"{save_file_path}/msgs_MDIncrementalRefreshSessionStatistics35.pkl")
+        del msgs_MDIncrementalRefreshSessionStatistics35
+
+    if (len(msgs_MDIncrementalRefreshTrade36) != 0):
+        msgs_MDIncrementalRefreshTrade36.to_pickle(
+            f"{save_file_path}/msgs_MDIncrementalRefreshTrade36.pkl")
+        del msgs_MDIncrementalRefreshTrade36
+
+    if (len(msgs_MDIncrementalRefreshVolume37) != 0):
+        msgs_MDIncrementalRefreshVolume37.to_pickle(
+            f"{save_file_path}/msgs_MDIncrementalRefreshVolume37.pkl")
+        del msgs_MDIncrementalRefreshVolume37
+
+    if (len(msgs_SnapshotFullRefresh38) != 0):
+        msgs_SnapshotFullRefresh38.to_pickle(
+            f"{save_file_path}/msgs_SnapshotFullRefresh38.pkl")
+        del msgs_SnapshotFullRefresh38
+
+    if (len(msgs_QuoteRequest39) != 0):
+        msgs_QuoteRequest39.to_pickle(
+            f"{save_file_path}/msgs_QuoteRequest39.pkl")
+        del msgs_QuoteRequest39
+
+    if (len(msgs_MDInstrumentDefinitionOption41) != 0):
+        msgs_MDInstrumentDefinitionOption41.to_pickle(
+            f"{save_file_path}/msgs_MDInstrumentDefinitionOption41.pkl")
+        del msgs_MDInstrumentDefinitionOption41
+
+    if (len(msgs_MDIncrementalRefreshTradeSummary42) != 0):
+        msgs_MDIncrementalRefreshTradeSummary42.to_pickle(
+            f"{save_file_path}/msgs_MDIncrementalRefreshTradeSummary42.pkl")
+        del msgs_MDIncrementalRefreshTradeSummary42
+
+    if (len(msgs_MDIncrementalRefreshOrderBook43) != 0):
+        msgs_MDIncrementalRefreshOrderBook43.to_pickle(
+            f"{save_file_path}/msgs_MDIncrementalRefreshOrderBook43.pkl")
+        del msgs_MDIncrementalRefreshOrderBook43
+
+    if (len(msgs_SnapshotFullRefreshOrderBook44) != 0):
+        msgs_SnapshotFullRefreshOrderBook44.to_pickle(
+            f"{save_file_path}/msgs_SnapshotFullRefreshOrderBook44.pkl")
+        del msgs_SnapshotFullRefreshOrderBook44
+
+    if (len(msgs_MDIncrementalRefreshBook46) != 0):
+        msgs_MDIncrementalRefreshBook46.to_pickle(
+            f"{save_file_path}/msgs_MDIncrementalRefreshBook46.pkl")
+        del msgs_MDIncrementalRefreshBook46
+
+    if (len(msgs_MDIncrementalRefreshOrderBook47) != 0):
+        msgs_MDIncrementalRefreshOrderBook47.to_pickle(
+            f"{save_file_path}/msgs_MDIncrementalRefreshOrderBook47.pkl")
+        del msgs_MDIncrementalRefreshOrderBook47
+
+    if (len(msgs_MDIncrementalRefreshTradeSummary48) != 0):
+        msgs_MDIncrementalRefreshTradeSummary48.to_pickle(
+            f"{save_file_path}/msgs_MDIncrementalRefreshTradeSummary48.pkl")
+        del msgs_MDIncrementalRefreshTradeSummary48
+
+    if (len(msgs_MDIncrementalRefreshDailyStatistics49) != 0):
+        msgs_MDIncrementalRefreshDailyStatistics49.to_pickle(
+            f"{save_file_path}/msgs_MDIncrementalRefreshDailyStatistics49.pkl")
+        del msgs_MDIncrementalRefreshDailyStatistics49
+
+    if (len(msgs_MDIncrementalRefreshLimitsBanding50) != 0):
+        msgs_MDIncrementalRefreshLimitsBanding50.to_pickle(
+            f"{save_file_path}/msgs_MDIncrementalRefreshLimitsBanding50.pkl")
+        del msgs_MDIncrementalRefreshLimitsBanding50
+
+    if (len(msgs_MDIncrementalRefreshSessionStatistics51) != 0):
+        msgs_MDIncrementalRefreshSessionStatistics51.to_pickle(
+            f"{save_file_path}/msgs_MDIncrementalRefreshSessionStatistics51.pkl")
+        del msgs_MDIncrementalRefreshSessionStatistics51
+
+    if (len(msgs_SnapshotFullRefresh52) != 0):
+        msgs_SnapshotFullRefresh52.to_pickle(
+            f"{save_file_path}/msgs_SnapshotFullRefresh52.pkl")
+        del msgs_SnapshotFullRefresh52
+
+    if (len(msgs_SnapshotFullRefreshOrderBook53) != 0):
+        msgs_SnapshotFullRefreshOrderBook53.to_pickle(
+            f"{save_file_path}/msgs_SnapshotFullRefreshOrderBook53.pkl")
+        del msgs_SnapshotFullRefreshOrderBook53
+
+    if (len(msgs_MDInstrumentDefinitionFuture54) != 0):
+        msgs_MDInstrumentDefinitionFuture54.to_pickle(
+            f"{save_file_path}/msgs_MDInstrumentDefinitionFuture54.pkl")
+        del msgs_MDInstrumentDefinitionFuture54
+
+    if (len(msgs_MDInstrumentDefinitionOption55) != 0):
+        msgs_MDInstrumentDefinitionOption55.to_pickle(
+            f"{save_file_path}/msgs_MDInstrumentDefinitionOption55.pkl")
+        del msgs_MDInstrumentDefinitionOption55
+
+    if (len(msgs_MDInstrumentDefinitionSpread56) != 0):
+        msgs_MDInstrumentDefinitionSpread56.to_pickle(
+            f"{save_file_path}/msgs_MDInstrumentDefinitionSpread56.pkl")
+        del msgs_MDInstrumentDefinitionSpread56
+
+    if (len(msgs_MDInstrumentDefinitionFixedIncome57) != 0):
+        msgs_MDInstrumentDefinitionFixedIncome57.to_pickle(
+            f"{save_file_path}/msgs_MDInstrumentDefinitionFixedIncome57.pkl")
+        del msgs_MDInstrumentDefinitionFixedIncome57
+
+    if (len(msgs_MDInstrumentDefinitionRepo58) != 0):
+        msgs_MDInstrumentDefinitionRepo58.to_pickle(
+            f"{save_file_path}/msgs_MDInstrumentDefinitionRepo58.pkl")
+        del msgs_MDInstrumentDefinitionRepo58
+
+    if (len(msgs_SnapshotRefreshTopOrders59) != 0):
+        msgs_SnapshotRefreshTopOrders59.to_pickle(
+            f"{save_file_path}/msgs_SnapshotRefreshTopOrders59.pkl")
+        del msgs_SnapshotRefreshTopOrders59
+
+    if (len(msgs_SecurityStatusWorkup60) != 0):
+        msgs_SecurityStatusWorkup60.to_pickle(
+            f"{save_file_path}/msgs_SecurityStatusWorkup60.pkl")
+        del msgs_SecurityStatusWorkup60
+
+    if (len(msgs_SnapshotFullRefreshTCP61) != 0):
+        msgs_SnapshotFullRefreshTCP61.to_pickle(
+            f"{save_file_path}/msgs_SnapshotFullRefreshTCP61.pkl")
+        del msgs_SnapshotFullRefreshTCP61
+
+    if (len(msgs_CollateralMarketValue62) != 0):
+        msgs_CollateralMarketValue62.to_pickle(
+            f"{save_file_path}/msgs_CollateralMarketValue62.pkl")
+        del msgs_CollateralMarketValue62
+
+    if (len(msgs_MDInstrumentDefinitionFX63) != 0):
+        msgs_MDInstrumentDefinitionFX63.to_pickle(
+            f"{save_file_path}/msgs_MDInstrumentDefinitionFX63.pkl")
+        del msgs_MDInstrumentDefinitionFX63
+
+    if (len(msgs_MDIncrementalRefreshBookLongQty64) != 0):
+        msgs_MDIncrementalRefreshBookLongQty64.to_pickle(
+            f"{save_file_path}/msgs_MDIncrementalRefreshBookLongQty64.pkl")
+        del msgs_MDIncrementalRefreshBookLongQty64
+
+    if (len(msgs_MDIncrementalRefreshTradeSummaryLongQty65) != 0):
+        msgs_MDIncrementalRefreshTradeSummaryLongQty65.to_pickle(
+            f"{save_file_path}/msgs_MDIncrementalRefreshTradeSummaryLongQty65.pkl")
+        del msgs_MDIncrementalRefreshTradeSummaryLongQty65
+
+    if (len(msgs_MDIncrementalRefreshVolumeLongQty66) != 0):
+        msgs_MDIncrementalRefreshVolumeLongQty66.to_pickle(
+            f"{save_file_path}/msgs_MDIncrementalRefreshVolumeLongQty66.pkl")
+        del msgs_MDIncrementalRefreshVolumeLongQty66
+
+    if (len(msgs_MDIncrementalRefreshSessionStatisticsLongQty67) != 0):
+        msgs_MDIncrementalRefreshSessionStatisticsLongQty67.to_pickle(
+            f"{save_file_path}/msgs_MDIncrementalRefreshSessionStatisticsLongQty67.pkl")
+        del msgs_MDIncrementalRefreshSessionStatisticsLongQty67
+
+    if (len(msgs_SnapshotFullRefreshTCPLongQty68) != 0):
+        msgs_SnapshotFullRefreshTCPLongQty68.to_pickle(
+            f"{save_file_path}/msgs_SnapshotFullRefreshTCPLongQty68.pkl")
+        del msgs_SnapshotFullRefreshTCPLongQty68
+
+    if (len(msgs_SnapshotFullRefreshLongQty69) != 0):
+        msgs_SnapshotFullRefreshLongQty69.to_pickle(
+            f"{save_file_path}/msgs_SnapshotFullRefreshLongQty69.pkl")
+        del msgs_SnapshotFullRefreshLongQty69
+
+    return f"PCAP file {path} cleaning finished"
 
 
 def timestamp_conversion(msgs_data, USCentralTime=True, timezone=None):
