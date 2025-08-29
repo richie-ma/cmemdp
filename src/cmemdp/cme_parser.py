@@ -860,206 +860,288 @@ def cme_parser_datamine(path, max_read_packets=None, cme_header=True,
                 f.seek(end_pos)
 
     if (len(msgs_ChannelReset4) != 0):
+        msgs_ChannelReset4 = pd.DataFrame(
+            chain.from_iterable(msgs_ChannelReset4))
         msgs_ChannelReset4.to_pickle(
             f"{save_file_path}/msgs_ChannelReset4.pkl")
         del msgs_ChannelReset4
 
     if (len(msgs_AdminLogout16) != 0):
+        msgs_AdminLogout16 = pd.DataFrame(
+            chain.from_iterable(msgs_AdminLogout16))
         msgs_AdminLogout16.to_pickle(
             f"{save_file_path}/msgs_AdminLogout16.pkl")
         del msgs_AdminLogout16
 
     if (len(msgs_MDInstrumentDefinitionFuture27) != 0):
+        msgs_MDInstrumentDefinitionFuture27 = pd.DataFrame(
+            chain.from_iterable(msgs_MDInstrumentDefinitionFuture27))
         msgs_MDInstrumentDefinitionFuture27.to_pickle(
             f"{save_file_path}/msgs_MDInstrumentDefinitionFuture27.pkl")
         del msgs_MDInstrumentDefinitionFuture27
 
     if (len(msgs_MDInstrumentDefinitionSpread29) != 0):
+        msgs_MDInstrumentDefinitionSpread29 = pd.DataFrame(
+            chain.from_iterable(msgs_MDInstrumentDefinitionSpread29))
         msgs_MDInstrumentDefinitionSpread29.to_pickle(
             f"{save_file_path}/msgs_MDInstrumentDefinitionSpread29.pkl")
         del msgs_MDInstrumentDefinitionSpread29
 
     if (len(msgs_SecurityStatus30) != 0):
+        msgs_SecurityStatus30 = pd.DataFrame(
+            chain.from_iterable(msgs_SecurityStatus30))
         msgs_SecurityStatus30.to_pickle(
             f"{save_file_path}/msgs_SecurityStatus30.pkl")
         del msgs_SecurityStatus30
 
     if (len(msgs_MDIncrementalRefreshBook32) != 0):
+        msgs_MDIncrementalRefreshBook32 = pd.DataFrame(
+            chain.from_iterable(msgs_MDIncrementalRefreshBook32))
         msgs_MDIncrementalRefreshBook32.to_pickle(
             f"{save_file_path}/msgs_MDIncrementalRefreshBook32.pkl")
         del msgs_MDIncrementalRefreshBook32
 
     if (len(msgs_MDIncrementalRefreshDailyStatistics33) != 0):
+        msgs_MDIncrementalRefreshDailyStatistics33 = pd.DataFrame(
+            chain.from_iterable(msgs_MDIncrementalRefreshDailyStatistics33))
         msgs_MDIncrementalRefreshDailyStatistics33.to_pickle(
             f"{save_file_path}/msgs_MDIncrementalRefreshDailyStatistics33.pkl")
         del msgs_MDIncrementalRefreshDailyStatistics33
 
     if (len(msgs_MDIncrementalRefreshLimitsBanding34) != 0):
+        msgs_MDIncrementalRefreshLimitsBanding34 = pd.DataFrame(
+            chain.from_iterable(msgs_MDIncrementalRefreshLimitsBanding34))
         msgs_MDIncrementalRefreshLimitsBanding34.to_pickle(
             f"{save_file_path}/msgs_MDIncrementalRefreshLimitsBanding34.pkl")
         del msgs_MDIncrementalRefreshLimitsBanding34
 
     if (len(msgs_MDIncrementalRefreshSessionStatistics35) != 0):
+        msgs_MDIncrementalRefreshSessionStatistics35 = pd.DataFrame(
+            chain.from_iterable(msgs_MDIncrementalRefreshSessionStatistics35))
         msgs_MDIncrementalRefreshSessionStatistics35.to_pickle(
             f"{save_file_path}/msgs_MDIncrementalRefreshSessionStatistics35.pkl")
         del msgs_MDIncrementalRefreshSessionStatistics35
 
     if (len(msgs_MDIncrementalRefreshTrade36) != 0):
+        msgs_MDIncrementalRefreshTrade36 = pd.DataFrame(
+            chain.from_iterable(msgs_MDIncrementalRefreshTrade36))
         msgs_MDIncrementalRefreshTrade36.to_pickle(
             f"{save_file_path}/msgs_MDIncrementalRefreshTrade36.pkl")
         del msgs_MDIncrementalRefreshTrade36
 
     if (len(msgs_MDIncrementalRefreshVolume37) != 0):
+        msgs_MDIncrementalRefreshVolume37 = pd.DataFrame(
+            chain.from_iterable(msgs_MDIncrementalRefreshVolume37))
         msgs_MDIncrementalRefreshVolume37.to_pickle(
             f"{save_file_path}/msgs_MDIncrementalRefreshVolume37.pkl")
         del msgs_MDIncrementalRefreshVolume37
 
     if (len(msgs_SnapshotFullRefresh38) != 0):
+        msgs_SnapshotFullRefresh38 = pd.DataFrame(
+            chain.from_iterable(msgs_SnapshotFullRefresh38))
         msgs_SnapshotFullRefresh38.to_pickle(
             f"{save_file_path}/msgs_SnapshotFullRefresh38.pkl")
         del msgs_SnapshotFullRefresh38
 
     if (len(msgs_QuoteRequest39) != 0):
+        msgs_QuoteRequest39 = pd.DataFrame(
+            chain.from_iterable(msgs_QuoteRequest39))
         msgs_QuoteRequest39.to_pickle(
             f"{save_file_path}/msgs_QuoteRequest39.pkl")
         del msgs_QuoteRequest39
 
     if (len(msgs_MDInstrumentDefinitionOption41) != 0):
+        msgs_MDInstrumentDefinitionOption41 = pd.DataFrame(
+            chain.from_iterable(msgs_MDInstrumentDefinitionOption41))
         msgs_MDInstrumentDefinitionOption41.to_pickle(
             f"{save_file_path}/msgs_MDInstrumentDefinitionOption41.pkl")
         del msgs_MDInstrumentDefinitionOption41
 
     if (len(msgs_MDIncrementalRefreshTradeSummary42) != 0):
+        msgs_MDIncrementalRefreshTradeSummary42 = pd.DataFrame(
+            chain.from_iterable(msgs_MDIncrementalRefreshTradeSummary42))
         msgs_MDIncrementalRefreshTradeSummary42.to_pickle(
             f"{save_file_path}/msgs_MDIncrementalRefreshTradeSummary42.pkl")
         del msgs_MDIncrementalRefreshTradeSummary42
 
     if (len(msgs_MDIncrementalRefreshOrderBook43) != 0):
+        msgs_MDIncrementalRefreshOrderBook43 = pd.DataFrame(
+            chain.from_iterable(msgs_MDIncrementalRefreshOrderBook43))
         msgs_MDIncrementalRefreshOrderBook43.to_pickle(
             f"{save_file_path}/msgs_MDIncrementalRefreshOrderBook43.pkl")
         del msgs_MDIncrementalRefreshOrderBook43
 
     if (len(msgs_SnapshotFullRefreshOrderBook44) != 0):
+        msgs_SnapshotFullRefreshOrderBook44 = pd.DataFrame(
+            chain.from_iterable(msgs_SnapshotFullRefreshOrderBook44))
         msgs_SnapshotFullRefreshOrderBook44.to_pickle(
             f"{save_file_path}/msgs_SnapshotFullRefreshOrderBook44.pkl")
         del msgs_SnapshotFullRefreshOrderBook44
 
     if (len(msgs_MDIncrementalRefreshBook46) != 0):
+        msgs_MDIncrementalRefreshBook46 = pd.DataFrame(
+            chain.from_iterable(msgs_MDIncrementalRefreshBook46))
         msgs_MDIncrementalRefreshBook46.to_pickle(
             f"{save_file_path}/msgs_MDIncrementalRefreshBook46.pkl")
         del msgs_MDIncrementalRefreshBook46
 
     if (len(msgs_MDIncrementalRefreshOrderBook47) != 0):
+        msgs_MDIncrementalRefreshOrderBook47 = pd.DataFrame(
+            chain.from_iterable(msgs_MDIncrementalRefreshOrderBook47))
         msgs_MDIncrementalRefreshOrderBook47.to_pickle(
             f"{save_file_path}/msgs_MDIncrementalRefreshOrderBook47.pkl")
         del msgs_MDIncrementalRefreshOrderBook47
 
     if (len(msgs_MDIncrementalRefreshTradeSummary48) != 0):
+        msgs_MDIncrementalRefreshTradeSummary48 = pd.DataFrame(
+            chain.from_iterable(msgs_MDIncrementalRefreshTradeSummary48))
         msgs_MDIncrementalRefreshTradeSummary48.to_pickle(
             f"{save_file_path}/msgs_MDIncrementalRefreshTradeSummary48.pkl")
         del msgs_MDIncrementalRefreshTradeSummary48
 
     if (len(msgs_MDIncrementalRefreshDailyStatistics49) != 0):
+        msgs_MDIncrementalRefreshDailyStatistics49 = pd.DataFrame(
+            chain.from_iterable(msgs_MDIncrementalRefreshDailyStatistics49))
         msgs_MDIncrementalRefreshDailyStatistics49.to_pickle(
             f"{save_file_path}/msgs_MDIncrementalRefreshDailyStatistics49.pkl")
         del msgs_MDIncrementalRefreshDailyStatistics49
 
     if (len(msgs_MDIncrementalRefreshLimitsBanding50) != 0):
+        msgs_MDIncrementalRefreshLimitsBanding50 = pd.DataFrame(
+            chain.from_iterable(msgs_MDIncrementalRefreshLimitsBanding50))
         msgs_MDIncrementalRefreshLimitsBanding50.to_pickle(
             f"{save_file_path}/msgs_MDIncrementalRefreshLimitsBanding50.pkl")
         del msgs_MDIncrementalRefreshLimitsBanding50
 
     if (len(msgs_MDIncrementalRefreshSessionStatistics51) != 0):
+        msgs_MDIncrementalRefreshSessionStatistics51 = pd.DataFrame(
+            chain.from_iterable(msgs_MDIncrementalRefreshSessionStatistics51))
         msgs_MDIncrementalRefreshSessionStatistics51.to_pickle(
             f"{save_file_path}/msgs_MDIncrementalRefreshSessionStatistics51.pkl")
         del msgs_MDIncrementalRefreshSessionStatistics51
 
     if (len(msgs_SnapshotFullRefresh52) != 0):
+        msgs_SnapshotFullRefresh52 = pd.DataFrame(
+            chain.from_iterable(msgs_SnapshotFullRefresh52))
         msgs_SnapshotFullRefresh52.to_pickle(
             f"{save_file_path}/msgs_SnapshotFullRefresh52.pkl")
         del msgs_SnapshotFullRefresh52
 
     if (len(msgs_SnapshotFullRefreshOrderBook53) != 0):
+        msgs_SnapshotFullRefreshOrderBook53 = pd.DataFrame(
+            chain.from_iterable(msgs_SnapshotFullRefreshOrderBook53))
         msgs_SnapshotFullRefreshOrderBook53.to_pickle(
             f"{save_file_path}/msgs_SnapshotFullRefreshOrderBook53.pkl")
         del msgs_SnapshotFullRefreshOrderBook53
 
     if (len(msgs_MDInstrumentDefinitionFuture54) != 0):
+        msgs_MDInstrumentDefinitionFuture54 = pd.DataFrame(
+            chain.from_iterable(msgs_MDInstrumentDefinitionFuture54))
         msgs_MDInstrumentDefinitionFuture54.to_pickle(
             f"{save_file_path}/msgs_MDInstrumentDefinitionFuture54.pkl")
         del msgs_MDInstrumentDefinitionFuture54
 
     if (len(msgs_MDInstrumentDefinitionOption55) != 0):
+        msgs_MDInstrumentDefinitionOption55 = pd.DataFrame(
+            chain.from_iterable(msgs_MDInstrumentDefinitionOption55))
         msgs_MDInstrumentDefinitionOption55.to_pickle(
             f"{save_file_path}/msgs_MDInstrumentDefinitionOption55.pkl")
         del msgs_MDInstrumentDefinitionOption55
 
     if (len(msgs_MDInstrumentDefinitionSpread56) != 0):
+        msgs_MDInstrumentDefinitionSpread56 = pd.DataFrame(
+            chain.from_iterable(msgs_MDInstrumentDefinitionSpread56))
         msgs_MDInstrumentDefinitionSpread56.to_pickle(
             f"{save_file_path}/msgs_MDInstrumentDefinitionSpread56.pkl")
         del msgs_MDInstrumentDefinitionSpread56
 
     if (len(msgs_MDInstrumentDefinitionFixedIncome57) != 0):
+        msgs_MDInstrumentDefinitionFixedIncome57 = pd.DataFrame(
+            chain.from_iterable(msgs_MDInstrumentDefinitionFixedIncome57))
         msgs_MDInstrumentDefinitionFixedIncome57.to_pickle(
             f"{save_file_path}/msgs_MDInstrumentDefinitionFixedIncome57.pkl")
         del msgs_MDInstrumentDefinitionFixedIncome57
 
     if (len(msgs_MDInstrumentDefinitionRepo58) != 0):
+        msgs_MDInstrumentDefinitionRepo58 = pd.DataFrame(
+            chain.from_iterable(msgs_MDInstrumentDefinitionRepo58))
         msgs_MDInstrumentDefinitionRepo58.to_pickle(
             f"{save_file_path}/msgs_MDInstrumentDefinitionRepo58.pkl")
         del msgs_MDInstrumentDefinitionRepo58
 
     if (len(msgs_SnapshotRefreshTopOrders59) != 0):
+        msgs_SnapshotRefreshTopOrders59 = pd.DataFrame(
+            chain.from_iterable(msgs_SnapshotRefreshTopOrders59))
         msgs_SnapshotRefreshTopOrders59.to_pickle(
             f"{save_file_path}/msgs_SnapshotRefreshTopOrders59.pkl")
         del msgs_SnapshotRefreshTopOrders59
 
     if (len(msgs_SecurityStatusWorkup60) != 0):
+        msgs_SecurityStatusWorkup60 = pd.DataFrame(
+            chain.from_iterable(msgs_SecurityStatusWorkup60))
         msgs_SecurityStatusWorkup60.to_pickle(
             f"{save_file_path}/msgs_SecurityStatusWorkup60.pkl")
         del msgs_SecurityStatusWorkup60
 
     if (len(msgs_SnapshotFullRefreshTCP61) != 0):
+        msgs_SnapshotFullRefreshTCP61 = pd.DataFrame(
+            chain.from_iterable(msgs_SnapshotFullRefreshTCP61))
         msgs_SnapshotFullRefreshTCP61.to_pickle(
             f"{save_file_path}/msgs_SnapshotFullRefreshTCP61.pkl")
         del msgs_SnapshotFullRefreshTCP61
 
     if (len(msgs_CollateralMarketValue62) != 0):
+        msgs_CollateralMarketValue62 = pd.DataFrame(
+            chain.from_iterable(msgs_CollateralMarketValue62))
         msgs_CollateralMarketValue62.to_pickle(
             f"{save_file_path}/msgs_CollateralMarketValue62.pkl")
         del msgs_CollateralMarketValue62
 
     if (len(msgs_MDInstrumentDefinitionFX63) != 0):
+        msgs_MDInstrumentDefinitionFX63 = pd.DataFrame(
+            chain.from_iterable(msgs_MDInstrumentDefinitionFX63))
         msgs_MDInstrumentDefinitionFX63.to_pickle(
             f"{save_file_path}/msgs_MDInstrumentDefinitionFX63.pkl")
         del msgs_MDInstrumentDefinitionFX63
 
     if (len(msgs_MDIncrementalRefreshBookLongQty64) != 0):
+        msgs_MDIncrementalRefreshBookLongQty64 = pd.DataFrame(
+            chain.from_iterable(msgs_MDIncrementalRefreshBookLongQty64))
         msgs_MDIncrementalRefreshBookLongQty64.to_pickle(
             f"{save_file_path}/msgs_MDIncrementalRefreshBookLongQty64.pkl")
         del msgs_MDIncrementalRefreshBookLongQty64
 
     if (len(msgs_MDIncrementalRefreshTradeSummaryLongQty65) != 0):
+        msgs_MDIncrementalRefreshTradeSummaryLongQty65 = pd.DataFrame(
+            chain.from_iterable(msgs_MDIncrementalRefreshTradeSummaryLongQty65))
         msgs_MDIncrementalRefreshTradeSummaryLongQty65.to_pickle(
             f"{save_file_path}/msgs_MDIncrementalRefreshTradeSummaryLongQty65.pkl")
         del msgs_MDIncrementalRefreshTradeSummaryLongQty65
 
     if (len(msgs_MDIncrementalRefreshVolumeLongQty66) != 0):
+        msgs_MDIncrementalRefreshVolumeLongQty66 = pd.DataFrame(
+            chain.from_iterable(msgs_MDIncrementalRefreshVolumeLongQty66))
         msgs_MDIncrementalRefreshVolumeLongQty66.to_pickle(
             f"{save_file_path}/msgs_MDIncrementalRefreshVolumeLongQty66.pkl")
         del msgs_MDIncrementalRefreshVolumeLongQty66
 
     if (len(msgs_MDIncrementalRefreshSessionStatisticsLongQty67) != 0):
+        msgs_MDIncrementalRefreshSessionStatisticsLongQty67 = pd.DataFrame(
+            chain.from_iterable(msgs_MDIncrementalRefreshSessionStatisticsLongQty67))
         msgs_MDIncrementalRefreshSessionStatisticsLongQty67.to_pickle(
             f"{save_file_path}/msgs_MDIncrementalRefreshSessionStatisticsLongQty67.pkl")
         del msgs_MDIncrementalRefreshSessionStatisticsLongQty67
 
     if (len(msgs_SnapshotFullRefreshTCPLongQty68) != 0):
+        msgs_SnapshotFullRefreshTCPLongQty68 = pd.DataFrame(
+            chain.from_iterable(msgs_SnapshotFullRefreshTCPLongQty68))
         msgs_SnapshotFullRefreshTCPLongQty68.to_pickle(
             f"{save_file_path}/msgs_SnapshotFullRefreshTCPLongQty68.pkl")
         del msgs_SnapshotFullRefreshTCPLongQty68
 
     if (len(msgs_SnapshotFullRefreshLongQty69) != 0):
+        msgs_SnapshotFullRefreshLongQty69 = pd.DataFrame(
+            chain.from_iterable(msgs_SnapshotFullRefreshLongQty69))
         msgs_SnapshotFullRefreshLongQty69.to_pickle(
             f"{save_file_path}/msgs_SnapshotFullRefreshLongQty69.pkl")
         del msgs_SnapshotFullRefreshLongQty69
@@ -1885,206 +1967,288 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
                 f.seek(end_pos)
 
     if (len(msgs_ChannelReset4) != 0):
+        msgs_ChannelReset4 = pd.DataFrame(
+            chain.from_iterable(msgs_ChannelReset4))
         msgs_ChannelReset4.to_pickle(
             f"{save_file_path}/msgs_ChannelReset4.pkl")
         del msgs_ChannelReset4
 
     if (len(msgs_AdminLogout16) != 0):
+        msgs_AdminLogout16 = pd.DataFrame(
+            chain.from_iterable(msgs_AdminLogout16))
         msgs_AdminLogout16.to_pickle(
             f"{save_file_path}/msgs_AdminLogout16.pkl")
         del msgs_AdminLogout16
 
     if (len(msgs_MDInstrumentDefinitionFuture27) != 0):
+        msgs_MDInstrumentDefinitionFuture27 = pd.DataFrame(
+            chain.from_iterable(msgs_MDInstrumentDefinitionFuture27))
         msgs_MDInstrumentDefinitionFuture27.to_pickle(
             f"{save_file_path}/msgs_MDInstrumentDefinitionFuture27.pkl")
         del msgs_MDInstrumentDefinitionFuture27
 
     if (len(msgs_MDInstrumentDefinitionSpread29) != 0):
+        msgs_MDInstrumentDefinitionSpread29 = pd.DataFrame(
+            chain.from_iterable(msgs_MDInstrumentDefinitionSpread29))
         msgs_MDInstrumentDefinitionSpread29.to_pickle(
             f"{save_file_path}/msgs_MDInstrumentDefinitionSpread29.pkl")
         del msgs_MDInstrumentDefinitionSpread29
 
     if (len(msgs_SecurityStatus30) != 0):
+        msgs_SecurityStatus30 = pd.DataFrame(
+            chain.from_iterable(msgs_SecurityStatus30))
         msgs_SecurityStatus30.to_pickle(
             f"{save_file_path}/msgs_SecurityStatus30.pkl")
         del msgs_SecurityStatus30
 
     if (len(msgs_MDIncrementalRefreshBook32) != 0):
+        msgs_MDIncrementalRefreshBook32 = pd.DataFrame(
+            chain.from_iterable(msgs_MDIncrementalRefreshBook32))
         msgs_MDIncrementalRefreshBook32.to_pickle(
             f"{save_file_path}/msgs_MDIncrementalRefreshBook32.pkl")
         del msgs_MDIncrementalRefreshBook32
 
     if (len(msgs_MDIncrementalRefreshDailyStatistics33) != 0):
+        msgs_MDIncrementalRefreshDailyStatistics33 = pd.DataFrame(
+            chain.from_iterable(msgs_MDIncrementalRefreshDailyStatistics33))
         msgs_MDIncrementalRefreshDailyStatistics33.to_pickle(
             f"{save_file_path}/msgs_MDIncrementalRefreshDailyStatistics33.pkl")
         del msgs_MDIncrementalRefreshDailyStatistics33
 
     if (len(msgs_MDIncrementalRefreshLimitsBanding34) != 0):
+        msgs_MDIncrementalRefreshLimitsBanding34 = pd.DataFrame(
+            chain.from_iterable(msgs_MDIncrementalRefreshLimitsBanding34))
         msgs_MDIncrementalRefreshLimitsBanding34.to_pickle(
             f"{save_file_path}/msgs_MDIncrementalRefreshLimitsBanding34.pkl")
         del msgs_MDIncrementalRefreshLimitsBanding34
 
     if (len(msgs_MDIncrementalRefreshSessionStatistics35) != 0):
+        msgs_MDIncrementalRefreshSessionStatistics35 = pd.DataFrame(
+            chain.from_iterable(msgs_MDIncrementalRefreshSessionStatistics35))
         msgs_MDIncrementalRefreshSessionStatistics35.to_pickle(
             f"{save_file_path}/msgs_MDIncrementalRefreshSessionStatistics35.pkl")
         del msgs_MDIncrementalRefreshSessionStatistics35
 
     if (len(msgs_MDIncrementalRefreshTrade36) != 0):
+        msgs_MDIncrementalRefreshTrade36 = pd.DataFrame(
+            chain.from_iterable(msgs_MDIncrementalRefreshTrade36))
         msgs_MDIncrementalRefreshTrade36.to_pickle(
             f"{save_file_path}/msgs_MDIncrementalRefreshTrade36.pkl")
         del msgs_MDIncrementalRefreshTrade36
 
     if (len(msgs_MDIncrementalRefreshVolume37) != 0):
+        msgs_MDIncrementalRefreshVolume37 = pd.DataFrame(
+            chain.from_iterable(msgs_MDIncrementalRefreshVolume37))
         msgs_MDIncrementalRefreshVolume37.to_pickle(
             f"{save_file_path}/msgs_MDIncrementalRefreshVolume37.pkl")
         del msgs_MDIncrementalRefreshVolume37
 
     if (len(msgs_SnapshotFullRefresh38) != 0):
+        msgs_SnapshotFullRefresh38 = pd.DataFrame(
+            chain.from_iterable(msgs_SnapshotFullRefresh38))
         msgs_SnapshotFullRefresh38.to_pickle(
             f"{save_file_path}/msgs_SnapshotFullRefresh38.pkl")
         del msgs_SnapshotFullRefresh38
 
     if (len(msgs_QuoteRequest39) != 0):
+        msgs_QuoteRequest39 = pd.DataFrame(
+            chain.from_iterable(msgs_QuoteRequest39))
         msgs_QuoteRequest39.to_pickle(
             f"{save_file_path}/msgs_QuoteRequest39.pkl")
         del msgs_QuoteRequest39
 
     if (len(msgs_MDInstrumentDefinitionOption41) != 0):
+        msgs_MDInstrumentDefinitionOption41 = pd.DataFrame(
+            chain.from_iterable(msgs_MDInstrumentDefinitionOption41))
         msgs_MDInstrumentDefinitionOption41.to_pickle(
             f"{save_file_path}/msgs_MDInstrumentDefinitionOption41.pkl")
         del msgs_MDInstrumentDefinitionOption41
 
     if (len(msgs_MDIncrementalRefreshTradeSummary42) != 0):
+        msgs_MDIncrementalRefreshTradeSummary42 = pd.DataFrame(
+            chain.from_iterable(msgs_MDIncrementalRefreshTradeSummary42))
         msgs_MDIncrementalRefreshTradeSummary42.to_pickle(
             f"{save_file_path}/msgs_MDIncrementalRefreshTradeSummary42.pkl")
         del msgs_MDIncrementalRefreshTradeSummary42
 
     if (len(msgs_MDIncrementalRefreshOrderBook43) != 0):
+        msgs_MDIncrementalRefreshOrderBook43 = pd.DataFrame(
+            chain.from_iterable(msgs_MDIncrementalRefreshOrderBook43))
         msgs_MDIncrementalRefreshOrderBook43.to_pickle(
             f"{save_file_path}/msgs_MDIncrementalRefreshOrderBook43.pkl")
         del msgs_MDIncrementalRefreshOrderBook43
 
     if (len(msgs_SnapshotFullRefreshOrderBook44) != 0):
+        msgs_SnapshotFullRefreshOrderBook44 = pd.DataFrame(
+            chain.from_iterable(msgs_SnapshotFullRefreshOrderBook44))
         msgs_SnapshotFullRefreshOrderBook44.to_pickle(
             f"{save_file_path}/msgs_SnapshotFullRefreshOrderBook44.pkl")
         del msgs_SnapshotFullRefreshOrderBook44
 
     if (len(msgs_MDIncrementalRefreshBook46) != 0):
+        msgs_MDIncrementalRefreshBook46 = pd.DataFrame(
+            chain.from_iterable(msgs_MDIncrementalRefreshBook46))
         msgs_MDIncrementalRefreshBook46.to_pickle(
             f"{save_file_path}/msgs_MDIncrementalRefreshBook46.pkl")
         del msgs_MDIncrementalRefreshBook46
 
     if (len(msgs_MDIncrementalRefreshOrderBook47) != 0):
+        msgs_MDIncrementalRefreshOrderBook47 = pd.DataFrame(
+            chain.from_iterable(msgs_MDIncrementalRefreshOrderBook47))
         msgs_MDIncrementalRefreshOrderBook47.to_pickle(
             f"{save_file_path}/msgs_MDIncrementalRefreshOrderBook47.pkl")
         del msgs_MDIncrementalRefreshOrderBook47
 
     if (len(msgs_MDIncrementalRefreshTradeSummary48) != 0):
+        msgs_MDIncrementalRefreshTradeSummary48 = pd.DataFrame(
+            chain.from_iterable(msgs_MDIncrementalRefreshTradeSummary48))
         msgs_MDIncrementalRefreshTradeSummary48.to_pickle(
             f"{save_file_path}/msgs_MDIncrementalRefreshTradeSummary48.pkl")
         del msgs_MDIncrementalRefreshTradeSummary48
 
     if (len(msgs_MDIncrementalRefreshDailyStatistics49) != 0):
+        msgs_MDIncrementalRefreshDailyStatistics49 = pd.DataFrame(
+            chain.from_iterable(msgs_MDIncrementalRefreshDailyStatistics49))
         msgs_MDIncrementalRefreshDailyStatistics49.to_pickle(
             f"{save_file_path}/msgs_MDIncrementalRefreshDailyStatistics49.pkl")
         del msgs_MDIncrementalRefreshDailyStatistics49
 
     if (len(msgs_MDIncrementalRefreshLimitsBanding50) != 0):
+        msgs_MDIncrementalRefreshLimitsBanding50 = pd.DataFrame(
+            chain.from_iterable(msgs_MDIncrementalRefreshLimitsBanding50))
         msgs_MDIncrementalRefreshLimitsBanding50.to_pickle(
             f"{save_file_path}/msgs_MDIncrementalRefreshLimitsBanding50.pkl")
         del msgs_MDIncrementalRefreshLimitsBanding50
 
     if (len(msgs_MDIncrementalRefreshSessionStatistics51) != 0):
+        msgs_MDIncrementalRefreshSessionStatistics51 = pd.DataFrame(
+            chain.from_iterable(msgs_MDIncrementalRefreshSessionStatistics51))
         msgs_MDIncrementalRefreshSessionStatistics51.to_pickle(
             f"{save_file_path}/msgs_MDIncrementalRefreshSessionStatistics51.pkl")
         del msgs_MDIncrementalRefreshSessionStatistics51
 
     if (len(msgs_SnapshotFullRefresh52) != 0):
+        msgs_SnapshotFullRefresh52 = pd.DataFrame(
+            chain.from_iterable(msgs_SnapshotFullRefresh52))
         msgs_SnapshotFullRefresh52.to_pickle(
             f"{save_file_path}/msgs_SnapshotFullRefresh52.pkl")
         del msgs_SnapshotFullRefresh52
 
     if (len(msgs_SnapshotFullRefreshOrderBook53) != 0):
+        msgs_SnapshotFullRefreshOrderBook53 = pd.DataFrame(
+            chain.from_iterable(msgs_SnapshotFullRefreshOrderBook53))
         msgs_SnapshotFullRefreshOrderBook53.to_pickle(
             f"{save_file_path}/msgs_SnapshotFullRefreshOrderBook53.pkl")
         del msgs_SnapshotFullRefreshOrderBook53
 
     if (len(msgs_MDInstrumentDefinitionFuture54) != 0):
+        msgs_MDInstrumentDefinitionFuture54 = pd.DataFrame(
+            chain.from_iterable(msgs_MDInstrumentDefinitionFuture54))
         msgs_MDInstrumentDefinitionFuture54.to_pickle(
             f"{save_file_path}/msgs_MDInstrumentDefinitionFuture54.pkl")
         del msgs_MDInstrumentDefinitionFuture54
 
     if (len(msgs_MDInstrumentDefinitionOption55) != 0):
+        msgs_MDInstrumentDefinitionOption55 = pd.DataFrame(
+            chain.from_iterable(msgs_MDInstrumentDefinitionOption55))
         msgs_MDInstrumentDefinitionOption55.to_pickle(
             f"{save_file_path}/msgs_MDInstrumentDefinitionOption55.pkl")
         del msgs_MDInstrumentDefinitionOption55
 
     if (len(msgs_MDInstrumentDefinitionSpread56) != 0):
+        msgs_MDInstrumentDefinitionSpread56 = pd.DataFrame(
+            chain.from_iterable(msgs_MDInstrumentDefinitionSpread56))
         msgs_MDInstrumentDefinitionSpread56.to_pickle(
             f"{save_file_path}/msgs_MDInstrumentDefinitionSpread56.pkl")
         del msgs_MDInstrumentDefinitionSpread56
 
     if (len(msgs_MDInstrumentDefinitionFixedIncome57) != 0):
+        msgs_MDInstrumentDefinitionFixedIncome57 = pd.DataFrame(
+            chain.from_iterable(msgs_MDInstrumentDefinitionFixedIncome57))
         msgs_MDInstrumentDefinitionFixedIncome57.to_pickle(
             f"{save_file_path}/msgs_MDInstrumentDefinitionFixedIncome57.pkl")
         del msgs_MDInstrumentDefinitionFixedIncome57
 
     if (len(msgs_MDInstrumentDefinitionRepo58) != 0):
+        msgs_MDInstrumentDefinitionRepo58 = pd.DataFrame(
+            chain.from_iterable(msgs_MDInstrumentDefinitionRepo58))
         msgs_MDInstrumentDefinitionRepo58.to_pickle(
             f"{save_file_path}/msgs_MDInstrumentDefinitionRepo58.pkl")
         del msgs_MDInstrumentDefinitionRepo58
 
     if (len(msgs_SnapshotRefreshTopOrders59) != 0):
+        msgs_SnapshotRefreshTopOrders59 = pd.DataFrame(
+            chain.from_iterable(msgs_SnapshotRefreshTopOrders59))
         msgs_SnapshotRefreshTopOrders59.to_pickle(
             f"{save_file_path}/msgs_SnapshotRefreshTopOrders59.pkl")
         del msgs_SnapshotRefreshTopOrders59
 
     if (len(msgs_SecurityStatusWorkup60) != 0):
+        msgs_SecurityStatusWorkup60 = pd.DataFrame(
+            chain.from_iterable(msgs_SecurityStatusWorkup60))
         msgs_SecurityStatusWorkup60.to_pickle(
             f"{save_file_path}/msgs_SecurityStatusWorkup60.pkl")
         del msgs_SecurityStatusWorkup60
 
     if (len(msgs_SnapshotFullRefreshTCP61) != 0):
+        msgs_SnapshotFullRefreshTCP61 = pd.DataFrame(
+            chain.from_iterable(msgs_SnapshotFullRefreshTCP61))
         msgs_SnapshotFullRefreshTCP61.to_pickle(
             f"{save_file_path}/msgs_SnapshotFullRefreshTCP61.pkl")
         del msgs_SnapshotFullRefreshTCP61
 
     if (len(msgs_CollateralMarketValue62) != 0):
+        msgs_CollateralMarketValue62 = pd.DataFrame(
+            chain.from_iterable(msgs_CollateralMarketValue62))
         msgs_CollateralMarketValue62.to_pickle(
             f"{save_file_path}/msgs_CollateralMarketValue62.pkl")
         del msgs_CollateralMarketValue62
 
     if (len(msgs_MDInstrumentDefinitionFX63) != 0):
+        msgs_MDInstrumentDefinitionFX63 = pd.DataFrame(
+            chain.from_iterable(msgs_MDInstrumentDefinitionFX63))
         msgs_MDInstrumentDefinitionFX63.to_pickle(
             f"{save_file_path}/msgs_MDInstrumentDefinitionFX63.pkl")
         del msgs_MDInstrumentDefinitionFX63
 
     if (len(msgs_MDIncrementalRefreshBookLongQty64) != 0):
+        msgs_MDIncrementalRefreshBookLongQty64 = pd.DataFrame(
+            chain.from_iterable(msgs_MDIncrementalRefreshBookLongQty64))
         msgs_MDIncrementalRefreshBookLongQty64.to_pickle(
             f"{save_file_path}/msgs_MDIncrementalRefreshBookLongQty64.pkl")
         del msgs_MDIncrementalRefreshBookLongQty64
 
     if (len(msgs_MDIncrementalRefreshTradeSummaryLongQty65) != 0):
+        msgs_MDIncrementalRefreshTradeSummaryLongQty65 = pd.DataFrame(
+            chain.from_iterable(msgs_MDIncrementalRefreshTradeSummaryLongQty65))
         msgs_MDIncrementalRefreshTradeSummaryLongQty65.to_pickle(
             f"{save_file_path}/msgs_MDIncrementalRefreshTradeSummaryLongQty65.pkl")
         del msgs_MDIncrementalRefreshTradeSummaryLongQty65
 
     if (len(msgs_MDIncrementalRefreshVolumeLongQty66) != 0):
+        msgs_MDIncrementalRefreshVolumeLongQty66 = pd.DataFrame(
+            chain.from_iterable(msgs_MDIncrementalRefreshVolumeLongQty66))
         msgs_MDIncrementalRefreshVolumeLongQty66.to_pickle(
             f"{save_file_path}/msgs_MDIncrementalRefreshVolumeLongQty66.pkl")
         del msgs_MDIncrementalRefreshVolumeLongQty66
 
     if (len(msgs_MDIncrementalRefreshSessionStatisticsLongQty67) != 0):
+        msgs_MDIncrementalRefreshSessionStatisticsLongQty67 = pd.DataFrame(
+            chain.from_iterable(msgs_MDIncrementalRefreshSessionStatisticsLongQty67))
         msgs_MDIncrementalRefreshSessionStatisticsLongQty67.to_pickle(
             f"{save_file_path}/msgs_MDIncrementalRefreshSessionStatisticsLongQty67.pkl")
         del msgs_MDIncrementalRefreshSessionStatisticsLongQty67
 
     if (len(msgs_SnapshotFullRefreshTCPLongQty68) != 0):
+        msgs_SnapshotFullRefreshTCPLongQty68 = pd.DataFrame(
+            chain.from_iterable(msgs_SnapshotFullRefreshTCPLongQty68))
         msgs_SnapshotFullRefreshTCPLongQty68.to_pickle(
             f"{save_file_path}/msgs_SnapshotFullRefreshTCPLongQty68.pkl")
         del msgs_SnapshotFullRefreshTCPLongQty68
 
     if (len(msgs_SnapshotFullRefreshLongQty69) != 0):
+        msgs_SnapshotFullRefreshLongQty69 = pd.DataFrame(
+            chain.from_iterable(msgs_SnapshotFullRefreshLongQty69))
         msgs_SnapshotFullRefreshLongQty69.to_pickle(
             f"{save_file_path}/msgs_SnapshotFullRefreshLongQty69.pkl")
         del msgs_SnapshotFullRefreshLongQty69
