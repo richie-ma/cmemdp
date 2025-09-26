@@ -4,7 +4,7 @@ Author: Richie R. Ma
 The Python package `cmemdp` is inspired by the author's R package `cme.mdp` published on April 2025. This package covers almost all features in that package and I also include other important functions into this package. The goal of this package is to make market data cleaning more easily and more user-friendly. Users can learn how modern financial markets work from the microstructure perspective.
 
 ## Updates
-I substantially revised the parser function to make it more efficient for big data environment.
+I substantially revised the parser function to make it more efficient for batch job environment. The previous one is not for data-intensive useage.
 
 ## Introduction
 Financial markets have become more transparent, and exchanges can provide high-frequency data for traders to better monitor markets, which creates more demand about the high-frequency data usage both in the academia and industry, either for real-time or historical. Most exchanges do not disseminate tabulated complete market data to non-member market participants, and almost all market data are specially coded to enhance the communication efficiency, such as various binary protocols (Simple Binary Enconding in the CME). Thus, financial economists need to know how to clean these non-tabular data at first, which is a substantially time-consuming task and might not be very user-friendly. This project will closely focus on how to parse and clean the market data of Chicago Mercantile Exchange (CME) under the FIX and binary (new feature!!) protocols and provide a faster limit order book reconstruction without explicit for loop statements for either outright, implied, or consolidated books.
@@ -55,9 +55,9 @@ from cmemdp.cme_parser import cme_parser_datamine
 
 example = cme_parser_datamine(
     path="R:/_RawData/PCAP/20250420-PCAP_318_0_0_0_e",
-    max_read_packets=None, msgs_template=None, cme_header=True,
-    save_files=False, save_file_path=None, disable_progress_bar=False,
-    save_file_type=None)
+    max_read_packets=None, cme_header=True,
+    save_file_path="R:/_RawData/PCAP/", disable_progress_bar=False, chunk_size=5000)
+```
 
 Users need to deal with the timestamp conversions and are encouraged to use `timestamp_conversion` function. Users still need to deal with the display format of the price in the `MDEntryPX` column. Basically, the numbers shown in the `MDEntryPX` column needs to times $10^{-9}$ and then times the price display format stipulated by the CME, which can be found in the security definition messages.
 
