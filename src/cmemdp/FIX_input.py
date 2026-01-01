@@ -1529,7 +1529,7 @@ class mbp_input_fix:
 
 class quotes:
     @staticmethod
-    def order_book(data, security, level, consolidate=True):
+    def order_book(data, security, level, consolidate=True, disable_progress_bar=False):
         """
         Reconstructing the limit order book
         Parameters
@@ -1608,7 +1608,7 @@ class quotes:
 
             book_list = []
 
-            for k in tqdm(range(msg.shape[0]), desc='outrihgt/implied book process...'):
+            for k in tqdm(range(msg.shape[0]), desc='outrihgt/implied book process...', disable=disable_progress_bar):
                 LOB = book_build(level)
                 # print(k)
 
@@ -1889,7 +1889,7 @@ class quotes:
                             bid_px1_index = 3 * level + 1
                             ask_px1_index = 3 * level + 4
 
-                            for a in tqdm(range(data.shape[0]), desc='consolidated book process...'):
+                            for a in tqdm(range(data.shape[0]), desc='consolidated book process...', disable=disable_progress_bar):
 
                                 LOB_conso = book_build(level)
 
