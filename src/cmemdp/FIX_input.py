@@ -1798,7 +1798,7 @@ class quotes:
                 book_list.append(LOB)
 
             books = pd.concat(book_list, axis=0, ignore_index=True)
-            books['Seq'] = msg['Seq']
+            books['Seq'] = msg['Seq'].values
 
             return books
 
@@ -1849,7 +1849,7 @@ class quotes:
                             LOB_implied_new = pd.DataFrame(
                                 [[np.nan]*14]*LOB_outright.shape[0])
                             LOB_implied_new.columns = LOB_implied.columns
-                            LOB_implied_new['Seq'] = LOB_outright['Seq']
+                            LOB_implied_new['Seq'] = LOB_outright['Seq'].values
 
                             LOB_implied_new = pd.concat(
                                 [LOB_implied_new, LOB_implied], ignore_index=True)
@@ -1873,7 +1873,7 @@ class quotes:
                             LOB_outright_new = pd.DataFrame(
                                 [[np.nan]*(level * 2 * 3 + 6)]*LOB_implied.shape[0])
                             LOB_outright_new.columns = LOB_outright.columns
-                            LOB_outright_new['Seq'] = LOB_implied['Seq']
+                            LOB_outright_new['Seq'] = LOB_implied['Seq'].values
 
                             LOB_outright_new = pd.concat(
                                 [LOB_outright_new, LOB_outright], ignore_index=True)
@@ -2081,12 +2081,12 @@ class quotes:
                                 LOB_conso_list, axis=0, ignore_index=True)
                             del LOB_implied_new, LOB_outright_new
 
-                        LOB_conso['Seq'] = data['Seq']
-                        LOB_conso['Date'] = data['Date']
-                        LOB_conso['MsgSeq'] = data['MsgSeq']
-                        LOB_conso['TransactTime'] = data['TransactTime']
-                        LOB_conso['SendingTime'] = data['SendingTime']
-                        LOB_conso['Code'] = data['Code']
+                        LOB_conso['Seq'] = data['Seq'].values
+                        LOB_conso['Date'] = data['Date'].values
+                        LOB_conso['MsgSeq'] = data['MsgSeq'].values
+                        LOB_conso['TransactTime'] = data['TransactTime'].values
+                        LOB_conso['SendingTime'] = data['SendingTime'].values
+                        LOB_conso['Code'] = data['Code'].values
 
                         return LOB_conso
 
@@ -2100,21 +2100,21 @@ class quotes:
 
         if LOB_outright is not None:
 
-            LOB_outright['Seq'] = message_outright['Seq']
-            LOB_outright['Date'] = message_outright['Date']
-            LOB_outright['MsgSeq'] = message_outright['MsgSeq']
-            LOB_outright['SendingTime'] = message_outright['SendingTime']
-            LOB_outright['TransactTime'] = message_outright['TransactTime']
-            LOB_outright['Code'] = message_outright['Code']
+            LOB_outright['Seq'] = message_outright['Seq'].values
+            LOB_outright['Date'] = message_outright['Date'].values
+            LOB_outright['MsgSeq'] = message_outright['MsgSeq'].values
+            LOB_outright['SendingTime'] = message_outright['SendingTime'].values
+            LOB_outright['TransactTime'] = message_outright['TransactTime'].values
+            LOB_outright['Code'] = message_outright['Code'].values
 
         if LOB_implied is not None:
 
-            LOB_implied['Seq'] = message_implied['Seq']
-            LOB_implied['Date'] = message_implied['Date']
-            LOB_implied['MsgSeq'] = message_implied['MsgSeq']
-            LOB_implied['SendingTime'] = message_implied['SendingTime']
-            LOB_implied['TransactTime'] = message_implied['TransactTime']
-            LOB_implied['Code'] = message_implied['Code']
+            LOB_implied['Seq'] = message_implied['Seq'].values
+            LOB_implied['Date'] = message_implied['Date'].values
+            LOB_implied['MsgSeq'] = message_implied['MsgSeq'].values
+            LOB_implied['SendingTime'] = message_implied['SendingTime'].values
+            LOB_implied['TransactTime'] = message_implied['TransactTime'].values
+            LOB_implied['Code'] = message_implied['Code'].values
 
         results = {'LOB_conso': LOB_conso,
                    'LOB_outright': LOB_outright, 'LOB_implied': LOB_implied}
