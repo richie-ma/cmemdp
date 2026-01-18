@@ -1452,8 +1452,6 @@ def SnapshotFullRefreshOrderBook44(msgs_blocks, BlockLength, cme_packet):
 
 def MDIncrementalRefreshBook46(msgs_blocks, BlockLength, version, cme_packet):
 
-    msgs_list = []
-
     (TransactTime, MatchEventIndicator) = struct.unpack(
         '<Q3s', msgs_blocks[0:BlockLength])
 
@@ -3891,8 +3889,6 @@ def MDInstrumentDefinitionFX63(msgs_blocks, BlockLength, cme_packet):
 
 def MDIncrementalRefreshBookLongQty64(msgs_blocks, BlockLength, cme_packet):
 
-    msgs_list = []
-
     (TransactTime, MatchEventIndicator) = struct.unpack(
         'Q3s', msgs_blocks[0:BlockLength])
 
@@ -3926,15 +3922,6 @@ def MDIncrementalRefreshBookLongQty64(msgs_blocks, BlockLength, cme_packet):
 
         MBP = []
 
-        if struct.unpack(
-                '<B', msgs_blocks[(end_group+7):(end_group+8)])[0] != 0:
-
-            msgappend = False
-
-        else:
-
-            msgappend = True
-
         while group_repeat < NumInGroup:
 
             (MDEntryPx, MDEntrySize, SecurityID, RptSeq, NumberOfOrders,
@@ -3962,9 +3949,6 @@ def MDIncrementalRefreshBookLongQty64(msgs_blocks, BlockLength, cme_packet):
             MBP.append(msgs)
 
             # when there is MBO information, we do not need to append at this step
-
-            if msgappend:
-                msgs_list.append(msgs)
 
             pos += group_length
             group_repeat += 1
@@ -3997,33 +3981,17 @@ def MDIncrementalRefreshBookLongQty64(msgs_blocks, BlockLength, cme_packet):
             if ReferenceID == 255:
                 ReferenceID = np.nan
 
-            try:
-                msgs
-
-            except:
-
-                msgs = info | {'OrderID': OrderID,
-                               'MDOrderPriority': MDOrderPriority,
-                               'MDDisplayQty': MDDisplayQty,
-                               'ReferenceID': ReferenceID,
-                               'OrderUpdateAction': byte_to_str(OrderUpdateAction)
-                               }
-
-            else:
-
-                msgs = MBP[ReferenceID-1] | {'OrderID': OrderID,
-                                             'MDOrderPriority': MDOrderPriority,
-                                             'MDDisplayQty': MDDisplayQty,
-                                             'ReferenceID': ReferenceID,
-                                             'OrderUpdateAction': byte_to_str(OrderUpdateAction)
-                                             }
-
-            msgs_list.append(msgs)
+            MBP[ReferenceID-1].update({'OrderID': OrderID,
+                                       'MDOrderPriority': MDOrderPriority,
+                                       'MDDisplayQty': MDDisplayQty,
+                                       'ReferenceID': ReferenceID,
+                                       'OrderUpdateAction': byte_to_str(OrderUpdateAction)
+                                       })
 
             pos += group_length
             group_repeat += 1
 
-    return msgs_list
+    return MBP
 
 
 def MDIncrementalRefreshTradeSummaryLongQty65(msgs_blocks, BlockLength, cme_packet):
