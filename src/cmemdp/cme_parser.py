@@ -517,7 +517,7 @@ def cme_parser_datamine(path, max_read_packets=None, cme_header=True,
                     elif TemplateID == 46:
 
                         msgs_MDIncrementalRefreshBook46.append(
-                            main_template.MDIncrementalRefreshBook46(messages, BlockLength, cme_packet))
+                            main_template.MDIncrementalRefreshBook46(messages, BlockLength, Version, cme_packet))
 
                         if len(msgs_MDIncrementalRefreshBook46) >= chunk_size:
 
