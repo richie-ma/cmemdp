@@ -1497,9 +1497,6 @@ def MDIncrementalRefreshBook46(msgs_blocks, BlockLength, version, cme_packet):
                 msgs_blocks[pos:(pos+27)]
             )
 
-            if SecurityID == 773890 or SecurityID == 581506:
-                print(SecurityID)
-
             if MDEntrySize == 2147483647:
                 MDEntrySize = np.nan
 
