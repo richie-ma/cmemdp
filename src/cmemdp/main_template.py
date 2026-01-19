@@ -1462,6 +1462,8 @@ def MDIncrementalRefreshBook46(msgs_blocks, BlockLength, version, cme_packet):
 
         info = cme_packet | info
 
+    MBP = []
+
     if len(msgs_blocks) > BlockLength:
 
         pos = BlockLength
@@ -1483,8 +1485,6 @@ def MDIncrementalRefreshBook46(msgs_blocks, BlockLength, version, cme_packet):
 
         # since there is reference ID so we need to make sure
         # the order and MBP parts are connected correctly
-
-        MBP = []
 
         while group_repeat < NumInGroup:
 
@@ -1571,7 +1571,7 @@ def MDIncrementalRefreshBook46(msgs_blocks, BlockLength, version, cme_packet):
             pos += group_length
             group_repeat += 1
 
-        return MBP
+    return MBP
 
 
 def MDIncrementalRefreshOrderBook47(msgs_blocks, BlockLength, cme_packet):
