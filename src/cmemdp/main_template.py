@@ -1513,7 +1513,7 @@ def MDIncrementalRefreshBook46(msgs_blocks, BlockLength, version, cme_packet):
 
             if version > 9:
                 TradeableSize = struct.unpack(
-                    '<5s', msgs_blocks[28:group_length])[0]
+                    '<4s', msgs_blocks[28:group_length])[0]
 
                 if byte_to_int(TradeableSize) == 2147483647:
                     TradeableSize = np.nan
