@@ -6,6 +6,8 @@ The Python package `cmemdp` is inspired by the author's R package `cme.mdp` publ
 ## Updates
 I substantially revised the parser function to make it more efficient for batch job environment. The previous one is not for data-intensive useage. The function automatically saves the parsed data into the trageted directory. The default setting is to save data every 5,000 packets which can be reset.
 
+CME may not disseminate the first snapshot of limit order book from the MBP template and this can be finished through MBO template. Thus, I create another function `sunday_recover` to reconstruct the first snapshot based on MBO messages.
+
 ## Introduction
 Financial markets have become more transparent, and exchanges can provide high-frequency data for traders to better monitor markets, which creates more demand about the high-frequency data usage both in the academia and industry, either for real-time or historical. Most exchanges do not disseminate tabulated complete market data to non-member market participants, and almost all market data are specially coded to enhance the communication efficiency, such as various binary protocols (Simple Binary Enconding in the CME). Thus, financial economists need to know how to clean these non-tabular data at first, which is a substantially time-consuming task and might not be very user-friendly. This project will closely focus on how to parse and clean the market data of Chicago Mercantile Exchange (CME) under the FIX and binary (new feature!!) protocols and provide a faster limit order book reconstruction without explicit for loop statements for either outright, implied, or consolidated books.
 

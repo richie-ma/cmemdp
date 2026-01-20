@@ -1529,6 +1529,92 @@ class mbp_input_fix:
 
 class quotes:
     @staticmethod
+    def sunday_recover(OrderBook47, date):
+        """
+        `sunday_recover' is used to recover the first snapshot of limit order book 
+        from the available Market by Order (MBO) data, which are based on template 47.
+
+        This function recovers Sunday's MBP-based data for the book reconstruction.
+
+        Parameters
+        ----------
+        OrderBook47 : pandas DataFrame
+            Prased ''msgs_MDIncrementalRefreshOrderBook47' file.
+
+        date : string
+            Date of the file. Must be 'YYYY-MM-DD'.
+
+        Returns
+        -------
+        OrderBook47 : pandas DataFrame
+            Sunday recovered MBP data.
+
+        """
+
+        if datetime.strptime(date, '%Y-%m-%d').strftime("%A") != 'Sunday':
+
+            raise Exception('Only data from Sundays are allowed.')
+
+        OrderBook47['TransactTime2'] = pd.to_datetime(
+            OrderBook47['TransactTime'], unit="ns", origin="unix", utc=True)
+        OrderBook47['TransactTime2'] = OrderBook47['TransactTime2'].dt.tz_convert(
+            "America/Chicago")
+        OrderBook47['hour'] = OrderBook47['TransactTime2'].dt.hour
+        OrderBook47 = OrderBook47.loc[OrderBook47['hour'] == 14].reset_index(
+            drop=True)
+
+        OrderBook47 = OrderBook47.drop(columns=['TransactTime2'])
+
+        OrderBook47.sort_values(['SecurityID', 'MsgSeq'], inplace=True)
+
+        OrderBook47['MDEntrySize'] = (OrderBook47
+                                      .groupby(['SecurityID', 'MDEntryType', 'MDEntryPx'])['MDDisplayQty']
+                                      .cumsum()
+                                      )
+        OrderBook47['NumberOfOrders'] = (OrderBook47
+                                         .groupby(['SecurityID', 'MDEntryType', 'MDEntryPx'])['MDDisplayQty']
+                                         .transform('count')
+                                         )
+
+        # subseting on the last MsgSeq number
+
+        OrderBook47 = (OrderBook47
+                       .sort_values(['SecurityID', 'MsgSeq'])
+                       .groupby(['SecurityID', 'MDEntryType', 'MDEntryPx'], as_index=False)
+                       .last()
+                       )
+
+        # Sorting price levels based on bids and offers
+
+        OrderBook47['sort_key'] = np.where(OrderBook47['MDEntryType'] == '0',
+                                           # descending by negating
+                                           -OrderBook47['MDEntryPx'],
+                                           # ascending
+                                           OrderBook47['MDEntryPx']
+                                           )
+
+        # conditional sort
+        OrderBook47 = OrderBook47.sort_values(
+            ['SecurityID', 'MDEntryType', 'sort_key']).drop(columns=['sort_key'])
+
+        # Assign MDPriceLevel
+
+        OrderBook47['MDPriceLevel'] = OrderBook47.groupby(
+            ['SecurityID', 'MDEntryType']).cumcount()+1
+
+        # Only keeping first ten levels according to MBP template.
+
+        OrderBook47 = OrderBook47.loc[OrderBook47['MDPriceLevel'].between(
+            1, 10)]
+
+        # Aligning with MBP
+        #
+        OrderBook47 = OrderBook47[['MsgSeq', 'SendingTime', 'TransactTime', 'MatchEventIndicator', 'MDEntryPx', 'MDEntrySize',
+                                   'SecurityID', 'NumberOfOrders', 'MDPriceLevel', 'MDUpdateAction', 'MDEntryType']].reset_index(drop=True)
+
+        return OrderBook47
+
+    @staticmethod
     def order_book(data, security, level, consolidate=True, disable_progress_bar=False):
         """
         Reconstructing the limit order book
