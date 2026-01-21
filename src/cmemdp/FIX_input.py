@@ -1914,14 +1914,14 @@ class quotes:
             def book_check(LOB_outright, LOB_implied):
 
                 if LOB_outright is not None and LOB_implied is None:
-                    LOB_conso = LOB_outright.copy()
+                    LOB_conso = LOB_outright
                     LOB_implied = None
                     print(
                         "No implied orders and the consolidated limit order book is the same as the outright limit order book")
 
                 elif LOB_outright is None and LOB_implied is not None:
 
-                    LOB_conso = LOB_implied.copy()
+                    LOB_conso = LOB_implied
                     LOB_outright = None
                     print(
                         "No outright orders and the consolidated limit order book is the same as the implied limit order book")
