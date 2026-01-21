@@ -1890,14 +1890,14 @@ class quotes:
 
             return books
 
-        if message_outright.shape[1] != 0:
+        if message_outright.shape[0] != 0:
             print("Outright limit order book start...")
             LOB_outright = book1(message_outright, 10)
 
         else:
             LOB_outright = None
 
-        if message_implied.shape[1] != 0:
+        if message_implied.shape[0] != 0:
             print("Implied limit order book start...")
             LOB_implied = book1(message_implied, 2)
             LOB_implied = LOB_implied.drop(
