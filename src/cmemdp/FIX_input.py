@@ -773,7 +773,8 @@ class mbp_input_fix:
                     Quotes = pd.concat(
                         [Quotes_outright, Quotes_implied], axis=0, ignore_index=True)
 
-                    Quotes.sort_values(['Code', 'Seq'], inplace=True)
+                    Quotes.sort_values(
+                        ['Code', 'Seq'], na_position='first', inplace=True)
 
                 else:
                     Quotes = Quotes_outright
@@ -878,7 +879,8 @@ class mbp_input_fix:
                     Quotes = pd.concat(
                         [Quotes_outright, Quotes_implied], axis=0, ignore_index=True)
 
-                    Quotes.sort_values(['Code', 'Seq'], inplace=True)
+                    Quotes.sort_values(
+                        ['Code', 'Seq'], na_position='first', inplace=True)
 
                 else:
                     Quotes = Quotes_outright
@@ -1463,7 +1465,7 @@ class mbp_input_fix:
             data1['SessionID'] = np.where(
                 data1['SessionID'] == 0, 'preopen', 'opening')
             status = data1.sort_values(
-                ['Code', 'SessionID', 'Seq']).reset_index(drop=True)
+                ['Code', 'SessionID', 'Seq'], na_position='first').reset_index(drop=True)
 
         else:
 
@@ -1940,7 +1942,7 @@ class quotes:
                             LOB_implied_new = pd.concat(
                                 [LOB_implied_new, LOB_implied], ignore_index=True)
                             LOB_implied_new = LOB_implied_new.sort_values(
-                                'Seq').reset_index(drop=True)
+                                'Seq', na_position='first').reset_index(drop=True)
                             LOB_implied_new.iloc[:,
                                                  4: 12] = LOB_implied_new.iloc[:, 4: 12].ffill()
 
@@ -1964,7 +1966,7 @@ class quotes:
                             LOB_outright_new = pd.concat(
                                 [LOB_outright_new, LOB_outright], ignore_index=True)
                             LOB_outright_new = LOB_outright_new.sort_values(
-                                'Seq').reset_index(drop=True)
+                                'Seq', na_position='first').reset_index(drop=True)
                             LOB_outright_new.iloc[:,
                                                   4: (LOB_outright_new.shape[1]-2)] = LOB_outright_new.iloc[:, 4: (LOB_outright_new.shape[1]-2)].ffill()
 
@@ -2269,7 +2271,7 @@ class orderbook:
         if transact_time == True:
             book = book.loc[(book['TransactTime'] >= resample_start) & (
                 book['TransactTime'] <= resample_end)]
-            book = book.sort_values('Seq')
+            book = book.sort_values('Seq', na_position='first')
             book.drop_duplicates(
                 'TransactTime', keep='last', inplace=True)
             book.set_index("TransactTime", inplace=True)
@@ -2277,7 +2279,7 @@ class orderbook:
         else:
             book = book.loc[(book['SendingTime'] >= resample_start) & (
                 book['SendingTime'] <= resample_end)]
-            book = book.sort_values('Seq')
+            book = book.sort_values('Seq', na_position='first')
             book.set_index("SendingTime", inplace=True)
 
         book = book.asfreq(
@@ -2365,7 +2367,7 @@ class orderbook:
                 raise Exception(
                     'All trades are defined by the CME. No need to be redefined.')
 
-            tbbo.sort_values('Seq', inplace=True)
+            tbbo.sort_values('Seq', na_position='first', inplace=True)
             tbbo = tbbo.dropna()
 
             tbbo.loc[tbbo['agg'] == 0, 'agg'] = np.where(
