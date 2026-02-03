@@ -2000,7 +2000,9 @@ class quotes:
                                         # Implied price is not in the existing book prices
                                         # Defining the existing book prices
                                         px_seq = np.append(LOB_conso.iloc[:, range(4, bid_px1_index+1, 3)].values, np.array(
-                                            [LOB_implied_new.loc[a, 'Bid_PX_1']]).reshape(1, -1), axis=1)[:, ::-1]
+                                            [LOB_implied_new.loc[a, 'Bid_PX_1']]).reshape(1, -1), axis=1)
+                                        # descending sort
+                                        px_seq = -np.sort(-px_seq, axis=1)
 
                                         conso_px = np.where(px_seq == LOB_implied_new.loc[a, 'Bid_PX_1'])[
                                             1].astype(int)[0]+1
@@ -2046,7 +2048,9 @@ class quotes:
                                         # Implied price is not in the existing book prices
                                         # Defining the existing book prices
                                         px_seq = np.append(LOB_conso.iloc[:, range(4, bid_px1_index+1, 3)].values, np.array(
-                                            [LOB_implied_new.loc[a, 'Bid_PX_2']]).reshape(1, -1), axis=1)[:, ::-1]
+                                            [LOB_implied_new.loc[a, 'Bid_PX_2']]).reshape(1, -1), axis=1)
+                                        # descending sort
+                                        px_seq = -np.sort(-px_seq, axis=1)
 
                                         conso_px = np.where(px_seq == LOB_implied_new.loc[a, 'Bid_PX_2'])[
                                             1].astype(int)[0]+1
@@ -2091,6 +2095,8 @@ class quotes:
                                         # Defining the existing book prices
                                         px_seq = np.append(LOB_conso.iloc[:, range(ask_px1_index, (level * 2 * 3 + 4), 3)].values, np.array(
                                             [LOB_implied_new.loc[a, 'Ask_PX_1']]).reshape(1, -1), axis=1)
+                                        # ascending sort
+                                        px_seq = np.sort(px_seq, axis=1)
 
                                         conso_px = np.where(px_seq == LOB_implied_new.loc[a, 'Ask_PX_1'])[
                                             1].astype(int)[0]+1
@@ -2134,6 +2140,8 @@ class quotes:
                                         # Defining the existing book prices
                                         px_seq = np.append(LOB_conso.iloc[:, range(ask_px1_index, (level * 2 * 3 + 4), 3)].values, np.array(
                                             [LOB_implied_new.loc[a, 'Ask_PX_2']]).reshape(1, -1), axis=1)
+                                        # ascending sort
+                                        px_seq = np.sort(px_seq, axis=1)
 
                                         conso_px = np.where(px_seq == LOB_implied_new.loc[a, 'Ask_PX_2'])[
                                             1].astype(int)[0]
