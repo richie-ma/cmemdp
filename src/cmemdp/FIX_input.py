@@ -2004,10 +2004,8 @@ class quotes:
                                         # descending sort
                                         px_seq = -np.sort(-px_seq, axis=1)
 
-                                        matches = (
-                                            px_seq == LOB_implied_new.loc[a, 'Bid_PX_1'])
-                                        conso_px = np.argmax(
-                                            matches, axis=1)[0] + 1
+                                        conso_px = np.where(px_seq == LOB_implied_new.loc[a, 'Bid_PX_1'])[
+                                            1].astype(int)[0]+1
 
                                         if conso_px <= level:
                                             conso_px_lv = f"Bid_PX_{conso_px}"
@@ -2054,10 +2052,8 @@ class quotes:
                                         # descending sort
                                         px_seq = -np.sort(-px_seq, axis=1)
 
-                                        matches = (
-                                            px_seq == LOB_implied_new.loc[a, 'Bid_PX_2'])
-                                        conso_px = np.argmax(
-                                            matches, axis=1)[0] + 1
+                                        conso_px = np.where(px_seq == LOB_implied_new.loc[a, 'Bid_PX_2'])[
+                                            1].astype(int)[0]+1
 
                                         if conso_px <= level:
                                             conso_px_lv = f"Bid_PX_{conso_px}"
@@ -2101,10 +2097,9 @@ class quotes:
                                             [LOB_implied_new.loc[a, 'Ask_PX_1']]).reshape(1, -1), axis=1)
                                         # ascending sort
                                         px_seq = np.sort(px_seq, axis=1)
-                                        matches = (
-                                            px_seq == LOB_implied_new.loc[a, 'Ask_PX_1'])
-                                        conso_px = np.argmax(
-                                            matches, axis=1)[0] + 1
+
+                                        conso_px = np.where(px_seq == LOB_implied_new.loc[a, 'Ask_PX_1'])[
+                                            1].astype(int)[0]+1
 
                                         if conso_px <= level:
                                             conso_px_lv = f"Ask_PX_{conso_px}"
@@ -2147,10 +2142,9 @@ class quotes:
                                             [LOB_implied_new.loc[a, 'Ask_PX_2']]).reshape(1, -1), axis=1)
                                         # ascending sort
                                         px_seq = np.sort(px_seq, axis=1)
-                                        matches = (
-                                            px_seq == LOB_implied_new.loc[a, 'Ask_PX_2'])
-                                        conso_px = np.argmax(
-                                            matches, axis=1)[0] + 1
+
+                                        conso_px = np.where(px_seq == LOB_implied_new.loc[a, 'Ask_PX_2'])[
+                                            1].astype(int)[0]
 
                                         if conso_px <= level:
                                             conso_px_lv = f"Ask_PX_{conso_px}"
