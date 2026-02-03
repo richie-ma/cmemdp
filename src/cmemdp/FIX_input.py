@@ -2107,7 +2107,7 @@ class quotes:
                                                 conso_px_lv)
 
                                             if conso_px_id < (level * 2 * 3 + 1):
-                                                LOB_conso.iloc[:, (conso_px_id+2):(level * 2 * 3 + 3)] = LOB_conso.iloc[:,
+                                                LOB_conso.iloc[:, (conso_px_id+3):(level * 2 * 3 + 3)] = LOB_conso.iloc[:,
                                                                                                                         conso_px_id: (level * 2 * 3)]
 
                                                 LOB_conso.iloc[:,
@@ -2152,7 +2152,7 @@ class quotes:
                                                 conso_px_lv)
 
                                             if conso_px_id < (level * 2 * 3 + 1):
-                                                LOB_conso.iloc[:, (conso_px_id+2):(level * 2 * 3 + 3)] = LOB_conso.iloc[:,
+                                                LOB_conso.iloc[:, (conso_px_id+3):(level * 2 * 3 + 3)] = LOB_conso.iloc[:,
                                                                                                                         conso_px_id: (level * 2 * 3)]
 
                                                 LOB_conso.iloc[:,
