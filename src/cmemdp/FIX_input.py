@@ -2002,11 +2002,13 @@ class quotes:
                                         px_seq = np.append(LOB_conso.iloc[:, range(4, bid_px1_index+1, 3)].values, np.array(
                                             [LOB_implied_new.loc[a, 'Bid_PX_1']]).reshape(1, -1), axis=1)
                                         # descending sort
-                                        px_seq = px_seq[:, px_seq[0] != 0]
-                                        px_seq = -np.sort(-px_seq, axis=1)
+                                        px_seq = px_seq[~np.isnan(px_seq)]
+                                        px_seq = px_seq[px_seq > 0]
+                                        px_seq = np.unique(px_seq)
+                                        px_seq = np.sort(px_seq)[::-1]
 
-                                        conso_px = np.where(px_seq == LOB_implied_new.loc[a, 'Bid_PX_1'])[
-                                            1].astype(int)[0]+1
+                                        conso_px = np.where(LOB_implied_new.loc[a, 'Bid_PX_1'] == px_seq)[
+                                            0].astype(int)[0]+1
 
                                         if conso_px <= level:
                                             conso_px_lv = f"Bid_PX_{conso_px}"
@@ -2051,11 +2053,13 @@ class quotes:
                                         px_seq = np.append(LOB_conso.iloc[:, range(4, bid_px1_index+1, 3)].values, np.array(
                                             [LOB_implied_new.loc[a, 'Bid_PX_2']]).reshape(1, -1), axis=1)
                                         # descending sort
-                                        px_seq = px_seq[:, px_seq[0] != 0]
-                                        px_seq = -np.sort(-px_seq, axis=1)
+                                        px_seq = px_seq[~np.isnan(px_seq)]
+                                        px_seq = px_seq[px_seq > 0]
+                                        px_seq = np.unique(px_seq)
+                                        px_seq = np.sort(px_seq)[::-1]
 
-                                        conso_px = np.where(px_seq == LOB_implied_new.loc[a, 'Bid_PX_2'])[
-                                            1].astype(int)[0]+1
+                                        conso_px = np.where(LOB_implied_new.loc[a, 'Bid_PX_2'] == px_seq)[
+                                            0].astype(int)[0]+1
 
                                         if conso_px <= level:
                                             conso_px_lv = f"Bid_PX_{conso_px}"
@@ -2098,11 +2102,13 @@ class quotes:
                                         px_seq = np.append(LOB_conso.iloc[:, range(ask_px1_index, (level * 2 * 3 + 4), 3)].values, np.array(
                                             [LOB_implied_new.loc[a, 'Ask_PX_1']]).reshape(1, -1), axis=1)
                                         # ascending sort
-                                        px_seq = px_seq[:, px_seq[0] != 0]
-                                        px_seq = np.sort(px_seq, axis=1)
+                                        px_seq = px_seq[~np.isnan(px_seq)]
+                                        px_seq = px_seq[px_seq > 0]
+                                        px_seq = np.unique(px_seq)
+                                        px_seq = np.sort(px_seq)
 
-                                        conso_px = np.where(px_seq == LOB_implied_new.loc[a, 'Ask_PX_1'])[
-                                            1].astype(int)[0]+1
+                                        conso_px = np.where(LOB_implied_new.loc[a, 'Ask_PX_1'] == px_seq)[
+                                            0].astype(int)[0]+1
 
                                         if conso_px <= level:
                                             conso_px_lv = f"Ask_PX_{conso_px}"
@@ -2144,11 +2150,13 @@ class quotes:
                                         px_seq = np.append(LOB_conso.iloc[:, range(ask_px1_index, (level * 2 * 3 + 4), 3)].values, np.array(
                                             [LOB_implied_new.loc[a, 'Ask_PX_2']]).reshape(1, -1), axis=1)
                                         # ascending sort
-                                        px_seq = px_seq[:, px_seq[0] != 0]
-                                        px_seq = np.sort(px_seq, axis=1)
+                                        px_seq = px_seq[~np.isnan(px_seq)]
+                                        px_seq = px_seq[px_seq > 0]
+                                        px_seq = np.unique(px_seq)
+                                        px_seq = np.sort(px_seq)
 
-                                        conso_px = np.where(px_seq == LOB_implied_new.loc[a, 'Ask_PX_2'])[
-                                            1].astype(int)[0]
+                                        conso_px = np.where(LOB_implied_new.loc[a, 'Ask_PX_2'] == px_seq)[
+                                            0].astype(int)[0]+1
 
                                         if conso_px <= level:
                                             conso_px_lv = f"Ask_PX_{conso_px}"
