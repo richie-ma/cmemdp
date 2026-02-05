@@ -1893,6 +1893,7 @@ class quotes:
         if message_outright.shape[0] != 0:
             print("Outright limit order book start...")
             LOB_outright = book1(message_outright, 10)
+            LOB_outright.nafill(0, inplace=True)
 
         else:
             LOB_outright = None
@@ -1900,6 +1901,7 @@ class quotes:
         if message_implied.shape[0] != 0:
             print("Implied limit order book start...")
             LOB_implied = book1(message_implied, 2)
+            LOB_implied.nafill(0, inplace=True)
             LOB_implied = LOB_implied.drop(
                 ['Bid_Ord_1', 'Bid_Ord_2', 'Ask_Ord_1', 'Ask_Ord_2'], axis=1)
 
