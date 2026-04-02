@@ -104,7 +104,6 @@ def cme_parser_datamine(path, max_read_packets=None, cme_header=True,
     msgs_MDIncrementalRefreshTrade36 = []
     msgs_MDIncrementalRefreshVolume37 = []
     msgs_SnapshotFullRefresh38 = []
-    msgs_QuoteRequest39 = []
     msgs_MDInstrumentDefinitionOption41 = []
     msgs_MDIncrementalRefreshTradeSummary42 = []
     msgs_MDIncrementalRefreshOrderBook43 = []
@@ -447,20 +446,6 @@ def cme_parser_datamine(path, max_read_packets=None, cme_header=True,
                                     f"{save_file_path}/msgs_SnapshotFullRefresh38_{chunk_index38}.parquet")
                                 chunk_index38 += 1
                                 msgs_SnapshotFullRefresh38 = []
-
-                        elif TemplateID == 39:
-
-                            msgs_QuoteRequest39.append(
-                                main_template.QuoteRequest39(messages, BlockLength, cme_packet))
-
-                            if len(msgs_QuoteRequest39) >= chunk_size:
-
-                                msgs_QuoteRequest39 = pd.DataFrame(
-                                    chain.from_iterable(msgs_QuoteRequest39))
-                                msgs_QuoteRequest39.to_parquet(
-                                    f"{save_file_path}/msgs_QuoteRequest39_{chunk_index39}.parquet")
-                                chunk_index39 += 1
-                                msgs_QuoteRequest39 = []
 
                         elif TemplateID == 41:
 
@@ -950,13 +935,6 @@ def cme_parser_datamine(path, max_read_packets=None, cme_header=True,
             f"{save_file_path}/msgs_SnapshotFullRefresh38.parquet")
         del msgs_SnapshotFullRefresh38
 
-    if (len(msgs_QuoteRequest39) != 0):
-        msgs_QuoteRequest39 = pd.DataFrame(
-            chain.from_iterable(msgs_QuoteRequest39))
-        msgs_QuoteRequest39.to_parquet(
-            f"{save_file_path}/msgs_QuoteRequest39.parquet")
-        del msgs_QuoteRequest39
-
     if (len(msgs_MDInstrumentDefinitionOption41) != 0):
         msgs_MDInstrumentDefinitionOption41 = pd.DataFrame(
             chain.from_iterable(msgs_MDInstrumentDefinitionOption41))
@@ -1217,7 +1195,6 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
     msgs_MDIncrementalRefreshTrade36 = []
     msgs_MDIncrementalRefreshVolume37 = []
     msgs_SnapshotFullRefresh38 = []
-    msgs_QuoteRequest39 = []
     msgs_MDInstrumentDefinitionOption41 = []
     msgs_MDIncrementalRefreshTradeSummary42 = []
     msgs_MDIncrementalRefreshOrderBook43 = []
@@ -1557,20 +1534,6 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
                                 f"{save_file_path}/msgs_SnapshotFullRefresh38_{chunk_index38}.parquet")
                             chunk_index38 += 1
                             msgs_SnapshotFullRefresh38 = []
-
-                    elif TemplateID == 39:
-
-                        msgs_QuoteRequest39.append(
-                            main_template.QuoteRequest39(messages, BlockLength, cme_packet))
-
-                        if len(msgs_QuoteRequest39) >= chunk_size:
-
-                            msgs_QuoteRequest39 = pd.DataFrame(
-                                chain.from_iterable(msgs_QuoteRequest39))
-                            msgs_QuoteRequest39.to_parquet(
-                                f"{save_file_path}/msgs_QuoteRequest39_{chunk_index39}.parquet")
-                            chunk_index39 += 1
-                            msgs_QuoteRequest39 = []
 
                     elif TemplateID == 41:
 
@@ -2056,13 +2019,6 @@ def cme_parser_pcap(path, max_read_packets=None, msgs_template=None, cme_header=
         msgs_SnapshotFullRefresh38.to_parquet(
             f"{save_file_path}/msgs_SnapshotFullRefresh38.parquet")
         del msgs_SnapshotFullRefresh38
-
-    if (len(msgs_QuoteRequest39) != 0):
-        msgs_QuoteRequest39 = pd.DataFrame(
-            chain.from_iterable(msgs_QuoteRequest39))
-        msgs_QuoteRequest39.to_parquet(
-            f"{save_file_path}/msgs_QuoteRequest39.parquet")
-        del msgs_QuoteRequest39
 
     if (len(msgs_MDInstrumentDefinitionOption41) != 0):
         msgs_MDInstrumentDefinitionOption41 = pd.DataFrame(
